@@ -34,7 +34,7 @@ function Footer() {
         </div>
         <div className="copyright_sli">
           <p className="copyright_sli_bot">
-            Solution Logique Informatique © 2022
+            Solution Logique Informatique © 2024
           </p>
         </div>
       </div>
