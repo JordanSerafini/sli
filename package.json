@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-brands-svg-icons": "^6.7.2",
+    "@fortawesome/free-regular-svg-icons": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.1.18",
     "@react-google-maps/api": "^2.20.5",
     "@testing-library/jest-dom": "^5.16.3",
@@ -25,6 +28,7 @@
     "react-slick": "^0.28.1",
     "sass": "^1.49.9",
     "schema-utils": "^4.3.0",
+    "styled-components": "^6.1.13",
     "web-vitals": "^2.1.4",
     "webpack-dev-server": "^5.2.0"
   },
@@ -56,5 +60,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }
