@@ -48,7 +48,7 @@ function IntroLeft() {
       }, `+=${index * 0.2}`)
       .to(p, {
         text: text,
-        duration: text.length * 0.08,
+        duration: text.length * 0.035,
         ease: "none",
         onStart: () => {
           p.classList.add('typing');

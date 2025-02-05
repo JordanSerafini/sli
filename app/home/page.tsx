@@ -31,20 +31,19 @@ function Home() {
 
   return (
     <main className="card_home_page">
-      < Intro />
-      < Expertise />
+      <Intro />
+      <Expertise />
       <div className="container">
         <section className="home_conseils_sli">
           <div className="home_conseils_sli_left">
-          <Image
-  className="img_right_side responsive_img"
-  alt="Assistance télémaintenance"
-  src="/assets/assistance.webp"
-  width={400}
-  height={300}
-  priority
-/>
-
+            <Image
+              className="img_right_side responsive_img"
+              alt="Assistance télémaintenance"
+              src="/assets/assistance.webp"
+              width={400}
+              height={300}
+              priority
+            />
           </div>
           <div className="home_conseils_sli_right">
             <h1>Nous contacter</h1>
@@ -69,7 +68,7 @@ function Home() {
             disableOnInteraction: false,
             pauseOnMouseEnter: false,
           }}
-          speed={speed} 
+          speed={speed}
           loop={true}
           freeMode={true}
           grabCursor={false}

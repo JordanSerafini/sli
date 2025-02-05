@@ -15,20 +15,6 @@
     }
 }
 
-.home_container_right_side {
-    @include tablet {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-    .right_content {
-        @include tablet {
-            font-size: 0.8rem;
-        }
-    }
-} 
-
 .left_bot_side_p {
     color: rgb(70, 70, 70);
 }
