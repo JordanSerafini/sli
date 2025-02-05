@@ -1,0 +1,28 @@
+.typewriter-paragraphs {
+  font-family: "Courier New", Courier, monospace;
+  white-space: pre-wrap; // Conserve les espaces et sauts de ligne
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.typewriter-paragraphs p {
+  margin: 0;
+}
+
+.cursor {
+  display: inline-block;
+  font-size: inherit;
+  color: black;
+  margin-left: 2px;
+  animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}

@@ -1,0 +1,30 @@
+@use '../../styles/_variables.scss' as *;
+@use '../../styles/_mixins.scss' as *;
+
+.intro_left {
+    flex: 1;
+    
+    h1 {
+        margin-bottom: 1.5rem;
+    }
+    
+    p {
+        font-size: 1.2rem;
+        color: $dark-gray;
+        margin-bottom: 2rem;
+    }
+}
+
+.home_container_right_side {
+    @include tablet {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .right_content {
+        @include tablet {
+            font-size: 0.8rem;
+        }
+    }
+} 

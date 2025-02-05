@@ -1,0 +1,284 @@
+@use '../styles/_variables.scss' as *;
+@use '../styles/_mixins.scss' as *;
+@use "../styles/global.scss" as *;
+
+.heading_logiciels {
+  padding-bottom: 50px;
+}
+.profile-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+
+  .logo_qualiopi{
+    display: block;
+    text-align: center;
+
+    img{
+      cursor: pointer;
+      width: 40%;
+    }
+
+    .logo_qualiopi_description{
+      padding-bottom: 15px;
+    }
+  }
+
+  @include tablet{
+    display: block;
+    padding: 0px;
+  }
+
+  .counter_formations_SLI {
+    padding-top: 50px;
+    .counter_satisfaction {
+      text-align: center;
+      align-items: center;
+      margin: auto;
+
+      .satisfaction_heart {
+        font-size: 3em;
+        color: $white;
+        padding-right: 15px;
+      }
+
+      p {
+        font-size: 3em;
+      }
+
+      span {
+        font-weight: 600;
+      }
+    }
+  }
+
+  .form_formations_sli {
+    text-align: center;
+    padding: 50px 0px;
+
+    .formations_place {
+      p {
+        margin: 15px;
+        font-size: 1em;
+      }
+
+      a {
+        text-decoration: none;
+        color: $main-color;
+      }
+    }
+
+    span {
+      font-weight: 600;
+    }
+
+    h2 {
+      padding-top: 30px;
+      color: $main-color;
+      text-transform: uppercase;
+    }
+
+    h3 {
+      padding-top: 15px;
+      color: $main-color;
+      text-transform: uppercase;
+    }
+
+    h4 {
+      font-size: 1.5em;
+      padding-top: 30px;
+      color: $main-color;
+      text-transform: uppercase;
+    }
+  }
+
+  .group_form_sli {
+    display: flex;
+    width: 100%;
+    padding: 50px 0px;
+
+    @include mobile{
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .form_sli {
+      width: 50%;
+      text-align: center;
+      color: $main-color;
+
+      @include mobile{
+        padding: 25px 0;
+      }
+
+      h4 {
+        padding-top: 15px;
+        font-size: 1.5em;
+      }
+    }
+
+    .formations_group {
+      font-size: 4em;
+    }
+  }
+}
+.card-grid {
+  display: flex;
+
+  @include mobile{
+    flex-direction: column;
+  }
+
+  @include tablet{
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.card {
+  width: 100%;
+  height: 400px;
+  display: block;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  transition: background 0.8s linear;
+
+
+  img {
+    width: 100%;
+  }
+}
+.card0 {
+  background-image: cover;
+}
+.card1 {
+  background-image: cover;
+}
+.card2 {
+  background-image: cover;
+}
+.card:hover {
+  background-image: cover;
+  background-position: left center;
+  filter: unset;
+}
+.overlay {
+  opacity: 1;
+  height: 100%;
+  padding: 20px 10px 0px 10px;
+  transition: opacity 0.8s linear;
+  border-radius: 25px;
+
+  @include mobile{
+    padding: 0px;
+    border-radius: 0px;
+  }
+
+  &:hover {
+    background-color: white;
+    opacity: 0.9;
+    transition: background 0.8s linear;
+  }
+}
+
+.content > h2 {
+  margin-bottom: 10px;
+  color: $main-color;
+}
+
+.content {
+  height: 90%;
+  position: relative;
+  right: -375px;
+  transition: right 0.8s linear;
+  text-align: center;
+  padding: 15px;
+
+  @include tablet{
+    right: -600px;
+  }
+
+  @include mobile{
+    padding: 0px;
+    margin: 0px 20px;
+  }
+
+  p {
+    color: black;
+    text-align: justify;
+  }
+}
+.card:hover .content {
+  right: 0;
+}
+.card:hover .icons {
+  opacity: 1;
+}
+.learn-more-btn {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  color: black;
+  text-decoration: unset;
+  padding: 5px 10px;
+  border: 1px solid;
+
+  @include mobile{
+    bottom: -20px;
+    margin-top: 10px;
+    
+  }
+
+  &:hover {
+    background-color: white;
+    color: $main-color;
+    border: none;
+  }
+}
+
+.cards_statistic {
+  display: flex;
+  width: 100%;
+
+  @include mobile{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card_statistic {
+    cursor: pointer;
+    width: 50%;
+    margin: 15px;
+    color: white;
+    background-color: $main-color;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 3em;
+    padding: 15px;
+
+    @include mobile{
+      width: 100%;
+    }
+
+    @include tablet{
+      font-size: 2em;
+      align-items: center;
+    }
+
+    &:hover,
+    &:focus {
+      transform: scale3d(1.006, 1.006, 1);
+      box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.15);
+
+      &::after {
+        opacity: 1;
+      }
+    }
+
+    .satisfaction_heart {
+      font-size: 1.5em;
+    }
+  }
+}

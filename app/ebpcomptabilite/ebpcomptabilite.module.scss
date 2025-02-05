@@ -1,0 +1,132 @@
+@use '../styles/_variables.scss' as *;
+@use '../styles/_mixins.scss' as *;
+@use "../styles/global.scss" as *;
+
+.ebp_comptabilite {
+  text-align: center;
+  
+
+  .title_ebp{
+    text-transform: uppercase;
+  }
+
+  .sub_title_ebp {
+    color: $main-color;
+  }
+
+  h2 {
+    font-size: 2em;
+    padding: 25px 0;
+  }
+
+  p {
+    font-size: 1.2em;
+    padding: 15px 0;
+  }
+
+  .title_software {
+    font-size: 1.5em;
+    padding: 25px;
+    font-weight: 400;
+    text-align: left;
+    color: $main-color;
+  }
+
+  img {
+    width: 50%;
+    padding-bottom: 10px;
+  }
+
+  .colum_software_compta {
+    width: 100%;
+    display: flex;
+    padding: 50px 0px;
+
+    @include mobile {
+      flex-direction: column;
+    }
+
+    .description_software {
+      padding: 0px 50px;
+      text-align: left;
+
+      @include mobile {
+        text-align: center;
+      }
+    }
+
+    h3 {
+      padding-bottom: 40px;
+
+      @include mobile {
+        text-align: center;
+      }
+    }
+
+    .comptabilite_icons {
+      padding-right: 10px;
+      color: $main-color;
+    }
+
+    .colum_software_1 {
+      width: 33.33%;
+
+      @include mobile {
+        width: 100%;
+      }
+    }
+    .colum_software_2 {
+      width: 33.33%;
+
+      @include mobile {
+        width: 100%;
+      }
+    }
+    .colum_software_3 {
+      width: 33.33%;
+
+      @include mobile {
+        width: 100%;
+      }
+    }
+  }
+
+  .btn_help {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem 2rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    color: $white;
+    backface-visibility: hidden;
+    border: 0.3rem solid transparent;
+    border-radius: 3rem;
+  }
+
+  .btn_help_right {
+    border-color: transparent;
+    background-color: $main-color;
+    color: $white;
+    transition: transform 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
+  }
+
+  .btn_help_right:hover {
+    transform: perspective(1px) scale3d(1.044, 1.044, 1) translateZ(0) !important;
+  }
+
+  .buttons_ebp {
+    display: flex;
+    width: 100%;
+    padding-bottom: 50px;
+    text-align: center;
+    padding-top: 20px;
+
+    @include mobile {
+      display: block;
+    }
+  }
+}

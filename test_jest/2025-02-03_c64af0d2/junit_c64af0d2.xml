@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="13" failures="0" errors="0" time="3.238">
+  <testsuite name="Page NosServices" errors="0" failures="0" skipped="0" timestamp="2025-02-03T16:06:40" time="1.476" tests="2">
+    <testcase classname="Page NosServices devrait afficher un titre principal &quot;NOS SERVICES&quot;" name="Page NosServices devrait afficher un titre principal &quot;NOS SERVICES&quot;" time="0.06">
+    </testcase>
+    <testcase classname="Page NosServices devrait comporter des liens vers les services" name="Page NosServices devrait comporter des liens vers les services" time="0.018">
+    </testcase>
+  </testsuite>
+  <testsuite name="Ebpbatiment Component" errors="0" failures="0" skipped="0" timestamp="2025-02-03T16:06:40" time="1.551" tests="4">
+    <testcase classname="Ebpbatiment Component devrait se rendre sans crash" name="Ebpbatiment Component devrait se rendre sans crash" time="0.047">
+    </testcase>
+    <testcase classname="Ebpbatiment Component devrait afficher la description" name="Ebpbatiment Component devrait afficher la description" time="0.006">
+    </testcase>
+    <testcase classname="Ebpbatiment Component devrait afficher au moins une carte de logiciel" name="Ebpbatiment Component devrait afficher au moins une carte de logiciel" time="0.007">
+    </testcase>
+    <testcase classname="Ebpbatiment Component chaque carte de logiciel devrait comporter un lien &apos;En savoir plus ?&apos;" name="Ebpbatiment Component chaque carte de logiciel devrait comporter un lien &apos;En savoir plus ?&apos;" time="0.007">
+    </testcase>
+  </testsuite>
+  <testsuite name="Footer Component" errors="0" failures="0" skipped="0" timestamp="2025-02-03T16:06:40" time="1.578" tests="3">
+    <testcase classname="Footer Component devrait se rendre sans crash" name="Footer Component devrait se rendre sans crash" time="0.045">
+    </testcase>
+    <testcase classname="Footer Component devrait afficher les liens de navigation" name="Footer Component devrait afficher les liens de navigation" time="0.007">
+    </testcase>
+    <testcase classname="Footer Component devrait afficher l&apos;année dynamique dans le copyright" name="Footer Component devrait afficher l&apos;année dynamique dans le copyright" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="Page Informatique" errors="0" failures="0" skipped="0" timestamp="2025-02-03T16:06:40" time="1.604" tests="4">
+    <testcase classname="Page Informatique affiche le titre principal &apos;SOLUTIONS INFORMATIQUES&apos;" name="Page Informatique affiche le titre principal &apos;SOLUTIONS INFORMATIQUES&apos;" time="0.084">
+    </testcase>
+    <testcase classname="Page Informatique affiche les titres des sections" name="Page Informatique affiche les titres des sections" time="0.013">
+    </testcase>
+    <testcase classname="Page Informatique affiche des images avec l&apos;attribut alt &apos;logo_solution_logique_informatique&apos;" name="Page Informatique affiche des images avec l&apos;attribut alt &apos;logo_solution_logique_informatique&apos;" time="0.006">
+    </testcase>
+    <testcase classname="Page Informatique affiche des icônes via FontAwesome" name="Page Informatique affiche des icônes via FontAwesome" time="0.006">
+    </testcase>
+  </testsuite>
+</testsuites>

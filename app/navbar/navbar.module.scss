@@ -1,0 +1,91 @@
+@use '../styles/_variables.scss' as *;
+@use '../styles/_mixins.scss' as *;
+@use "../styles/global.scss" as *;
+
+.navigation_bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 1.2em;
+  background-color: $white;
+  z-index: 1;
+  position: fixed;
+  width: 100%;
+
+  @include tablet {
+    flex-direction: column;
+    position: relative;
+  }
+
+  @include mobile {
+    flex-direction: column;
+    position: relative;
+  }
+
+  img {
+    width: 150px;
+    cursor: pointer;
+
+    @include tablet {
+      width: 200px;
+    }
+  }
+
+  ul.nav_links {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+
+    @include mobile {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    li {
+      position: relative;
+
+      a {
+        color: $main-color;
+        text-decoration: none;
+        padding: 10px 0;
+        transition: color 0.3s;
+
+        &:hover {
+          color: grey;
+        }
+      }
+
+      &:hover .sous {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .sous {
+        display: none;
+        position: absolute;
+        background-color: $white;
+        box-shadow: 0px 1px 2px $white;
+        padding: 10px;
+        top: 100%;
+        z-index: 1000;
+
+        li {
+          padding: 5px 10px;
+
+          a {
+            color: $main-color;
+
+            &:hover {
+              color: grey;
+            }
+          }
+        }
+      }
+    }
+
+    .deroulant > a::after {
+      content: " ▼";
+      font-size: 12px;
+    }
+  }
+}

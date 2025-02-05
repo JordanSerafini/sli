@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="14" failures="1" errors="0" time="2.729">
+  <testsuite name="Ebpbatiment Component" errors="0" failures="0" skipped="0" timestamp="2025-02-03T15:12:20" time="1.228" tests="4">
+    <testcase classname="Ebpbatiment Component devrait se rendre sans crash" name="Ebpbatiment Component devrait se rendre sans crash" time="0.058">
+    </testcase>
+    <testcase classname="Ebpbatiment Component devrait afficher la description" name="Ebpbatiment Component devrait afficher la description" time="0.007">
+    </testcase>
+    <testcase classname="Ebpbatiment Component devrait afficher au moins une carte de logiciel" name="Ebpbatiment Component devrait afficher au moins une carte de logiciel" time="0.007">
+    </testcase>
+    <testcase classname="Ebpbatiment Component chaque carte de logiciel devrait comporter un lien &apos;En savoir plus ?&apos;" name="Ebpbatiment Component chaque carte de logiciel devrait comporter un lien &apos;En savoir plus ?&apos;" time="0.007">
+    </testcase>
+  </testsuite>
+  <testsuite name="Page Informatique" errors="0" failures="0" skipped="0" timestamp="2025-02-03T15:12:20" time="1.271" tests="4">
+    <testcase classname="Page Informatique affiche le titre principal &apos;SOLUTIONS INFORMATIQUES&apos;" name="Page Informatique affiche le titre principal &apos;SOLUTIONS INFORMATIQUES&apos;" time="0.098">
+    </testcase>
+    <testcase classname="Page Informatique affiche les titres des sections" name="Page Informatique affiche les titres des sections" time="0.014">
+    </testcase>
+    <testcase classname="Page Informatique affiche des images avec l&apos;attribut alt &apos;logo_solution_logique_informatique&apos;" name="Page Informatique affiche des images avec l&apos;attribut alt &apos;logo_solution_logique_informatique&apos;" time="0.007">
+    </testcase>
+    <testcase classname="Page Informatique affiche des icônes via FontAwesome" name="Page Informatique affiche des icônes via FontAwesome" time="0.007">
+    </testcase>
+  </testsuite>
+  <testsuite name="Page NosServices" errors="0" failures="0" skipped="0" timestamp="2025-02-03T15:12:20" time="1.254" tests="2">
+    <testcase classname="Page NosServices devrait afficher un titre principal &quot;NOS SERVICES&quot;" name="Page NosServices devrait afficher un titre principal &quot;NOS SERVICES&quot;" time="0.062">
+    </testcase>
+    <testcase classname="Page NosServices devrait comporter des liens vers les services" name="Page NosServices devrait comporter des liens vers les services" time="0.015">
+    </testcase>
+  </testsuite>
+  <testsuite name="Footer Component" errors="0" failures="1" skipped="0" timestamp="2025-02-03T15:12:20" time="1.363" tests="4">
+    <testcase classname="Footer Component devrait se rendre sans crash" name="Footer Component devrait se rendre sans crash" time="0.045">
+    </testcase>
+    <testcase classname="Footer Component devrait afficher les liens de navigation" name="Footer Component devrait afficher les liens de navigation" time="0.007">
+    </testcase>
+    <testcase classname="Footer Component devrait afficher une adresse incorrecte (erreur volontaire)" name="Footer Component devrait afficher une adresse incorrecte (erreur volontaire)" time="0.007">
+      <failure>TestingLibraryElementError: Unable to find an element with the text: /Adresse inexistante/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;footer
+      class=&quot;footer&quot;
+    &gt;
+      &lt;div
+        class=&quot;container&quot;
+      &gt;
+        &lt;div
+          class=&quot;footer_description&quot;
+        &gt;
+          &lt;li&gt;
+            &lt;a
+              href=&quot;/&quot;
+            &gt;
+              Accueil
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;a
+              href=&quot;/logiciels&quot;
+            &gt;
+              Nos logiciels / Formations
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;a
+              href=&quot;/nosServices&quot;
+            &gt;
+              Nos Services
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;a
+            href=&quot;https://www.islonline.com/fr/fr/join/&quot;
+            rel=&quot;noopener noreferrer&quot;
+            target=&quot;_blank&quot;
+          &gt;
+            Télémaintenance
+          &lt;/a&gt;
+          &lt;li&gt;
+            &lt;a
+              href=&quot;/contact&quot;
+            &gt;
+              Contactez nous
+            &lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;copyright_sli&quot;
+        &gt;
+          &lt;p&gt;
+            475 Route des Vernes,
+          &lt;/p&gt;
+          &lt;p&gt;
+            74370 Annecy
+          &lt;/p&gt;
+          &lt;p&gt;
+            04.50.64.02.33
+          &lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;copyright_sli&quot;
+        &gt;
+          &lt;p&gt;
+            &lt;a
+              href=&quot;/conditionsGeneralesVente&quot;
+            &gt;
+              Conditions Générales de Vente
+            &lt;/a&gt;
+          &lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;copyright_sli&quot;
+        &gt;
+          &lt;p&gt;
+            Solution Logique Informatique © 2022 - 
+            2025
+          &lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/footer&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+    at Object.getElementError (C:\Users\j.serafini\Desktop\Jordan\Code\WebSolutionLogique_v2\web\node_modules\@testing-library\dom\dist\config.js:37:19)
+    at C:\Users\j.serafini\Desktop\Jordan\Code\WebSolutionLogique_v2\web\node_modules\@testing-library\dom\dist\query-helpers.js:76:38
+    at C:\Users\j.serafini\Desktop\Jordan\Code\WebSolutionLogique_v2\web\node_modules\@testing-library\dom\dist\query-helpers.js:52:17
+    at C:\Users\j.serafini\Desktop\Jordan\Code\WebSolutionLogique_v2\web\node_modules\@testing-library\dom\dist\query-helpers.js:95:19
+    at Object.getByText (C:\Users\j.serafini\Desktop\Jordan\Code\WebSolutionLogique_v2\web\app\footer\page.test.tsx:26:19)
+    at Promise.then.completed (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\run.js:121:9)
+    at run (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-runner\build\testWorker.js:106:12)</failure>
+    </testcase>
+    <testcase classname="Footer Component devrait afficher l&apos;année dynamique dans le copyright" name="Footer Component devrait afficher l&apos;année dynamique dans le copyright" time="0.002">
+    </testcase>
+  </testsuite>
+</testsuites>

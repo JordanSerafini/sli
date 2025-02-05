@@ -1,0 +1,124 @@
+
+> web@0.1.0 test
+> jest
+
+(node:21896) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+PASS app/ebpbatiment/page.test.tsx
+(node:6816) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+PASS app/informatique/page.test.tsx
+(node:4200) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+PASS app/nosServices/page.test.tsx
+(node:7896) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+FAIL app/footer/page.test.tsx
+  ● Footer Component › devrait afficher une adresse incorrecte (erreur volontaire)
+
+    TestingLibraryElementError: Unable to find an element with the text: /Adresse inexistante/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<footer[39m
+          [33mclass[39m=[32m"footer"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"container"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"footer_description"[39m
+            [36m>[39m
+              [36m<li>[39m
+                [36m<a[39m
+                  [33mhref[39m=[32m"/"[39m
+                [36m>[39m
+                  [0mAccueil[0m
+                [36m</a>[39m
+              [36m</li>[39m
+              [36m<li>[39m
+                [36m<a[39m
+                  [33mhref[39m=[32m"/logiciels"[39m
+                [36m>[39m
+                  [0mNos logiciels / Formations[0m
+                [36m</a>[39m
+              [36m</li>[39m
+              [36m<li>[39m
+                [36m<a[39m
+                  [33mhref[39m=[32m"/nosServices"[39m
+                [36m>[39m
+                  [0mNos Services[0m
+                [36m</a>[39m
+              [36m</li>[39m
+              [36m<a[39m
+                [33mhref[39m=[32m"https://www.islonline.com/fr/fr/join/"[39m
+                [33mrel[39m=[32m"noopener noreferrer"[39m
+                [33mtarget[39m=[32m"_blank"[39m
+              [36m>[39m
+                [0mTélémaintenance[0m
+              [36m</a>[39m
+              [36m<li>[39m
+                [36m<a[39m
+                  [33mhref[39m=[32m"/contact"[39m
+                [36m>[39m
+                  [0mContactez nous[0m
+                [36m</a>[39m
+              [36m</li>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"copyright_sli"[39m
+            [36m>[39m
+              [36m<p>[39m
+                [0m475 Route des Vernes,[0m
+              [36m</p>[39m
+              [36m<p>[39m
+                [0m74370 Annecy[0m
+              [36m</p>[39m
+              [36m<p>[39m
+                [0m04.50.64.02.33[0m
+              [36m</p>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"copyright_sli"[39m
+            [36m>[39m
+              [36m<p>[39m
+                [36m<a[39m
+                  [33mhref[39m=[32m"/conditionsGeneralesVente"[39m
+                [36m>[39m
+                  [0mConditions Générales de Vente[0m
+                [36m</a>[39m
+              [36m</p>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"copyright_sli"[39m
+            [36m>[39m
+              [36m<p>[39m
+                [0mSolution Logique Informatique © 2022 - [0m
+                [0m2025[0m
+              [36m</p>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+        [36m</footer>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+    [0m [90m 24 |[39m     render([33m<[39m[33mFooter[39m [33m/[39m[33m>[39m)[33m;[39m
+     [90m 25 |[39m     [90m// Vérifie un texte incorrect volontairement[39m
+    [31m[1m>[22m[39m[90m 26 |[39m     expect(screen[33m.[39mgetByText([35m/Adresse inexistante/i[39m))[33m.[39mtoBeInTheDocument()[33m;[39m
+     [90m    |[39m                   [31m[1m^[22m[39m
+     [90m 27 |[39m   })[33m;[39m
+     [90m 28 |[39m
+     [90m 29 |[39m   test([32m"devrait afficher l'année dynamique dans le copyright"[39m[33m,[39m () [33m=>[39m {[0m
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at Object.getByText (app/footer/page.test.tsx:26:19)
+
+Test Suites: 1 failed, 3 passed, 4 total
+Tests:       1 failed, 13 passed, 14 total
+Snapshots:   0 total
+Time:        2.732 s
+Ran all test suites.
