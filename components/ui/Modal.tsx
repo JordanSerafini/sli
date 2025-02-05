@@ -1,3 +1,5 @@
+import { FaTimes } from "react-icons/fa";
+
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
