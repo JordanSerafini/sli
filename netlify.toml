@@ -2,8 +2,3 @@
   command = "npm run build"
   publish = ".next"
 
-[functions]
-  directory = ".netlify/functions"
-
-[redirects]
-  [redirects.0]
