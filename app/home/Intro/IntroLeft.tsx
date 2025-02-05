@@ -2,6 +2,7 @@ import Image from "next/image";
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { TextPlugin } from "gsap/dist/TextPlugin";
+import './intro.scss'
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(TextPlugin);
@@ -85,8 +86,8 @@ function IntroLeft() {
       <div className="left_bot_side" ref={leftBotSideRef}>
         <h1>Bienvenue chez Solution Logique</h1>
         <h2>Qui sommes-nous ?</h2>
-        <p data-text=""></p>
-        <p data-text=""></p>
+        <p data-text="" className="left_bot_side_p"></p>
+        <p data-text="" className="left_bot_side_p"></p>
       </div>
     </div>
   );

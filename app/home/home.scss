@@ -1,5 +1,23 @@
 @use "../styles/global.scss" as *;
 @use "../styles/_variables.scss" as *;
+.responsive_img {
+  max-width: 100%;
+  height: auto; 
+  display: block;
+  margin: 0 auto; 
+
+  @media (max-width: 1024px) {
+    max-width: 80%;
+  }
+
+  @media (max-width: 768px) {
+    max-width: 70%;
+  }
+
+  @media (max-width: 480px) {
+    max-width: 90%;
+  }
+}
 
 .typewriter-cursor::after {
   content: "|";
@@ -139,7 +157,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 20px; /* Ajoute de l'espace entre chaque élément */
+        gap: 20px;
         justify-content: center;
         min-height: 400px;
         position: relative;
@@ -147,13 +165,13 @@
         h1,
         h2,
         p {
-          margin: 0; /* Assure que les marges par défaut sont annulées */
+          margin: 0;
           padding: 0;
         }
       
         h1 {
           font-size: 2em;
-          margin-bottom: 20px; /* Espace sous le titre principal */
+          margin-bottom: 20px;
           color: $main-color;
         }
       
