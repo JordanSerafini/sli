@@ -29,6 +29,11 @@
         right: 35px;
         bottom: 35px;
     }
+
+    @media screen and (max-width: 800px) {
+        width: 88px;
+        height: 88px;
+    }
   
 
     .button_center {
@@ -37,6 +42,11 @@
       font-weight: bold;
       position: absolute;
       z-index: 2;
+
+      @media screen and (max-width: 800px) {
+        font-size: 40px;
+
+    }
     }
   
     .circle_text {
