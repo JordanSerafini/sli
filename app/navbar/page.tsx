@@ -1,10 +1,9 @@
-"use client";
-
 import React, { useEffect, useState } from "react";
 import gsap from "gsap";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+
 import "./navbar.scss";
 
 function Navbar() {
@@ -15,11 +14,11 @@ function Navbar() {
 
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsMobile(window.innerWidth <= 768); // Si la largeur est inférieure ou égale à 768px, c'est mobile/tablette
+      setIsMobile(window.innerWidth <= 800);
     };
 
     window.addEventListener("resize", checkScreenSize);
-    checkScreenSize(); // Vérifier la taille au chargement de la page
+    checkScreenSize();
 
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
@@ -72,33 +71,33 @@ function Navbar() {
         </li>
         <li className="link-logiciels">
           <Link href="/logiciels" className={pathname === "/logiciels" ? "active" : ""}>
-            {isMobile ? "Logiciels" : "Nos logiciels EBP / Formations"}
+         {isMobile ? "Logiciels" : "Nos logiciels EBP / Formations"}
           </Link>
         </li>
         <li className="deroulant">
           <Link href="/nosServices" className={pathname === "/nosServices" || pathname === "/informatique" || pathname === "/telecom" || pathname === "/securite" ? "active" : ""}>
-            Nos Services &ensp;
+        Nos Services &ensp;
           </Link>
           <ul className="sous">
             <li>
               <Link href="/informatique" className={pathname === "/informatique" ? "active" : ""}>
-                Informatique
+           Informatique
               </Link>
             </li>
             <li>
               <Link href="/telecom" className={pathname === "/telecom" ? "active" : ""}>
-                Télécom
+              Télécom
               </Link>
             </li>
             <li>
               <Link href="/securite" className={pathname === "/securite" ? "active" : ""}>
-                Sécurité
+              Sécurité
               </Link>
             </li>
           </ul>
         </li>
         <li>
-          <Link href="/telemaintenance" className={pathname === "/telemaintenance" ? "active" : ""}>
+          <Link href="/telemaintenance" className={pathname === "/telemaintenance" ? "active telemaintenance" : "telemaintenance"}>
             Télémaintenance
           </Link>
         </li>
