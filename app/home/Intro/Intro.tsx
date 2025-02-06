@@ -12,7 +12,7 @@ function Intro() {
     gsap.fromTo(
       rightRef.current,
       { x: "100%", opacity: 0 },
-      { x: "10%", opacity: 1, duration: 5, ease: "power3.out" }
+      { x: "-5%", opacity: 1, duration: 8, ease: "power3.out" }
     );
   }, []);
 

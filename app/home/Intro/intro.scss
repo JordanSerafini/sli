@@ -18,3 +18,27 @@
 .left_bot_side_p {
     color: rgb(70, 70, 70);
 }
+
+
+.typing::after {
+    content: "|";
+    display: inline-block;
+    margin-left: 2px;
+    opacity: 1;
+    animation: blink 0.7s infinite;
+  }
+  
+  .typing-complete::after {
+    content: "|";
+    animation: blink 1.2s infinite;
+  }
+  
+  .typing-hidden::after {
+    content: "";
+  }
+  
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  
