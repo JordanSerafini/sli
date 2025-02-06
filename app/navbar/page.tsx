@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import gsap from "gsap";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -8,25 +9,51 @@ import "./navbar.scss";
 
 function Navbar() {
   const pathname = usePathname();
-  const [lastScrollY, setLastScrollY] = useState(0); // Dernière position de défilement
-  const [scrollingDown, setScrollingDown] = useState(false); // Indicateur pour savoir si on descend
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Gérer le défilement
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 768); // Si la largeur est inférieure ou égale à 768px, c'est mobile/tablette
+    };
+
+    window.addEventListener("resize", checkScreenSize);
+    checkScreenSize(); // Vérifier la taille au chargement de la page
+
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setScrollingDown(currentScrollY > lastScrollY); // Vérifie si on descend
-      setLastScrollY(currentScrollY);
+      if (typeof window !== "undefined") {
+        const currentScrollY = window.scrollY;
+
+        // Si l'écran est mobile, ne pas animer la navbar
+        if (isMobile) {
+          setIsVisible(true);
+          gsap.to(".navigation_bar", { y: "0%", duration: 0 }); // Restaure la position de la navbar immédiatement
+          return;
+        }
+
+        if (currentScrollY > lastScrollY && isVisible) {
+          setIsVisible(false); 
+          gsap.to(".navigation_bar", { y: "-100%", duration: 0.3 });
+        } else if (currentScrollY < lastScrollY && !isVisible) {
+          setIsVisible(true); 
+          gsap.to(".navigation_bar", { y: "0%", duration: 0.3 });
+        }
+
+        setLastScrollY(currentScrollY);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [lastScrollY]);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY, isVisible, isMobile]);
 
   return (
-    <nav className={`navigation_bar ${scrollingDown ? "hide" : ""}`}>
+    <nav className="navigation_bar">
       <Link href="/">
         <Image
           alt="logo_solution_logique_informatique"
@@ -45,7 +72,7 @@ function Navbar() {
         </li>
         <li className="link-logiciels">
           <Link href="/logiciels" className={pathname === "/logiciels" ? "active" : ""}>
-            Nos logiciels EBP / Formations
+            {isMobile ? "Logiciels" : "Nos logiciels EBP / Formations"}
           </Link>
         </li>
         <li className="deroulant">

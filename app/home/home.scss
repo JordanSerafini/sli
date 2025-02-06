@@ -79,7 +79,7 @@
     width: 45%;
 
     @include mobile {
-      width: 100%;
+      max-width: 75%;
       text-align: center;
     }
   }
