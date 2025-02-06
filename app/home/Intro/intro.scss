@@ -4,16 +4,16 @@
 
 
 .home_container_both {
-    margin-top: 80px;
+    margin: 100 auto;
     display: flex;
     flex-direction: row; 
     align-items: center;
     justify-content: space-evenly;
     gap: 2rem; 
-    width: 100%;
+    width: 100vw;
   
     @include mobile {
-      flex-direction: column; /* Passe en colonne uniquement pour les petits écrans */
+      flex-direction: column;
     }
   
   
@@ -26,7 +26,7 @@
   
  
   .home_container_right_side {
-    min-width: 50%;
+    background-color: red;
 
     font-size: 1rem;
     padding: 35px;
@@ -34,9 +34,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
-    width: 45%;
-    
+    flex-wrap: wrap;    
     border-radius: 15px;
     background: linear-gradient(90deg, rgba(4, 162, 223, 1) 0%, rgba(0, 206, 255, 1) 100%);
     transition: transform 0.3s, box-shadow 0.3s;
