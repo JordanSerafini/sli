@@ -30,10 +30,9 @@ function Navbar() {
       if (typeof window !== "undefined") {
         const currentScrollY = window.scrollY;
 
-        // Si l'écran est mobile, ne pas animer la navbar
         if (isMobile) {
           setIsVisible(true);
-          gsap.to(".navigation_bar", { y: "0%", duration: 0 }); // Restaure la position de la navbar immédiatement
+          gsap.to(".navigation_bar", { y: "0%", duration: 0 });
           return;
         }
 
@@ -99,7 +98,7 @@ function Navbar() {
           </ul>
         </li>
         <li>
-          <Link href="/telemaintenance" className={pathname === "/telemaintenance" ? "active telemaintenance" : "telemaintenance"}>
+          <Link href="/telemaintenance" className={pathname === "/telemaintenance" ? "active telemaintenance1" : "telemaintenance1"}>
             Télémaintenance
           </Link>
         </li>
