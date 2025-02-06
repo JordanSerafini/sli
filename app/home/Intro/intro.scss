@@ -4,13 +4,12 @@
 
 
 .home_container_both {
-    margin: 100 auto;
+    margin: 100 ;
+    max-width: 100vw;
     display: flex;
     flex-direction: row; 
     align-items: center;
-    justify-content: space-evenly;
     gap: 2rem; 
-    width: 100vw;
   
     @include mobile {
       flex-direction: column;
@@ -30,8 +29,6 @@
   
  
   .home_container_right_side {
-    background-color: red;
-
     font-size: 1rem;
     padding: 35px;
     display: flex;
@@ -87,7 +84,7 @@
   }
   
   .home_container_left_side {
-        min-width: 50%;
+    min-width: 55%;
       height: 45%;
       margin: 0;
       display: flex;

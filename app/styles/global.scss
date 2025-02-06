@@ -5,7 +5,8 @@
     padding-bottom: 50px;
 }
 
-
+.body_layout {
+overflow-x: hidden;}
 
 @mixin mobile {
     @media (max-width: #{$width}){

@@ -19,7 +19,7 @@ export default function RootLayout({
 
   return (
     <html lang="fr">
-      <body>
+      <body className="body_layout">
         <Navbar />
         <main>{children}</main>
         {pathname !== "/contact" && <Contact_Btn />}
