@@ -50,8 +50,13 @@
     flex-direction: column;
     position: relative;
     font-size: 1.1em;
-    height: 150px;
+    height: auto;
     gap: 0.8rem;
+    top: 0; // Pas de positionnement en dehors de l'écran pour tablette
+
+    &.hide {
+      top: -150px; // Réduit la hauteur du menu sur tablette
+    }
   }
 
   @include mobile {
@@ -60,6 +65,11 @@
     height: auto;
     padding: 1rem;
     font-size: 0.8em;
+    top: 0;
+
+    &.hide {
+      top: -180px; // Cache le menu complètement sur mobile
+    }
   }
 
   img {
