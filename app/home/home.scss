@@ -128,7 +128,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
   width: 100vw;
   overflow-x: hidden;
   a {
@@ -246,8 +245,12 @@
 
     .home_conseils_sli_left,
     .home_conseils_sli_right {
-      width: 45%;
-
+      width: 85%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
       @include mobile {
         width: 100%;
         text-align: center;
@@ -255,9 +258,17 @@
     }
 
     .home_conseils_sli_right {
+     
       p {
         font-size: 1.2em;
         line-height: 1.5;
+      }
+
+      @include tablet {
+        background-color: rgba(233, 233, 233, 0.5);
+        box-shadow: 0 2px 6px rgba(4, 162, 223, 1);
+             
+        padding: 20px;
       }
     }
   }

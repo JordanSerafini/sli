@@ -4,7 +4,7 @@
 
 
 .home_container_both {
-    padding: 100px 50px;
+    padding: 150px 50px;
     max-width: 100vw;
     display: flex;
     flex-direction: row; 
@@ -13,7 +13,6 @@
   
     @include mobile {
       flex-direction: column;
-      margin-top: 50px;
 
     }
   
@@ -22,17 +21,20 @@
     @include tablet {
       flex-direction: column;
       min-height: auto;
-      margin-top: 50px;
+      padding: 50px 0px;
 
     }
   }
   
   .intro_right_side {
     width: 100%;
+    @include tablet {
+        display: none;
+    }
   }
  
   .home_container_right_side {
-    width: 100%;
+    width: 70%;
     font-size: 1rem;
     padding: 35px;
     display: flex;

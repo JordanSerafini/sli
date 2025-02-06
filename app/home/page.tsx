@@ -78,8 +78,7 @@ function Home() {
             />
           </div>
           <div className="home_conseils_sli_right" ref={contactRef}>
-            <h1>Nous contacter</h1>
-            <h2>Besoin d&apos;une aide en télémaintenance ?</h2>
+            <h1>Besoin d&apos;une aide en télémaintenance ?</h1>
             <p>
               Accédez à la télémaintenance pour que Solution Logique intervienne
               directement sur votre ordinateur.
