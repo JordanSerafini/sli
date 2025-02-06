@@ -1,16 +1,30 @@
-"use client"; // Ajoute cette ligne en haut si tu es en mode `app/`
-
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation"; // Remplace `useRouter()`
+import { usePathname } from "next/navigation";
 import "./navbar.scss";
 
 function Navbar() {
-  const pathname = usePathname(); // Récupère l'URL actuelle
+  const pathname = usePathname();
+  const [lastScrollY, setLastScrollY] = useState(0); // Dernière position de défilement
+  const [scrollingDown, setScrollingDown] = useState(false); // Indicateur pour savoir si on descend
+
+  // Gérer le défilement
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setScrollingDown(currentScrollY > lastScrollY); // Vérifie si on descend
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
 
   return (
-    <nav className="navigation_bar">
+    <nav className={`navigation_bar ${scrollingDown ? "hide" : ""}`}>
       <Link href="/">
         <Image
           alt="logo_solution_logique_informatique"
