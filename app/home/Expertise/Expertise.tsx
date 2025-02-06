@@ -1,4 +1,7 @@
 import React from "react";
+
+import './expertise.scss'
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faComputer,

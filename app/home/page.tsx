@@ -3,14 +3,17 @@
 import Intro from "./Intro/Intro";
 import Expertise from "./Expertise/Expertise";
 import Image from "next/image";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "./home.scss";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Autoplay, FreeMode } from "swiper/modules";
 import Link from "next/link";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 function Home() {
   const partners = [
@@ -29,13 +32,42 @@ function Home() {
   const totalWidth = partners.length * (iconWidth + iconSpacing);
   const speed = totalWidth / 0.5;
 
+  const contactRef = useRef(null);
+  const imageRef = useRef(null);
+
+  useEffect(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".home_conseils_sli",
+        start: "top 66%",
+        toggleActions: "play none none none",
+      },
+    });
+
+    tl.from(imageRef.current, {
+      x: -100,
+      opacity: 0,
+      duration: 1,
+      ease: "power2.out",
+    }).from(
+      contactRef.current,
+      {
+        x: 100,
+        opacity: 0,
+        duration: 1,
+        ease: "power2.out",
+      },
+      "-=0.7"
+    );
+  }, []);
+
   return (
     <main className="card_home_page">
       <Intro />
       <Expertise />
       <div className="container">
         <section className="home_conseils_sli">
-          <div className="home_conseils_sli_left">
+          <div className="home_conseils_sli_left" ref={imageRef}>
             <Image
               className="img_right_side responsive_img"
               alt="Assistance télémaintenance"
@@ -45,7 +77,7 @@ function Home() {
               priority
             />
           </div>
-          <div className="home_conseils_sli_right">
+          <div className="home_conseils_sli_right" ref={contactRef}>
             <h1>Nous contacter</h1>
             <h2>Besoin d&apos;une aide en télémaintenance ?</h2>
             <p>

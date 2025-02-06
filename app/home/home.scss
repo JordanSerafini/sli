@@ -19,6 +19,29 @@
   }
 }
 
+.home_conseils_sli {
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 0;
+  overflow: hidden;
+
+  @include mobile {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .home_conseils_sli_left,
+  .home_conseils_sli_right {
+    width: 45%;
+
+    @include mobile {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+
+
 .typewriter-cursor::after {
   content: "|";
   margin-left: 0.2em;
