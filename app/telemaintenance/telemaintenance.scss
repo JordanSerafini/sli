@@ -8,6 +8,11 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #f9f9f9;
 
+  @include tablet {
+    width: 75%;
+    overflow: auto;
+  }
+
   h2 {
     color: #04a2df;
     font-size: 1.8em;
@@ -20,6 +25,7 @@
     margin-bottom: 20px;
   }
 
+ 
 
   .isl-form {
     display: flex;
