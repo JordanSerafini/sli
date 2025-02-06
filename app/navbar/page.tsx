@@ -1,4 +1,4 @@
-"use client";
+
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
@@ -8,14 +8,14 @@ import "./navbar.scss";
 
 function Navbar() {
   const pathname = usePathname();
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [scrollingDown, setScrollingDown] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0); // Dernière position de défilement
+  const [scrollingDown, setScrollingDown] = useState(false); // Indicateur pour savoir si on descend
 
   // Gérer le défilement
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      setScrollingDown(currentScrollY > lastScrollY); 
+      setScrollingDown(currentScrollY > lastScrollY); // Vérifie si on descend
       setLastScrollY(currentScrollY);
     };
 
