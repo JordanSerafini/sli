@@ -125,6 +125,7 @@
 
 .card_home_page {
   display: flex;
+  overflow-x: hidden;
   flex-direction: column;
   align-items: center;
   justify-content: center;
