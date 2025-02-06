@@ -30,7 +30,7 @@ function IntroLeft() {
     paragraphs.forEach((p, index) => {
       p.textContent = "";
       p.setAttribute("data-text", originalTexts[index]);
-      p.classList.add("typing"); // Ajoute le curseur au début
+      p.classList.add("typing");
     });
 
     const tl = gsap.timeline({ defaults: { ease: "none" } });

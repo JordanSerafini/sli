@@ -19,7 +19,7 @@ function IntroRight() {
           src="/assets/solution.webp"
           width={500}
           height={375}
-          style={{ width: "100%", height: "auto" }}
+          style={{ width: "50%", height: "auto" }}
           priority
         />
       </div>

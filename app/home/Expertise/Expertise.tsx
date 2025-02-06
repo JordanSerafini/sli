@@ -16,7 +16,7 @@ import {
 
 function Expertise() {
   return (
-    <div className="home_banner_bot">
+    <div className="home_banner_bot expertise_container">
     <div className="container">
       <section className="our_expertise">
         <h1>Notre expertise</h1>

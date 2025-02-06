@@ -1,4 +1,14 @@
-.home_banner_bot {
-    width: 100vw;
-    overflow-x: hidden;
+@use '../../styles/_variables.scss' as *;
+@use '../../styles/_mixins.scss' as *;
+
+
+.expertise_container {
+    width: 100%;
+    @include mobile {
+      font-size: 0.8rem;
+    }
+
+    @include tablet {
+    font-size: 0.8rem;
+  }
 }
