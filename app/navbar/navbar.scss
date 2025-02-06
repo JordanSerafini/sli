@@ -25,7 +25,7 @@
   justify-content: space-evenly;
   font-size: 1.2em;
   background-color: $white;
-  z-index: 9999; /* z-index élevé pour être sûr qu'elle est toujours devant */
+  z-index: 9999; 
   position: fixed;
   top: 0;
   width: 100%;
@@ -39,10 +39,8 @@
   @include tablet {
     flex-direction: column;
     position: relative;
-    font-size: 1.1em;
     height: 150px;   
     gap: 0.8rem;
-    z-index: 9999; /* Assurez-vous qu'il est en dessus des autres éléments sur tablette */
   }
 
   @include mobile {
@@ -51,7 +49,7 @@
     height: auto;
     padding: 1rem;
     font-size: 0.8em;
-    z-index: 9999; /* Assurez-vous que la navbar est au-dessus de tout autre élément */
+
   }
 
 
@@ -81,7 +79,9 @@
       li {
         a {
           text-align: center;
-          width: 100%; /* Pour que l'ancre prenne toute la largeur disponible */
+          width: 100%;
+          letter-spacing: 0.15rem;
+          font-size: 0.8rem;
         }
       }
     }
