@@ -10,7 +10,7 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="container">
-        <div className="footer_description">
+        {/* <div className="footer_description">
           <li>
             <Link href="/">Accueil</Link>
           </li>
@@ -26,7 +26,7 @@ function Footer() {
           <li>
             <Link href="/contact">Contactez nous</Link>
           </li>
-        </div>
+        </div> */}
         <div className="copyright_sli">
           <p>475 Route des Vernes,</p>
           <p>74370 Annecy</p>
