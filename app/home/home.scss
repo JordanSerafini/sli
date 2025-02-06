@@ -7,7 +7,6 @@
   padding: 0 0px;
 }
 
-// Réduction de la taille des titres et paragraphes sur les petits écrans
 @media (max-width: 1024px) {
   h1 {
     font-size: 1.8em;
@@ -129,6 +128,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 2rem;
   width: 100vw;
   overflow-x: hidden;
   a {
