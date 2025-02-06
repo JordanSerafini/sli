@@ -17,7 +17,7 @@ function Contact_Btn() {
         </defs>
         <text fill="#ffffff" fontSize="10" fontWeight="bold" textLength="360">
           <textPath href="#textPath" startOffset="0%" spacing="auto">
-            Être rappelé-Nous contacter-
+            Être rappelé - Nous contacter -
           </textPath>
         </text>
       </svg>
