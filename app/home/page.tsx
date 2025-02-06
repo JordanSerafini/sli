@@ -39,7 +39,7 @@ function Home() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".home_conseils_sli",
-        start: "top 40%",
+        start: "top 85%",
         toggleActions: "play none none none",
       },
     });
@@ -57,7 +57,7 @@ function Home() {
         duration: 1,
         ease: "power2.out",
       },
-      "-=0.6"
+      "-=0.8"
     );
   }, []);
 

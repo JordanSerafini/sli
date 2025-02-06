@@ -66,7 +66,6 @@
 .home_conseils_sli {
   display: flex;
   justify-content: space-between;
-  margin: 50px 0;
   overflow: hidden;
 
   @include mobile {
@@ -236,7 +235,6 @@
   .home_conseils_sli {
     display: flex;
     justify-content: space-between;
-    margin: 50px 0;
 
     @include mobile {
       flex-direction: column;
