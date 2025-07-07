@@ -3,7 +3,6 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { ContactEmailTemplate } from '../../../components/email-template';
 
-// Configuration Resend
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
@@ -11,7 +10,6 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { name, email, message, phone } = body;
 
-    // Validation des données
     if (!name || !email || !message) {
       return NextResponse.json(
         { message: 'Nom, email et message sont requis.' },
@@ -19,7 +17,6 @@ export async function POST(req: Request) {
       );
     }
 
-    // Validation basique de l'email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return NextResponse.json(
@@ -28,7 +25,6 @@ export async function POST(req: Request) {
       );
     }
 
-    // Vérification que la clé API Resend est configurée
     if (!process.env.RESEND_API_KEY) {
       console.error('Clé API Resend non configurée');
       return NextResponse.json(
@@ -37,7 +33,6 @@ export async function POST(req: Request) {
       );
     }
 
-    // Envoi de l'email via Resend
     const { data, error } = await resend.emails.send({
       from: 'Solution Logique <site@solution-logique.fr>',
       to: ['site@solution-logique.fr'],

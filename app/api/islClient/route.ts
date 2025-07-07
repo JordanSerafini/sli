@@ -9,10 +9,8 @@ export async function GET(req: Request) {
   }
 
   try {
-    // URL correcte pour télécharger ISL Light Client
     const islClientUrl = 'https://www.islonline.com/start/isllight/client.exe';
 
-    // Télécharge le fichier depuis l'URL officielle ISL
     const response = await fetch(islClientUrl, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
@@ -23,10 +21,8 @@ export async function GET(req: Request) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    // Obtenir le contenu du fichier
     const arrayBuffer = await response.arrayBuffer();
 
-    // Retourne le fichier avec les bons headers
     return new NextResponse(arrayBuffer, {
       headers: {
         "Content-Disposition": `attachment; filename="isl-light-client-${code}.exe"`,
@@ -39,7 +35,6 @@ export async function GET(req: Request) {
     console.error("Erreur avec le téléchargement ISL :");
     console.error(error);
     
-    // En cas d'erreur, on redirige vers la page officielle ISL avec le code
     const islJoinUrl = `https://www.islonline.com/fr/fr/join/#${code}`;
     return NextResponse.redirect(islJoinUrl);
   }

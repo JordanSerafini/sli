@@ -61,7 +61,6 @@ function CallbackEmailTemplate({ phone }: { phone: string }): React.ReactElement
 }
 
 export async function POST(req: Request) {
-  // Vérification que la clé API Resend est configurée
   if (!process.env.RESEND_API_KEY) {
     console.error('Clé API Resend non configurée');
     return NextResponse.json(
@@ -80,7 +79,6 @@ export async function POST(req: Request) {
   }
 
   try {
-    // Envoi de l'email via Resend
     const { data, error } = await resend.emails.send({
       from: 'Solution Logique <site@solution-logique.fr>',
       to: ['site@solution-logique.fr'],
