@@ -1,3 +1,4 @@
+import React from 'react';
 import { ModernSection } from '@/components/ui';
 import { 
   Download, 
