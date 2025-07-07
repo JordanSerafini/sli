@@ -7,6 +7,14 @@ import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
+type NavDropdownItem = { href: string; label: string };
+type NavItem = {
+  href: string;
+  label: string;
+  highlight?: boolean;
+  dropdown?: NavDropdownItem[];
+};
+
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,7 +30,7 @@ function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = [
+  const navItems: NavItem[] = [
     { href: '/', label: 'Accueil' },
     { href: '/logiciels', label: 'Nos logiciels EBP / Formations' },
     {
@@ -39,10 +47,10 @@ function Navbar() {
   ];
 
   // Fonction pour vérifier si un élément de navigation est actif
-  const isActiveNavItem = (item: any) => {
+  const isActiveNavItem = (item: NavItem) => {
     if (item.dropdown) {
       // Pour les éléments avec dropdown, vérifier si on est sur la page principale ou sur une des sous-pages
-      return pathname === item.href || item.dropdown.some((subItem: any) => pathname === subItem.href);
+      return pathname === item.href || item.dropdown.some((subItem: NavDropdownItem) => pathname === subItem.href);
     }
     return pathname === item.href;
   };
