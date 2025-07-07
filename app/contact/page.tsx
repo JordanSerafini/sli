@@ -59,9 +59,6 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Test simple pour vérifier que le handler est appelé
-    alert('Formulaire soumis ! Test en cours...');
-    
     // Validation côté client
     if (!formData.name || !formData.email || !formData.message) {
       showErrorModal('Veuillez remplir tous les champs obligatoires.');
@@ -87,7 +84,6 @@ export default function Contact() {
       }
     } catch (error) {
       showErrorModal("Erreur de connexion. Vérifiez votre connexion internet et réessayez.");
-      console.error("Contact form submission error:", error);
     } finally {
       setIsLoading(false);
     }
