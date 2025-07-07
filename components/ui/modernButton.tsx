@@ -2,18 +2,34 @@ import { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 import { Loader2 } from 'lucide-react';
 
-interface ModernButtonProps {
+interface BaseModernButtonProps {
   children: ReactNode;
   className?: string;
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'gradient';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'accent' | 'destructive';
   size?: 'sm' | 'md' | 'lg' | 'xl';
-  onClick?: () => void;
   disabled?: boolean;
   loading?: boolean;
-  href?: string;
   icon?: ReactNode;
   iconPosition?: 'left' | 'right';
 }
+
+interface ButtonProps extends BaseModernButtonProps {
+  href?: never;
+  onClick?: () => void;
+  type?: 'button' | 'submit' | 'reset';
+  target?: never;
+  rel?: never;
+}
+
+interface LinkProps extends BaseModernButtonProps {
+  href: string;
+  onClick?: never;
+  type?: never;
+  target?: string;
+  rel?: string;
+}
+
+type ModernButtonProps = ButtonProps | LinkProps;
 
 export function ModernButton({ 
   children, 
@@ -25,53 +41,90 @@ export function ModernButton({
   loading = false,
   href,
   icon,
-  iconPosition = 'left'
+  iconPosition = 'left',
+  type = 'button',
+  target,
+  rel,
+  ...rest
 }: ModernButtonProps) {
-  const baseClasses = "inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2";
+  const baseClasses = "inline-flex items-center justify-center font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 active:scale-[0.98]";
   
   const variants = {
-    primary: "bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5",
-    secondary: "bg-slate-100 text-slate-900 hover:bg-slate-200 focus:ring-slate-500",
-    outline: "border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white focus:ring-blue-500",
-    ghost: "text-slate-600 hover:bg-slate-100 hover:text-slate-900 focus:ring-slate-500",
-    gradient: "bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:from-blue-600 hover:to-cyan-600 focus:ring-blue-500 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+    primary: "bg-primary-600 text-white hover:bg-primary-700 focus-visible:outline-primary-600 shadow-sm hover:shadow-md",
+    secondary: "bg-white text-secondary-700 border border-border hover:bg-background-subtle hover:border-border-strong focus-visible:outline-primary-600 shadow-sm",
+    outline: "border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white focus-visible:outline-primary-600 shadow-sm hover:shadow-md",
+    ghost: "text-secondary-700 hover:bg-background-subtle hover:text-secondary-900 focus-visible:outline-primary-600",
+    accent: "bg-gradient-to-r from-primary-600 to-accent-600 text-white hover:from-primary-700 hover:to-accent-700 focus-visible:outline-primary-600 shadow-md hover:shadow-lg",
+    destructive: "bg-error text-white hover:bg-error/90 focus-visible:outline-error shadow-sm hover:shadow-md"
   };
 
   const sizes = {
-    sm: "px-3 py-1.5 text-sm",
-    md: "px-4 py-2 text-base",
-    lg: "px-6 py-3 text-lg",
-    xl: "px-8 py-4 text-xl"
+    sm: "h-9 px-3 text-sm rounded-lg",
+    md: "h-10 px-4 text-sm rounded-lg",
+    lg: "h-11 px-6 text-base rounded-lg",
+    xl: "h-12 px-8 text-lg rounded-xl"
   };
 
-  const Component = href ? 'a' : 'button';
-  const props = href ? { href } : { onClick };
+  const iconSizes = {
+    sm: "w-4 h-4",
+    md: "w-4 h-4", 
+    lg: "w-5 h-5",
+    xl: "w-5 h-5"
+  };
 
-  return (
-    <Component 
-      className={cn(
-        baseClasses,
-        variants[variant],
-        sizes[size],
-        disabled && "cursor-not-allowed opacity-50",
-        className
-      )}
-      disabled={disabled || loading}
-      {...props}
-    >
+  const commonClasses = cn(
+    baseClasses,
+    variants[variant],
+    sizes[size],
+    disabled && "cursor-not-allowed opacity-50",
+    className
+  );
+
+  const iconContent = (
+    <>
       {loading && (
-        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+        <Loader2 className={cn("animate-spin mr-2", iconSizes[size])} />
       )}
       
       {!loading && icon && iconPosition === 'left' && (
-        <span className="mr-2">{icon}</span>
+        <span className={cn("mr-2 flex items-center", iconSizes[size])}>
+          {icon}
+        </span>
       )}
       
       {children}
       
       {!loading && icon && iconPosition === 'right' && (
-        <span className="ml-2">{icon}</span>
+        <span className={cn("ml-2 flex items-center", iconSizes[size])}>
+          {icon}
+        </span>
       )}
-    </Component>
+    </>
+  );
+
+  if (href) {
+    return (
+      <a 
+        href={href}
+        target={target}
+        rel={rel}
+        className={commonClasses}
+        {...rest}
+      >
+        {iconContent}
+      </a>
+    );
+  }
+
+  return (
+    <button 
+      type={type}
+      onClick={onClick}
+      disabled={disabled || loading}
+      className={commonClasses}
+      {...rest}
+    >
+      {iconContent}
+    </button>
   );
 } 

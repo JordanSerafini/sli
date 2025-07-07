@@ -8,26 +8,252 @@
   }
   
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: #ffffff;
+    color: #0f172a;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-weight: 600;
+  /* Hiérarchie typographique moderne et équilibrée */
+  h1 {
+    @apply text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground tracking-tight;
+    line-height: 1.1;
+  }
+
+  h2 {
+    @apply text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground tracking-tight;
+    line-height: 1.15;
+  }
+
+  h3 {
+    @apply text-2xl sm:text-3xl lg:text-4xl font-semibold text-foreground tracking-tight;
     line-height: 1.2;
+  }
+
+  h4 {
+    @apply text-xl sm:text-2xl lg:text-3xl font-semibold text-foreground;
+    line-height: 1.25;
+  }
+
+  h5 {
+    @apply text-lg sm:text-xl lg:text-2xl font-medium text-foreground;
+    line-height: 1.3;
+  }
+
+  h6 {
+    @apply text-base sm:text-lg lg:text-xl font-medium text-foreground-muted;
+    line-height: 1.35;
+  }
+
+  p {
+    @apply text-base text-foreground-muted leading-relaxed;
+  }
+
+  /* Liens avec états modernes */
+  a {
+    @apply text-primary-600 hover:text-primary-700 transition-colors duration-200;
+  }
+
+  /* États de focus accessibles et modernes */
+  *:focus-visible {
+    @apply outline-2 outline-primary-500 outline-offset-2 rounded-sm;
   }
 }
 
 @layer components {
+  /* Boutons principaux modernisés */
   .btn-primary {
-    @apply bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-3 rounded-lg font-medium hover:from-blue-600 hover:to-cyan-600 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
+    @apply inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200;
+    @apply bg-primary-600 hover:bg-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
   }
 
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-200;
+    @apply bg-white text-secondary-700 border border-border hover:bg-background-subtle;
+    @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-200;
+    @apply text-secondary-700 hover:bg-background-subtle hover:text-secondary-900;
+    @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600;
+  }
+
+  /* Cartes modernes avec variations élégantes */
+  .card {
+    @apply bg-white rounded-xl border border-border shadow-sm transition-all duration-200;
+  }
+
+  .card-hover {
+    @apply hover:shadow-md hover:border-border-strong hover:-translate-y-0.5;
+  }
+
+  .card-elevated {
+    @apply shadow-lg border-border-strong;
+  }
+
+  /* Gradients sophistiqués */
+  .gradient-primary {
+    @apply bg-gradient-to-r from-primary-600 to-primary-700;
+  }
+
+  .gradient-accent {
+    @apply bg-gradient-to-r from-primary-600 to-accent-600;
+  }
+
+  .gradient-subtle {
+    @apply bg-gradient-to-br from-background-subtle via-white to-primary-50/30;
+  }
+
+  /* Sections avec espacements optimisés */
+  .section-sm {
+    @apply py-8 md:py-12;
+  }
+
+  .section-md {
+    @apply py-12 md:py-16;
+  }
+
+  .section-lg {
+    @apply py-16 md:py-20;
+  }
+
+  .section-xl {
+    @apply py-20 md:py-24;
+  }
+
+  /* Conteneur responsive moderne */
+  .container-modern {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* États de chargement élégants */
+  .loading-shimmer {
+    @apply animate-pulse bg-gradient-to-r from-background-subtle via-background-muted to-background-subtle bg-[length:200%_100%];
+    animation: shimmer 1.5s ease-in-out infinite;
+  }
+
+  /* Texte avec gradient */
   .text-gradient {
-    @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent;
+  }
+}
+
+@layer utilities {
+  /* Animations optimisées pour les performances */
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.5s ease-out forwards;
+  }
+
+  /* Classes utilitaires pour les espacements */
+  .space-y-section > * + * {
+    @apply mt-12 md:mt-16;
+  }
+
+  .space-y-content > * + * {
+    @apply mt-6 md:mt-8;
+  }
+
+  /* Responsive text sizing */
+  .text-responsive-xl {
+    @apply text-xl sm:text-2xl lg:text-3xl;
+  }
+
+  .text-responsive-lg {
+    @apply text-lg sm:text-xl lg:text-2xl;
+  }
+
+  .text-responsive-base {
+    @apply text-base sm:text-lg lg:text-xl;
+  }
+}
+
+/* Animations keyframes modernisées */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Micro-interactions pour l'accessibilité */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus states pour clavier */
+@media (prefers-reduced-motion: no-preference) {
+  *:focus-visible {
+    transition: outline-offset 0.2s ease;
+  }
+}
+
+/* Print styles optimisés */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    font-size: 12pt;
+    line-height: 1.4;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
   }
 }
 

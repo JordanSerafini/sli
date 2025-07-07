@@ -8,6 +8,8 @@ import {
   faPhone,
   faShield,
 } from "@fortawesome/free-solid-svg-icons";
+import { ModernCard } from "@/components/ui/modernCard";
+import Section from "@/components/ui/Section";
 
 function Expertise() {
   const services = [
@@ -15,76 +17,96 @@ function Expertise() {
       icon: faComputer,
       title: "Matériels Informatique",
       text: "Optez pour une solution sur mesure",
+      color: "from-primary-500 to-primary-600"
     },
     {
       icon: faServer,
       title: "Virtualisation & Serveur",
-      text: "Optimisez votre productivité.",
+      text: "Optimisez votre productivité",
+      color: "from-accent-500 to-accent-600"
     },
     {
       icon: faPrint,
       title: "Système d'impression",
       text: "Mettez-vous à la page",
+      color: "from-blue-500 to-blue-600"
     },
     {
       icon: faFloppyDisk,
       title: "Sauvegarde de données",
-      text: "Protégez vos données.",
+      text: "Protégez vos données",
+      color: "from-purple-500 to-purple-600"
     },
     {
       icon: faPhone,
       title: "Opérateur Télécom",
-      text: "Choisissez une téléphonie.",
+      text: "Choisissez une téléphonie moderne",
+      color: "from-teal-500 to-teal-600"
     },
     {
       icon: faShield,
       title: "Sécurité Informatique",
-      text: "Protégez votre système.",
+      text: "Protégez votre système",
+      color: "from-green-500 to-green-600"
     },
   ];
 
   return (
-    <div className="bg-gradient-to-r from-[#04a2df] to-[#00ceff] text-white text-center py-10">
-      <div className="container mx-auto">
-        {/* Header Section - our_expertise */}
-        <section className="mb-8">
-          <h1 className="text-white text-[2.5em]">
-            Notre expertise
-          </h1>
-          <h2 className="pb-[30px] text-[2em]">
-            Découvrez nos solutions
-          </h2>
-          <h3 className="mx-5 text-[1.2em]">
-            Une équipe expérimentée, des collaborateurs diplômés et certifiés,
-            une exigence reconnue pour vous assurer une qualité de service
-            professionnel. Nos techniciens ont la mission de renforcer la
-            performance de votre système informatique et de protéger votre
-            environnement de travail.
-          </h3>
-        </section>
+    <Section 
+      background="gradient-primary" 
+      padding="lg" 
+      className="text-white"
+      containerSize="xl"
+      centered
+    >
+      {/* Header Section modernisé */}
+      <div className="space-y-6 mb-12">
+        <h2 className="text-4xl lg:text-5xl font-bold text-white">
+          Notre expertise
+        </h2>
+        <h3 className="text-xl lg:text-2xl text-primary-100 font-medium">
+          Découvrez nos solutions
+        </h3>
+        <p className="text-lg text-primary-100 leading-relaxed max-w-4xl mx-auto">
+          Une équipe expérimentée, des collaborateurs diplômés et certifiés,
+          une exigence reconnue pour vous assurer une qualité de service
+          professionnel. Nos techniciens ont la mission de renforcer la
+          performance de votre système informatique et de protéger votre
+          environnement de travail.
+        </p>
+      </div>
 
-        {/* Services Section - home_services */}
-        <section className="flex flex-wrap justify-around max-[414px]:flex-col max-[414px]:items-center">
-          {services.map((service, index) => (
-            <div 
-              key={index}
-              className="mx-5 my-5 text-white text-center max-w-[300px]"
-            >
-              <FontAwesomeIcon
-                className="text-[3em] cursor-pointer text-white transition-transform duration-300 hover:scale-125"
-                icon={service.icon}
-              />
-              <h1 className="text-[1.5em] py-[15px] px-0">
+      {/* Services Grid modernisé */}
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {services.map((service, index) => (
+          <ModernCard 
+            key={index}
+            variant="glass" 
+            className="group bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105"
+          >
+            <div className="text-center space-y-4">
+              {/* Icon avec gradient background */}
+              <div className={`w-16 h-16 mx-auto rounded-2xl bg-gradient-to-r ${service.color} flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300`}>
+                <FontAwesomeIcon
+                  icon={service.icon}
+                  className="text-2xl text-white"
+                />
+              </div>
+              
+              {/* Title */}
+              <h4 className="text-xl font-bold text-white group-hover:text-primary-100 transition-colors">
                 {service.title}
-              </h1>
-              <p className="text-[1em]">
+              </h4>
+              
+              {/* Description */}
+              <p className="text-primary-100 leading-relaxed">
                 {service.text}
               </p>
             </div>
-          ))}
-        </section>
+          </ModernCard>
+        ))}
       </div>
-    </div>
+    </Section>
   );
 }
 

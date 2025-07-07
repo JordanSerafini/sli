@@ -215,7 +215,7 @@ export default function Logiciels() {
                   
                   <div className="space-y-2">
                     <ModernButton 
-                      variant="gradient" 
+                      variant="accent" 
                       className="w-full"
                       href={logiciel.href}
                     >
@@ -226,6 +226,7 @@ export default function Logiciels() {
                     <ModernButton 
                       variant="outline" 
                       className="w-full"
+                      href="/contact"
                     >
                       <Download className="w-4 h-4 mr-2" />
                       Télécharger la démo
@@ -340,7 +341,10 @@ export default function Logiciels() {
                 </div>
                 
                 <div className="mt-8">
-                  <ModernButton variant="gradient">
+                  <ModernButton 
+                    variant="accent"
+                    href="/contact"
+                  >
                     Demander un devis formation
                   </ModernButton>
                 </div>
@@ -401,11 +405,23 @@ export default function Logiciels() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <ModernButton variant="gradient" size="lg">
+            <ModernButton 
+              variant="accent" 
+              size="lg"
+              href="/contact"
+            >
               <Play className="w-5 h-5 mr-2" />
               Démonstration gratuite
             </ModernButton>
-            <ModernButton variant="outline" size="lg" className="text-white border-white hover:bg-white hover:text-slate-900">
+            <ModernButton 
+              variant="outline" 
+              size="lg" 
+              className="text-white border-white hover:bg-white hover:text-slate-900"
+              onClick={() => {
+                setActiveTab('formations');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+            >
               <BookOpen className="w-5 h-5 mr-2" />
               Catalogue formations
             </ModernButton>

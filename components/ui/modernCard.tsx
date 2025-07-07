@@ -4,9 +4,10 @@ import { cn } from '@/lib/utils';
 interface ModernCardProps {
   children: ReactNode;
   className?: string;
-  variant?: 'default' | 'gradient' | 'glass' | 'hover-lift';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: 'default' | 'elevated' | 'outline' | 'glass' | 'hover-lift';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
   onClick?: () => void;
+  interactive?: boolean;
 }
 
 export function ModernCard({ 
@@ -14,22 +15,27 @@ export function ModernCard({
   className, 
   variant = 'default',
   size = 'md',
-  onClick 
+  onClick,
+  interactive = false
 }: ModernCardProps) {
-  const baseClasses = "rounded-2xl transition-all duration-300";
+  const baseClasses = "bg-white rounded-xl transition-all duration-200";
   
   const variants = {
-    default: "bg-white border border-slate-200 shadow-sm hover:shadow-lg hover:border-slate-300",
-    gradient: "bg-gradient-to-br from-white to-slate-50 border border-slate-200/50 shadow-lg hover:shadow-xl",
-    glass: "bg-white/80 backdrop-blur-sm border border-white/20 shadow-lg hover:bg-white/90",
-    'hover-lift': "bg-white border border-slate-200 shadow-md hover:shadow-2xl hover:-translate-y-1 transform"
+    default: "border border-border shadow-sm hover:shadow-md hover:border-border-strong",
+    elevated: "border border-border-strong shadow-lg hover:shadow-xl",
+    outline: "border-2 border-border hover:border-primary-300 hover:shadow-sm",
+    glass: "bg-white/80 backdrop-blur-sm border border-white/20 shadow-lg hover:bg-white/90 hover:shadow-xl",
+    'hover-lift': "border border-border shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-border-strong"
   };
 
   const sizes = {
     sm: "p-4",
     md: "p-6",
-    lg: "p-8"
+    lg: "p-8",
+    xl: "p-10"
   };
+
+  const interactiveClasses = interactive || onClick ? "cursor-pointer hover:scale-[1.02] active:scale-[0.98]" : "";
 
   return (
     <div 
@@ -37,10 +43,18 @@ export function ModernCard({
         baseClasses,
         variants[variant],
         sizes[size],
-        onClick && "cursor-pointer",
+        interactiveClasses,
         className
       )}
       onClick={onClick}
+      role={onClick ? "button" : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      onKeyDown={onClick ? (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onClick();
+        }
+      } : undefined}
     >
       {children}
     </div>

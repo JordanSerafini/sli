@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { ModernSection, ServiceCard } from "@/components/ui";
+import { ModernButton } from "@/components/ui/modernButton";
 import { 
   Server, 
   Monitor, 
@@ -121,14 +122,22 @@ export default function Informatique() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-blue-700 hover:to-cyan-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center">
-                Découvrir nos services
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </button>
-              
-              <button className="bg-white/90 backdrop-blur text-slate-700 px-8 py-4 rounded-lg font-semibold hover:bg-white border border-slate-200 hover:border-slate-300 transition-all duration-200 shadow-lg">
+              <ModernButton 
+                href="/contact"
+                variant="accent" 
+                size="lg"
+                icon={<ArrowRight />}
+                iconPosition="right"
+              >
                 Demander un devis
-              </button>
+              </ModernButton>
+              
+              <ModernButton 
+                variant="secondary" 
+                size="lg"
+              >
+                04 50 64 02 33
+              </ModernButton>
             </div>
           </div>
         </div>
@@ -204,9 +213,7 @@ export default function Informatique() {
                 ))}
               </div>
 
-              <button className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-cyan-700 transition-all duration-200 shadow-lg hover:shadow-xl">
-                En savoir plus
-              </button>
+             
             </div>
 
             <div className="space-y-4">

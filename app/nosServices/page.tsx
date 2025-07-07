@@ -82,7 +82,7 @@ function NosServices() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       {/* Titre principal */}
-      <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-16 text-gradient">
+      <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-16 text-slate-900">
         NOS SERVICES
       </h1>
       
@@ -192,7 +192,7 @@ function NosServices() {
 
             {/* Titre principal */}
             <div className="space-y-2">
-              <h2 className="text-3xl md:text-4xl font-bold text-gradient">
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
                 Nous contacter
               </h2>
               <h3 className="text-xl md:text-2xl font-semibold text-slate-700">

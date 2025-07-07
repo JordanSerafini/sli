@@ -8,7 +8,7 @@ import {
   faPhone,
   faShield,
 } from "@fortawesome/free-solid-svg-icons";
-import { Card, CardContent } from "@/components/ui/Card";
+import { ModernCard } from "@/components/ui/modernCard";
 import Section from "@/components/ui/Section";
 
 function Services() {
@@ -17,19 +17,19 @@ function Services() {
       icon: faComputer,
       title: "Matériels Informatique",
       text: "Optez pour une solution sur mesure",
-      color: "from-blue-500 to-blue-600"
+      color: "from-primary-500 to-primary-600"
     },
     {
       icon: faServer,
       title: "Virtualisation & Serveur",
       text: "Optimisez votre productivité",
-      color: "from-cyan-500 to-cyan-600"
+      color: "from-accent-500 to-accent-600"
     },
     {
       icon: faPrint,
       title: "Système d'impression",
       text: "Mettez-vous à la page",
-      color: "from-indigo-500 to-indigo-600"
+      color: "from-blue-500 to-blue-600"
     },
     {
       icon: faFloppyDisk,
@@ -40,7 +40,7 @@ function Services() {
     {
       icon: faPhone,
       title: "Opérateur Télécom",
-      text: "Choisissez une téléphonie",
+      text: "Choisissez une téléphonie moderne",
       color: "from-teal-500 to-teal-600"
     },
     {
@@ -53,19 +53,21 @@ function Services() {
 
   return (
     <Section 
-      background="gradient" 
-      padding="xl" 
+      background="gradient-primary" 
+      padding="lg" 
       className="text-white"
       containerSize="xl"
+      centered
     >
-      <div className="text-center space-y-6 mb-16">
-        <h2 className="text-4xl lg:text-5xl font-bold">
+      {/* Header Section avec contraste amélioré */}
+      <div className="space-y-6 mb-12">
+        <h2 className="text-4xl lg:text-5xl font-bold text-white">
           Notre expertise
         </h2>
-        <h3 className="text-xl lg:text-2xl text-blue-100 font-medium">
+        <h3 className="text-xl lg:text-2xl text-white/90 font-medium">
           Découvrez nos solutions
         </h3>
-        <p className="text-lg text-blue-100 leading-relaxed max-w-4xl mx-auto">
+        <p className="text-lg text-white/80 leading-relaxed max-w-4xl mx-auto">
           Une équipe expérimentée, des collaborateurs diplômés et certifiés,
           une exigence reconnue pour vous assurer une qualité de service
           professionnel. Nos techniciens ont la mission de renforcer la
@@ -74,15 +76,17 @@ function Services() {
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* Services Grid modernisé */}
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {services.map((service, index) => (
-          <Card 
+          <ModernCard 
             key={index}
+            variant="glass" 
             className="group bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105"
           >
-            <CardContent className="p-8 text-center space-y-6">
+            <div className="text-center space-y-4">
               {/* Icon avec gradient background */}
-              <div className={`w-20 h-20 mx-auto rounded-2xl bg-gradient-to-r ${service.color} flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300`}>
+              <div className={`w-16 h-16 mx-auto rounded-2xl bg-gradient-to-r ${service.color} flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300`}>
                 <FontAwesomeIcon
                   icon={service.icon}
                   className="text-2xl text-white"
@@ -90,16 +94,16 @@ function Services() {
               </div>
               
               {/* Title */}
-              <h4 className="text-xl font-bold text-white group-hover:text-blue-100 transition-colors">
+              <h4 className="text-xl font-bold text-white group-hover:text-white/90 transition-colors">
                 {service.title}
               </h4>
               
               {/* Description */}
-              <p className="text-blue-100 leading-relaxed">
+              <p className="text-white/80 leading-relaxed">
                 {service.text}
               </p>
-            </CardContent>
-          </Card>
+            </div>
+          </ModernCard>
         ))}
       </div>
     </Section>

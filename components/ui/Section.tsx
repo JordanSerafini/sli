@@ -7,8 +7,9 @@ interface SectionProps {
   className?: string;
   containerSize?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
   padding?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
-  background?: 'transparent' | 'white' | 'gray' | 'gradient';
+  background?: 'transparent' | 'white' | 'subtle' | 'muted' | 'gradient-primary' | 'gradient-subtle';
   id?: string;
+  centered?: boolean;
 }
 
 const Section = React.forwardRef<HTMLElement, SectionProps>(
@@ -16,24 +17,28 @@ const Section = React.forwardRef<HTMLElement, SectionProps>(
     className, 
     children, 
     containerSize = 'lg', 
-    padding = 'lg',
+    padding = 'md',
     background = 'transparent',
+    centered = false,
     id,
     ...props 
   }, ref) => {
+    // Espacements optimisés pour réduire l'air vertical excessif
     const paddingClasses = {
       none: "",
-      sm: "py-8",
-      md: "py-12", 
-      lg: "py-16",
-      xl: "py-24"
+      sm: "section-sm", // py-8 md:py-12
+      md: "section-md", // py-12 md:py-16 
+      lg: "section-lg", // py-16 md:py-20
+      xl: "section-xl"  // py-20 md:py-24
     };
 
     const backgroundClasses = {
       transparent: "",
       white: "bg-white",
-      gray: "bg-slate-50",
-      gradient: "bg-gradient-to-r from-blue-500 to-cyan-500"
+      subtle: "bg-background-subtle",
+      muted: "bg-background-muted",
+      'gradient-primary': "gradient-primary text-white",
+      'gradient-subtle': "gradient-subtle"
     };
 
     return (
@@ -43,6 +48,7 @@ const Section = React.forwardRef<HTMLElement, SectionProps>(
         className={cn(
           paddingClasses[padding],
           backgroundClasses[background],
+          centered && "text-center",
           className
         )}
         {...props}
