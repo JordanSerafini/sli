@@ -365,9 +365,9 @@ describe("Informatique Component", () => {
 
     test("devrait avoir un bouton téléphone", () => {
       render(<Informatique />);
-      const phoneButton = screen.getByText('04 50 64 02 33');
+      const phoneButton = screen.getByRole('link', { name: /04 50 64 02 33/ });
       expect(phoneButton).toBeInTheDocument();
-      expect(phoneButton.closest('a')).toHaveAttribute('href', 'tel:0450640233');
+      expect(phoneButton).toHaveAttribute('href', 'tel:0450640233');
     });
   });
 

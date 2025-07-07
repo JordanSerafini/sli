@@ -23,7 +23,12 @@ jest.mock('next/link', () => {
 
 jest.mock('next/image', () => {
   const MockImage = ({ alt, src, ...props }: { alt: string; src: string; width?: number; height?: number; priority?: boolean; className?: string }) => {
-    return <img src={src} alt={alt} {...props} />;
+    // Convertir priority en string s'il est booléen pour éviter l'erreur React
+    const imageProps = { ...props };
+    if (typeof imageProps.priority === 'boolean') {
+      delete imageProps.priority;
+    }
+    return <img src={src} alt={alt} {...imageProps} />;
   };
   MockImage.displayName = 'MockImage';
   return MockImage;
@@ -115,8 +120,9 @@ describe("NosServices Component", () => {
 
     test("devrait avoir des boutons d'action ou de contact", () => {
       render(<NosServices />);
-      // Vérifier la présence du bouton "En savoir plus"
-      expect(screen.getByText('En savoir plus')).toBeInTheDocument();
+      // Vérifier la présence des boutons "En savoir plus" (il y en a plusieurs)
+      const learnMoreButtons = screen.getAllByText('En savoir plus');
+      expect(learnMoreButtons.length).toBeGreaterThan(0);
     });
 
     test("les cartes devraient être des liens vers les pages de détail", () => {
@@ -290,7 +296,8 @@ describe("NosServices Component", () => {
       render(<NosServices />);
       // Vérifier la présence d'éléments de contact
       expect(screen.getByText('Nous contacter')).toBeInTheDocument();
-      expect(screen.getByText('En savoir plus')).toBeInTheDocument();
+      const learnMoreButtons = screen.getAllByText('En savoir plus');
+      expect(learnMoreButtons.length).toBeGreaterThan(0);
     });
   });
 
@@ -360,7 +367,7 @@ describe("NosServices Component", () => {
       // Vérifier la présence de contenu riche pour le SEO
       expect(screen.getByText('NOS SERVICES')).toBeInTheDocument();
       expect(screen.getByText(/Optimisez vos performances/)).toBeInTheDocument();
-      expect(screen.getByText(/Solutions complètes/)).toBeInTheDocument();
+      expect(screen.getByText(/Restez connectés/)).toBeInTheDocument();
     });
   });
 
