@@ -245,7 +245,7 @@ export function FormationTemplate({
                 
                 <div className="flex items-center space-x-3">
                   <Mail className="w-5 h-5 text-slate-400" />
-                  <span className="text-slate-600">formation@solution-logique.fr</span>
+                  <span className="text-slate-600">site@solution-logique.fr</span>
                 </div>
               </div>
 
