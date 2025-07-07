@@ -81,7 +81,7 @@ const servicesData = [
 
 function NosServices() {
   return (
-    <div className="container nos_services">
+    <div className="container mt-16">
       <h1 className="heading_logiciels">NOS SERVICES</h1>
       <div className="fullscreen">
         {servicesData.map((service, index) => (

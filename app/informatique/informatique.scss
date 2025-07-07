@@ -33,10 +33,6 @@
   }
 }
 
-
-
-
-
 .container_2 {
   width: 100%;
   display: flex;
@@ -46,7 +42,6 @@
 }
 
 .card_informatique {
-
   width: 100%;
   margin-top: 50px;
   display: flex;
@@ -54,8 +49,6 @@
   justify-content: space-between;
   align-items: center;
   
-
-
   @include mobile{
     flex-direction: column;
   }
@@ -232,6 +225,313 @@
       @include tablet{
         font-size: 1.3em;
         }
+    }
+  }
+}
+
+// Styles pour le carrousel
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 248, 255, 0.8) 100%);
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+
+  @include mobile {
+    padding: 15px;
+    margin: 30px auto;
+  }
+}
+
+.carousel-controls {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 10;
+
+  .carousel-btn {
+    pointer-events: all;
+    background: rgba(4, 162, 223, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+
+    &:hover {
+      background: rgba(4, 162, 223, 1);
+      transform: scale(1.1);
+      box-shadow: 0 5px 15px rgba(4, 162, 223, 0.4);
+    }
+
+    &.prev-btn {
+      margin-left: 20px;
+    }
+
+    &.next-btn {
+      margin-right: 20px;
+    }
+
+    @include mobile {
+      width: 40px;
+      height: 40px;
+      font-size: 14px;
+      
+      &.prev-btn {
+        margin-left: 10px;
+      }
+      
+      &.next-btn {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+
+  .indicator {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    svg {
+      font-size: 12px;
+      color: rgba(4, 162, 223, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    &.active svg,
+    &:hover svg {
+      color: $main-color;
+      transform: scale(1.2);
+    }
+  }
+}
+
+.carousel-slide {
+  text-align: center;
+  
+  .service-description {
+    font-size: 1.1em;
+    color: #666;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+    
+    @include mobile {
+      font-size: 1em;
+      margin-bottom: 25px;
+    }
+  }
+}
+
+.card_informatique.enhanced {
+  margin-top: 40px;
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .service-image {
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.services-grid {
+  display: grid;
+  gap: 25px;
+  padding: 30px;
+
+  @include mobile {
+    gap: 20px;
+    padding: 20px;
+  }
+}
+
+.service-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+  background: linear-gradient(135deg, #f8fbff 0%, #f0f8ff 100%);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  border-left: 4px solid transparent;
+
+  &:hover {
+    transform: translateX(5px);
+    border-left-color: $main-color;
+    background: linear-gradient(135deg, #e8f4fd 0%, #d0e8ff 100%);
+  }
+
+  @include mobile {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .service-icon-wrapper {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, $main-color 0%, #00b8e6 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(4, 162, 223, 0.3);
+
+    @include mobile {
+      width: 50px;
+      height: 50px;
+    }
+
+    .icons_informatique {
+      color: white;
+      font-size: 24px;
+
+      @include mobile {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .service-content {
+    flex: 1;
+
+    h3 {
+      color: $main-color;
+      font-size: 1.3em;
+      margin-bottom: 8px;
+      font-weight: 600;
+
+      @include mobile {
+        font-size: 1.2em;
+        margin-bottom: 6px;
+      }
+    }
+
+    .service-detail {
+      color: #666;
+      font-size: 0.95em;
+      line-height: 1.5;
+      margin: 0;
+
+      @include mobile {
+        font-size: 0.9em;
+      }
+    }
+  }
+}
+
+.carousel-progress {
+  width: 100%;
+  height: 4px;
+  background: rgba(4, 162, 223, 0.2);
+  border-radius: 2px;
+  margin-top: 30px;
+  overflow: hidden;
+
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, $main-color 0%, #00b8e6 100%);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+}
+
+.cta-section {
+  text-align: center;
+  margin-top: 60px;
+  padding: 40px;
+  background: linear-gradient(135deg, rgba(4, 162, 223, 0.05) 0%, rgba(0, 184, 230, 0.05) 100%);
+  border-radius: 15px;
+  border: 1px solid rgba(4, 162, 223, 0.1);
+
+  @include mobile {
+    margin-top: 40px;
+    padding: 30px 20px;
+  }
+
+  h3 {
+    color: $main-color;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 600;
+
+    @include mobile {
+      font-size: 1.5em;
+    }
+  }
+
+  p {
+    color: #666;
+    font-size: 1.1em;
+    margin-bottom: 25px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include mobile {
+      font-size: 1em;
+      margin-bottom: 20px;
+    }
+  }
+
+  .cta-button {
+    background: linear-gradient(135deg, $main-color 0%, #00b8e6 100%);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(4, 162, 223, 0.3);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(4, 162, 223, 0.4);
+    }
+
+    @include mobile {
+      padding: 12px 25px;
+      font-size: 1em;
     }
   }
 }

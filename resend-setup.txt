@@ -1,0 +1,6 @@
+
+# Ajoutez cette ligne à votre .env.local :
+RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxxxxxxx
+
+# Obtenez votre clé gratuite sur : https://resend.com
+

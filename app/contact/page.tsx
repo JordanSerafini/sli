@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { FaPhoneAlt, FaMapMarkerAlt, FaEnvelope } from "react-icons/fa";
 import CallbackModal from "@/components/Modal/CallbackModal";
+import StatusModal from "@/components/Modal/StatusModal";
 import Button from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import Section from "@/components/ui/Section";
@@ -16,8 +17,16 @@ export default function Contact() {
     message: "",
     phone: "",
   });
-  const [status, setStatus] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [showCallbackModal, setShowCallbackModal] = useState(false);
+  
+  // État pour la modal de statut
+  const [statusModal, setStatusModal] = useState({
+    isOpen: false,
+    type: 'success' as 'success' | 'error',
+    title: '',
+    message: ''
+  });
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -25,9 +34,31 @@ export default function Contact() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const showSuccessModal = (message: string) => {
+    setStatusModal({
+      isOpen: true,
+      type: 'success',
+      title: 'Message envoyé !',
+      message: message
+    });
+  };
+
+  const showErrorModal = (message: string) => {
+    setStatusModal({
+      isOpen: true,
+      type: 'error',
+      title: 'Erreur',
+      message: message
+    });
+  };
+
+  const closeStatusModal = () => {
+    setStatusModal({ ...statusModal, isOpen: false });
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus("Envoi en cours...");
+    setIsLoading(true);
 
     try {
       const response = await fetch("/api/contact", {
@@ -36,30 +67,41 @@ export default function Contact() {
         body: JSON.stringify(formData),
       });
 
+      const data = await response.json();
+
       if (response.ok) {
-        setStatus("Votre message a été envoyé avec succès !");
+        showSuccessModal(data.message || "Votre message a été envoyé avec succès ! Nous vous répondrons rapidement.");
         setFormData({ name: "", email: "", message: "", phone: "" });
       } else {
-        const data = await response.json();
-        setStatus(
-          data.message || "Une erreur s'est produite. Veuillez réessayer."
-        );
+        showErrorModal(data.message || "Une erreur s'est produite. Veuillez réessayer.");
       }
     } catch (error) {
-      setStatus("Erreur: Impossible d'envoyer le message. Veuillez réessayer plus tard.");
+      showErrorModal("Erreur de connexion. Vérifiez votre connexion internet et réessayez.");
       console.error("Contact form submission error:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <Section>
       <Container>
+        {/* Modals */}
         {showCallbackModal && (
           <CallbackModal
             isOpen={showCallbackModal}
             onClose={() => setShowCallbackModal(false)}
           />
         )}
+        
+        <StatusModal
+          isOpen={statusModal.isOpen}
+          onClose={closeStatusModal}
+          type={statusModal.type}
+          title={statusModal.title}
+          message={statusModal.message}
+        />
+
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold !text-blue-900 dark:text-white tracking-widest">Contactez-nous</h1>
           <p className="text-lg !text-blue-900 dark:text-gray-300 mt-2">
@@ -114,6 +156,7 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   required
+                  disabled={isLoading}
                   placeholder="Votre nom complet"
                   className="bg-slate-800 border-slate-700 text-white"
                 />
@@ -127,7 +170,8 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  placeholder="votreadresse@email.com"
+                  disabled={isLoading}
+                  placeholder="votre.email@example.com"
                   className="bg-slate-800 border-slate-700 text-white"
                 />
               </div>
@@ -139,6 +183,7 @@ export default function Contact() {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
+                  disabled={isLoading}
                   placeholder="Votre numéro de téléphone"
                   className="bg-slate-800 border-slate-700 text-white"
                 />
@@ -149,19 +194,23 @@ export default function Contact() {
                   id="message"
                   name="message"
                   rows={4}
-                  className="mt-1 block w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-md shadow-sm text-white placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                  className="mt-1 block w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-md shadow-sm text-white placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm disabled:opacity-50"
                   value={formData.message}
                   onChange={handleChange}
                   required
+                  disabled={isLoading}
                   placeholder="Comment pouvons-nous vous aider ?"
                 ></textarea>
               </div>
               <div>
-                <Button type="submit" className="w-full">
-                  Envoyer le message
+                <Button 
+                  type="submit" 
+                  className="w-full" 
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Envoi en cours..." : "Envoyer le message"}
                 </Button>
               </div>
-              {status && <p className="text-center text-sm text-gray-300">{status}</p>}
             </form>
           </div>
         </div>
