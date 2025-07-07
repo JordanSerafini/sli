@@ -1,11 +1,9 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import * as React from 'react';
 
 // Configuration Resend
 const resend = new Resend(process.env.RESEND_API_KEY);
-
-// Template pour l'email de rappel en format JSX
-import * as React from 'react';
 
 function CallbackEmailTemplate({ phone }: { phone: string }): React.ReactElement {
   return React.createElement(
