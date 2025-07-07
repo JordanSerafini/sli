@@ -1,266 +1,279 @@
 "use client";
-import Image from "next/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faComputer,
-  faServer,
-  faSitemap,
-  faNetworkWired,
-  faHouseLaptop,
-  faShieldVirus,
-  faTimeline,
-  faPeopleGroup,
-  faFloppyDisk,
-  faCloud,
-  faEnvelopesBulk,
-  faWindowClose,
-  faCloudArrowUp,
-  faChevronLeft,
-  faChevronRight,
-  faCircle
-} from "@fortawesome/free-solid-svg-icons";
-import React, { useState, useEffect } from "react";
+
+import { useState, useEffect } from "react";
+import { ModernSection, ServiceCard } from "@/components/ui";
+import { 
+  Server, 
+  Monitor, 
+  Shield, 
+  Cloud, 
+  Network, 
+  HardDrive,
+  Users,
+  Lock,
+  Database,
+  Wifi,
+  Mail,
+  ArrowRight,
+  CheckCircle,
+  Star
+} from "lucide-react";
 
 const servicesData = [
   {
     id: "infrastructure",
-    title: "Infrastructure",
-    image: "/assets/infrastructure.webp",
-    description: "Solutions complètes pour votre infrastructure informatique avec du matériel performant et des serveurs sécurisés.",
-    services: [
-      { 
-        icon: faComputer, 
-        title: "Matériel Informatique",
-        detail: "Ordinateurs, périphériques et équipements informatiques de dernière génération"
-      },
-      { 
-        icon: faServer, 
-        title: "Serveur et stockage",
-        detail: "Solutions serveurs haute performance et systèmes de stockage sécurisés"
-      },
-      { 
-        icon: faSitemap, 
-        title: "Interconnexion de sites",
-        detail: "Connexion sécurisée entre vos différents sites et bureaux"
-      },
-      { 
-        icon: faNetworkWired, 
-        title: "Virtualisation de l'infrastructure",
-        detail: "Optimisation des ressources grâce à la virtualisation avancée"
-      },
+    title: "Infrastructure IT",
+    description: "Solutions complètes pour votre infrastructure informatique avec du matériel performant et des serveurs haute disponibilité.",
+    icon: <Server />,
+    features: [
+      "Matériel informatique dernière génération",
+      "Serveurs haute performance et stockage sécurisé", 
+      "Interconnexion de sites multiples",
+      "Virtualisation avancée des infrastructures",
+      "Monitoring et supervision 24/7"
+    ],
+    benefits: [
+      "Performance optimisée",
+      "Évolutivité garantie",
+      "Sécurité renforcée"
     ]
   },
   {
     id: "environnement",
-    title: "Environnement utilisateur",
-    image: "/assets/environnement.webp",
+    title: "Environnement Utilisateur",
     description: "Un environnement de travail optimisé et sécurisé pour vos équipes avec des outils collaboratifs modernes.",
-    services: [
-      { 
-        icon: faHouseLaptop, 
-        title: "Poste de travail",
-        detail: "Configuration et optimisation des postes de travail pour une productivité maximale"
-      },
-      { 
-        icon: faShieldVirus, 
-        title: "Sécurité Antivirus",
-        detail: "Protection avancée contre les virus et logiciels malveillants"
-      },
-      { 
-        icon: faTimeline, 
-        title: "Gestion des accès",
-        detail: "Contrôle sécurisé des accès et authentification des utilisateurs"
-      },
-      { 
-        icon: faPeopleGroup, 
-        title: "Outils Collaboratif",
-        detail: "Solutions de collaboration moderne pour optimiser le travail d'équipe"
-      },
+    icon: <Monitor />,
+    features: [
+      "Configuration et optimisation des postes de travail",
+      "Protection antivirus et anti-malware avancée",
+      "Gestion centralisée des accès et authentification",
+      "Outils de collaboration moderne (Teams, Slack, etc.)",
+      "Support et maintenance proactive"
+    ],
+    benefits: [
+      "Productivité maximale",
+      "Sécurité renforcée", 
+      "Collaboration fluide"
     ]
   },
   {
     id: "hebergement",
     title: "Hébergement & Cloud",
-    image: "/assets/hebergement.webp",
-    description: "Solutions cloud complètes avec sauvegarde automatique et hébergement web professionnel.",
-    services: [
-      { 
-        icon: faCloudArrowUp, 
-        title: "Sauvegarde externalisé",
-        detail: "Sauvegarde automatique et sécurisée de vos données dans le cloud"
-      },
-      { 
-        icon: faFloppyDisk, 
-        title: "Sauvegarde sur place",
-        detail: "Solutions de sauvegarde locale pour une récupération rapide"
-      },
-      { 
-        icon: faWindowClose, 
-        title: "Hébergement de site web",
-        detail: "Hébergement web haute performance pour vos sites et applications"
-      },
-      { 
-        icon: faEnvelopesBulk, 
-        title: "Hébergement et gestion des boites mails",
-        detail: "Solutions de messagerie professionnelle complètes et sécurisées"
-      },
-      { 
-        icon: faCloud, 
-        title: "Stockage de données sur le cloud",
-        detail: "Stockage cloud évolutif et accessible depuis n'importe où"
-      },
+    description: "Solutions cloud complètes avec sauvegarde automatique et hébergement web professionnel haute performance.",
+    icon: <Cloud />,
+    features: [
+      "Sauvegarde automatique externalisée dans le cloud",
+      "Solutions de sauvegarde locale pour récupération rapide",
+      "Hébergement web haute performance et disponibilité",
+      "Messagerie professionnelle complète et sécurisée",
+      "Stockage cloud évolutif accessible partout"
+    ],
+    benefits: [
+      "Disponibilité 99.9%",
+      "Données sécurisées",
+      "Accès universel"
     ]
   }
 ];
 
-function Informatique() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isAutoPlay, setIsAutoPlay] = useState(true);
+const statsData = [
+  { value: "30+", label: "Années d'expérience", icon: <Star /> },
+  { value: "500+", label: "Entreprises accompagnées", icon: <Users /> },
+  { value: "99.9%", label: "Disponibilité garantie", icon: <CheckCircle /> },
+  { value: "24/7", label: "Support technique", icon: <Shield /> }
+];
+
+const partnersLogos = [
+  { name: "Dell", logo: "/assets/dell.webp" },
+  { name: "Lenovo", logo: "/assets/lenovo.webp" },
+  { name: "VMware", logo: "/assets/vmware.webp" },
+  { name: "Stormshield", logo: "/assets/stormshield.webp" }
+];
+
+export default function Informatique() {
+  const [activeService, setActiveService] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    if (!isAutoPlay) return;
-    
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % servicesData.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [isAutoPlay]);
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % servicesData.length);
-    setIsAutoPlay(false);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + servicesData.length) % servicesData.length);
-    setIsAutoPlay(false);
-  };
-
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index);
-    setIsAutoPlay(false);
-  };
-
-  const currentService = servicesData[currentSlide];
+    setIsVisible(true);
+  }, []);
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 mb-12">
-      <h1 className="text-center text-4xl lg:text-5xl font-bold text-blue-600 pb-8">
-        SOLUTIONS INFORMATIQUES
-      </h1>
-      
-      {/* Mode Carrousel */}
-      <div className="relative w-full max-w-6xl mx-auto my-12 p-6 bg-gradient-to-br from-white/90 to-blue-50/80 rounded-3xl shadow-2xl overflow-hidden">
-        {/* Navigation Controls - Positionnées par rapport à la carte principale */}
-
-        {/* Indicators */}
-        <div className="flex justify-center gap-4 mb-8">
-          {servicesData.map((_, index) => (
-            <button
-              key={index}
-              className="bg-none border-none cursor-pointer transition-all duration-300"
-              onClick={() => goToSlide(index)}
-            >
-              <FontAwesomeIcon 
-                icon={faCircle} 
-                className={`text-xs transition-all duration-300 ${
-                  index === currentSlide 
-                    ? 'text-blue-600 scale-125' 
-                    : 'text-blue-300 hover:text-blue-500 hover:scale-110'
-                }`}
-              />
-            </button>
-          ))}
-        </div>
-
-        {/* Current Slide Content */}
-        <div className="text-center">
-          <h2 className="text-center text-3xl lg:text-4xl font-bold text-blue-600 pt-12 pb-6 uppercase animate-fadeIn">
-            {currentService.title}
-          </h2>
-          <p className="text-lg text-gray-600 max-w-4xl mx-auto mb-10 leading-relaxed">
-            {currentService.description}
-          </p>
-          
-          <div className="relative mt-10 bg-white rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl h-[600px] lg:h-[500px]">
-            {/* Navigation Controls - Centrées par rapport à la carte */}
-            <div className="absolute top-1/2 -translate-y-1/2 w-full flex justify-between pointer-events-none z-10 px-4">
-              <button 
-                className="pointer-events-auto bg-blue-500/90 hover:bg-blue-600 border-none rounded-full w-12 h-12 lg:w-14 lg:h-14 flex items-center justify-center text-white text-lg lg:text-xl cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-lg backdrop-blur-sm"
-                onClick={prevSlide}
-              >
-                <FontAwesomeIcon icon={faChevronLeft} />
-              </button>
-              <button 
-                className="pointer-events-auto bg-blue-500/90 hover:bg-blue-600 border-none rounded-full w-12 h-12 lg:w-14 lg:h-14 flex items-center justify-center text-white text-lg lg:text-xl cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-lg backdrop-blur-sm"
-                onClick={nextSlide}
-              >
-                <FontAwesomeIcon icon={faChevronRight} />
-              </button>
+    <main className="overflow-hidden">
+      {/* Hero Section */}
+      <ModernSection 
+        background="gradient" 
+        padding="2xl"
+        className="relative"
+      >
+        <div className="absolute inset-0 bg-[url('/assets/infrastructure.webp')] bg-cover bg-center opacity-5" />
+        <div className="relative z-10">
+          <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium mb-8">
+              <Monitor className="w-4 h-4 mr-2" />
+              Solutions informatiques professionnelles
             </div>
-            <div className="flex flex-col lg:flex-row h-full">
-              <div className="w-full lg:w-1/2 p-6 flex items-center justify-center">
-                <Image
-                  alt={`Solution Logique - ${currentService.title}`}
-                  src={currentService.image}
-                  width={500}
-                  height={400}
-                  className="w-full max-h-full object-cover rounded-2xl transition-transform duration-300 hover:scale-105"
-                />
-              </div>
-              <div className="w-full lg:w-1/2 p-8 overflow-y-auto">
-                <div className="grid gap-4 h-full content-start">
-                                      {currentService.services.map((item, index) => (
-                      <div 
-                        key={index} 
-                        className="flex items-start gap-4 p-4 bg-gradient-to-r from-blue-50 to-sky-50 rounded-xl transition-all duration-300 hover:translate-x-2 hover:from-blue-100 hover:to-sky-100 border-l-4 border-transparent hover:border-blue-500"
-                      >
-                        <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-sky-500 rounded-xl flex items-center justify-center shadow-lg">
-                          <FontAwesomeIcon 
-                            className="text-white text-lg" 
-                            icon={item.icon} 
-                          />
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="text-blue-600 text-lg font-semibold mb-1">
-                            {item.title}
-                          </h3>
-                          <p className="text-gray-600 text-sm leading-relaxed">
-                            {item.detail}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                </div>
-              </div>
+            
+            <h1 className="text-5xl lg:text-7xl font-bold text-slate-900 mb-6 leading-tight">
+              Solutions
+              <span className="block bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+                Informatiques
+              </span>
+            </h1>
+            
+            <p className="text-xl lg:text-2xl text-slate-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+              Transformez votre infrastructure IT avec nos solutions sur mesure. 
+              Performance, sécurité et innovation pour votre entreprise.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-blue-700 hover:to-cyan-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center">
+                Découvrir nos services
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </button>
+              
+              <button className="bg-white/90 backdrop-blur text-slate-700 px-8 py-4 rounded-lg font-semibold hover:bg-white border border-slate-200 hover:border-slate-300 transition-all duration-200 shadow-lg">
+                Demander un devis
+              </button>
             </div>
           </div>
         </div>
+      </ModernSection>
 
-        {/* Progress Bar */}
-        <div className="w-full h-1 bg-blue-200 rounded-full mt-8 overflow-hidden">
-          <div 
-            className="h-full bg-gradient-to-r from-blue-500 to-sky-500 rounded-full transition-all duration-300"
-            style={{ width: `${((currentSlide + 1) / servicesData.length) * 100}%` }}
-          ></div>
+      {/* Stats Section */}
+      <ModernSection background="white" padding="lg">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          {statsData.map((stat, index) => (
+            <div key={index} className="text-center group">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-2xl mb-4 group-hover:bg-blue-600 transition-colors duration-300">
+                <div className="text-blue-600 group-hover:text-white transition-colors duration-300">
+                  {stat.icon}
+                </div>
+              </div>
+              <div className="text-3xl lg:text-4xl font-bold text-slate-900 mb-2">{stat.value}</div>
+              <div className="text-slate-600 font-medium">{stat.label}</div>
+            </div>
+          ))}
         </div>
-      </div>
+      </ModernSection>
 
-      {/* Call to Action */}
-      <div className="text-center mt-16 p-10 bg-gradient-to-br from-blue-50/50 to-sky-50/50 rounded-2xl border border-blue-100">
-        <h3 className="text-blue-600 text-2xl lg:text-3xl font-semibold mb-4">
-          Besoin d'une solution sur mesure ?
-        </h3>
-        <p className="text-gray-600 text-lg mb-6 max-w-3xl mx-auto">
-          Nos experts sont là pour vous conseiller et adapter nos services à vos besoins spécifiques.
-        </p>
-        <button className="bg-gradient-to-r from-blue-500 to-sky-500 text-white border-none px-8 py-4 rounded-lg text-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-          Nous contacter
-        </button>
-      </div>
-    </div>
+      {/* Services Section */}
+      <ModernSection background="gray" padding="2xl">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+            Nos expertises
+          </h2>
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            Des solutions complètes pour accompagner votre transformation digitale
+          </p>
+        </div>
+
+        {/* Service Cards Grid */}
+        <div className="grid lg:grid-cols-3 gap-8 mb-16">
+          {servicesData.map((service, index) => (
+            <ServiceCard
+              key={service.id}
+              title={service.title}
+              description={service.description}
+              icon={service.icon}
+              features={service.features}
+              variant={index === 1 ? "featured" : "default"}
+              className="cursor-pointer"
+              onClick={() => setActiveService(index)}
+            />
+          ))}
+        </div>
+
+        {/* Detailed Service View */}
+        <div className="bg-white rounded-3xl p-8 lg:p-12 shadow-xl">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium mb-6">
+                {servicesData[activeService].icon}
+                <span className="ml-2">Service en détail</span>
+              </div>
+              
+              <h3 className="text-3xl font-bold text-slate-900 mb-4">
+                {servicesData[activeService].title}
+              </h3>
+              
+              <p className="text-lg text-slate-600 mb-6 leading-relaxed">
+                {servicesData[activeService].description}
+              </p>
+
+              <div className="grid grid-cols-3 gap-4 mb-8">
+                {servicesData[activeService].benefits.map((benefit, index) => (
+                  <div key={index} className="text-center p-4 bg-blue-50 rounded-xl">
+                    <CheckCircle className="w-6 h-6 text-blue-600 mx-auto mb-2" />
+                    <span className="text-sm font-medium text-slate-700">{benefit}</span>
+                  </div>
+                ))}
+              </div>
+
+              <button className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-cyan-700 transition-all duration-200 shadow-lg hover:shadow-xl">
+                En savoir plus
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              <h4 className="text-xl font-semibold text-slate-900 mb-4">
+                Fonctionnalités incluses
+              </h4>
+              {servicesData[activeService].features.map((feature, index) => (
+                <div key={index} className="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-50 transition-colors duration-200">
+                  <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span className="text-slate-700">{feature}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </ModernSection>
+
+      {/* Partners Section */}
+      <ModernSection background="white" padding="lg">
+        <div className="text-center mb-12">
+          <h3 className="text-2xl font-bold text-slate-900 mb-4">
+            Nos partenaires technologiques
+          </h3>
+          <p className="text-slate-600">
+            Nous travaillons avec les leaders du marché
+          </p>
+        </div>
+
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 items-center">
+          {partnersLogos.map((partner, index) => (
+            <div key={index} className="flex items-center justify-center p-6 bg-white rounded-xl border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all duration-300 group">
+              <img 
+                src={partner.logo} 
+                alt={partner.name}
+                className="h-12 w-auto opacity-60 group-hover:opacity-100 transition-opacity duration-300"
+              />
+            </div>
+          ))}
+        </div>
+      </ModernSection>
+
+      {/* CTA Section */}
+      <ModernSection background="dark" padding="2xl">
+        <div className="text-center">
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
+            Prêt à transformer votre IT ?
+          </h2>
+          <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
+            Contactez nos experts pour une consultation gratuite et découvrez comment optimiser votre infrastructure.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-blue-700 hover:to-cyan-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+              Consultation gratuite
+            </button>
+            <button className="bg-white/10 backdrop-blur text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/20 border border-white/20 hover:border-white/30 transition-all duration-200">
+              04 50 64 02 33
+            </button>
+          </div>
+        </div>
+      </ModernSection>
+    </main>
   );
 }
-
-export default Informatique;
