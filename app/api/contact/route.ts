@@ -40,7 +40,7 @@ export async function POST(req: Request) {
     // Envoi de l'email via Resend
     const { data, error } = await resend.emails.send({
       from: 'Acme <onboarding@resend.dev>',
-      to: ['jordan@solution-logique.fr'],
+      to: ['jordanserafini.74@gmail.com'],
       subject: `Nouveau message de contact - ${name}`,
       react: ContactEmailTemplate({ 
         name, 
