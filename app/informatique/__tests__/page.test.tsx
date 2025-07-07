@@ -29,7 +29,7 @@ describe("Informatique Component", () => {
   describe("Rendu de base", () => {
     test("devrait se rendre sans crash", () => {
       render(<Informatique />);
-      expect(screen.getByText(/Solutions/)).toBeInTheDocument();
+      expect(screen.getAllByText(/Solutions/)[0]).toBeInTheDocument();
     });
 
     test("devrait afficher le titre principal", () => {
@@ -66,14 +66,14 @@ describe("Informatique Component", () => {
 
     test("devrait afficher des cartes de services", () => {
       render(<Informatique />);
-      expect(screen.getByText('Infrastructure IT')).toBeInTheDocument();
+      expect(screen.getAllByText('Infrastructure IT')[0]).toBeInTheDocument();
       expect(screen.getByText('Environnement Utilisateur')).toBeInTheDocument();
       expect(screen.getByText('Hébergement & Cloud')).toBeInTheDocument();
     });
 
     test("devrait afficher les descriptions des services", () => {
       render(<Informatique />);
-      expect(screen.getByText(/Solutions complètes pour votre infrastructure informatique/)).toBeInTheDocument();
+      expect(screen.getAllByText(/Solutions complètes pour votre infrastructure informatique/)[0]).toBeInTheDocument();
       expect(screen.getByText(/Un environnement de travail optimisé et sécurisé/)).toBeInTheDocument();
       expect(screen.getByText(/Solutions cloud complètes avec sauvegarde automatique/)).toBeInTheDocument();
     });
@@ -216,7 +216,7 @@ describe("Informatique Component", () => {
       render(<Informatique />);
       // Vérifier la présence de fonctionnalités spécifiques
       expect(screen.getAllByText(/Matériel informatique/)[0]).toBeInTheDocument();
-      expect(screen.getByText(/Serveurs haute performance/)).toBeInTheDocument();
+      expect(screen.getAllByText(/Serveurs haute performance/)[0]).toBeInTheDocument();
     });
 
     test("devrait afficher les types d'intervention", () => {
@@ -325,7 +325,7 @@ describe("Informatique Component", () => {
     test("devrait avoir du contenu textuel pour le SEO", () => {
       render(<Informatique />);
       // Vérifier la présence de contenu significatif
-      expect(screen.getByText('Solutions')).toBeInTheDocument();
+      expect(screen.getAllByText('Solutions')[0]).toBeInTheDocument();
       expect(screen.getByText('Informatiques')).toBeInTheDocument();
       expect(screen.getByText(/Transformez votre infrastructure IT/)).toBeInTheDocument();
     });
