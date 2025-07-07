@@ -120,7 +120,7 @@ function NosServices() {
 
             {/* Overlay détails au hover */}
             <Link href={service.link} className="absolute inset-0">
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/95 via-blue-800/85 to-blue-700/75 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-center p-6 text-white overflow-y-auto">
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/95 via-blue-800/85 to-blue-700/75 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-start pt-8 p-6 text-white overflow-y-auto">
                 <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">
                   <h4 className="text-xl font-semibold mb-4 text-cyan-300 border-b border-cyan-300/30 pb-2">
                     Plus d&apos;informations :
