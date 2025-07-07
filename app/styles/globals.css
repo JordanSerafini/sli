@@ -344,4 +344,9 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* Force white color for specific title */
+.force-white-title {
+  color: white !important;
 } 

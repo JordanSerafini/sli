@@ -141,7 +141,7 @@ function Hero() {
             <div className="gradient-primary rounded-3xl p-8 lg:p-10 text-white shadow-xl hover:shadow-2xl transition-all duration-300">
               <div className="space-y-6">
                 <div className="space-y-4">
-                  <h3 className="text-2xl lg:text-3xl font-bold leading-tight">
+                  <h3 className="text-2xl lg:text-3xl font-bold leading-tight force-white-title">
                     Apporteur de solution informatique
                   </h3>
                   <p className="text-primary-100 text-lg leading-relaxed">

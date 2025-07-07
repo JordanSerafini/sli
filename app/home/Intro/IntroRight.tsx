@@ -12,7 +12,7 @@ function IntroRight() {
       
       {/* Content Section - right_content */}
       <div className="mb-[30px]">
-        <h1 className="text-white">
+        <h1 className="force-white-title">
           Apporteur de solution informatique
         </h1>
         <p className="text-white text-[1.2em] my-5">
