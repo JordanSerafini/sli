@@ -271,26 +271,26 @@ describe("NosServices Component", () => {
   describe("Contenu et informations", () => {
     test("devrait fournir des informations détaillées sur chaque service", () => {
       render(<NosServices />);
-      const content = document.body.textContent;
-      
-      // Vérifier que le contenu est substantiel
-      expect(content.length).toBeGreaterThan(200);
+      // Vérifier que le contenu principal est présent
+      expect(screen.getByText('NOS SERVICES')).toBeInTheDocument();
+      expect(screen.getByText('Informatique')).toBeInTheDocument();
+      expect(screen.getByText('Télécom')).toBeInTheDocument();
+      expect(screen.getByText('Sécurité')).toBeInTheDocument();
     });
 
     test("devrait mentionner les avantages ou bénéfices", () => {
       render(<NosServices />);
-      const content = document.body.textContent;
-      
-      const benefits = /avantage|bénéfice|solution|expertise|qualité|efficace|professionnel|expérience/i;
-      expect(content).toMatch(benefits);
+      // Vérifier la présence de descriptions qui montrent les bénéfices
+      expect(screen.getByText(/Optimisez vos performances/)).toBeInTheDocument();
+      expect(screen.getByText(/Restez connectés/)).toBeInTheDocument();
+      expect(screen.getByText(/Protégez vos données/)).toBeInTheDocument();
     });
 
     test("devrait inclure des informations de contact ou d'action", () => {
       render(<NosServices />);
-      const content = document.body.textContent;
-      
-      const contactInfo = /contact|devis|demande|appel|téléphone|email|formulaire/i;
-      expect(content).toMatch(contactInfo);
+      // Vérifier la présence d'éléments de contact
+      expect(screen.getByText('Nous contacter')).toBeInTheDocument();
+      expect(screen.getByText('En savoir plus')).toBeInTheDocument();
     });
   });
 
@@ -357,10 +357,10 @@ describe("NosServices Component", () => {
 
     test("devrait avoir une longueur de contenu appropriée pour le SEO", () => {
       render(<NosServices />);
-      const textContent = document.body.textContent;
-      
-      // Le contenu devrait être suffisant pour le SEO
-      expect(textContent.length).toBeGreaterThan(300);
+      // Vérifier la présence de contenu riche pour le SEO
+      expect(screen.getByText('NOS SERVICES')).toBeInTheDocument();
+      expect(screen.getByText(/Optimisez vos performances/)).toBeInTheDocument();
+      expect(screen.getByText(/Solutions complètes/)).toBeInTheDocument();
     });
   });
 

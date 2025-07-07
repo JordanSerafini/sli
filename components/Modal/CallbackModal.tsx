@@ -42,13 +42,19 @@ const CallbackModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
                 onClick={onClose}
                 className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
                 aria-label="Fermer"
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        onClose();
+                    }
+                }}
             >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
             
             <h2 className="text-2xl font-bold text-center text-gray-800 dark:text-white mb-6">Demande de rappel</h2>
             
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6" role="form">
                 <div>
                     <label htmlFor="phone" className="sr-only">Votre numéro de téléphone</label>
                     <Input
