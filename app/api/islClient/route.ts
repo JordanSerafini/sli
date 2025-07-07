@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import axios from 'axios';
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
@@ -10,21 +9,29 @@ export async function GET(req: Request) {
   }
 
   try {
+    // URL correcte pour télécharger ISL Light Client
     const islClientUrl = 'https://www.islonline.com/start/isllight/client.exe';
 
-    const response = await axios.get(islClientUrl, { 
-      responseType: "arraybuffer",
+    // Télécharge le fichier depuis l'URL officielle ISL
+    const response = await fetch(islClientUrl, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
       }
     });
 
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    // Obtenir le contenu du fichier
+    const arrayBuffer = await response.arrayBuffer();
+
     // Retourne le fichier avec les bons headers
-    return new NextResponse(response.data, {
+    return new NextResponse(arrayBuffer, {
       headers: {
         "Content-Disposition": `attachment; filename="isl-light-client-${code}.exe"`,
         "Content-Type": "application/octet-stream",
-        "Content-Length": response.data.byteLength.toString(),
+        "Content-Length": arrayBuffer.byteLength.toString(),
       },
     });
 
@@ -36,4 +43,4 @@ export async function GET(req: Request) {
     const islJoinUrl = `https://www.islonline.com/fr/fr/join/#${code}`;
     return NextResponse.redirect(islJoinUrl);
   }
-}
+} 
