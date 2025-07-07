@@ -80,7 +80,7 @@ describe("Informatique Component", () => {
 
     test("devrait afficher les fonctionnalités de chaque service", () => {
       render(<Informatique />);
-      expect(screen.getByText(/Matériel informatique dernière génération/)).toBeInTheDocument();
+      expect(screen.getAllByText(/Matériel informatique dernière génération/)[0]).toBeInTheDocument();
       expect(screen.getByText(/Configuration et optimisation des postes de travail/)).toBeInTheDocument();
       expect(screen.getByText(/Sauvegarde automatique externalisée dans le cloud/)).toBeInTheDocument();
     });
@@ -215,7 +215,7 @@ describe("Informatique Component", () => {
     test("devrait mentionner les technologies supportées", () => {
       render(<Informatique />);
       // Vérifier la présence de fonctionnalités spécifiques
-      expect(screen.getByText(/Matériel informatique/)).toBeInTheDocument();
+      expect(screen.getAllByText(/Matériel informatique/)[0]).toBeInTheDocument();
       expect(screen.getByText(/Serveurs haute performance/)).toBeInTheDocument();
     });
 
@@ -229,13 +229,13 @@ describe("Informatique Component", () => {
     test("devrait mentionner la zone géographique ou les modalités", () => {
       render(<Informatique />);
       expect(screen.getByText(/Support technique/)).toBeInTheDocument();
-      expect(screen.getByText(/24\/7/)).toBeInTheDocument();
+      expect(screen.getAllByText(/24\/7/)[0]).toBeInTheDocument();
     });
 
     test("devrait mentionner les technologies et partenaires", () => {
       render(<Informatique />);
       // Vérifier que les mots-clés techniques sont présents
-      expect(screen.getByText(/Infrastructure IT/)).toBeInTheDocument();
+      expect(screen.getAllByText(/Infrastructure IT/)[0]).toBeInTheDocument();
       expect(screen.getByText(/Environnement Utilisateur/)).toBeInTheDocument();
       expect(screen.getByText(/Hébergement & Cloud/)).toBeInTheDocument();
     });
@@ -343,7 +343,7 @@ describe("Informatique Component", () => {
       expect(screen.getByText('30+')).toBeInTheDocument();
       expect(screen.getByText('500+')).toBeInTheDocument();
       expect(screen.getByText('99.9%')).toBeInTheDocument();
-      expect(screen.getByText('24/7')).toBeInTheDocument();
+      expect(screen.getAllByText('24/7')[0]).toBeInTheDocument();
     });
 
     test("devrait afficher les labels des statistiques", () => {
@@ -365,9 +365,9 @@ describe("Informatique Component", () => {
 
     test("devrait avoir un bouton téléphone", () => {
       render(<Informatique />);
-      const phoneButton = screen.getByRole('link', { name: /04 50 64 02 33/ });
-      expect(phoneButton).toBeInTheDocument();
-      expect(phoneButton).toHaveAttribute('href', 'tel:0450640233');
+      const phoneButtons = screen.getAllByRole('link', { name: /04 50 64 02 33/ });
+      expect(phoneButtons[0]).toBeInTheDocument();
+      expect(phoneButtons[0]).toHaveAttribute('href', 'tel:0450640233');
     });
   });
 
