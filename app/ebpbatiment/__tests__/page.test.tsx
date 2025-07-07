@@ -257,19 +257,7 @@ describe("Ebpbatiment Component", () => {
   describe("Responsive et mise en page", () => {
     test("devrait avoir des classes CSS appropriées pour le responsive", () => {
       render(<Ebpbatiment />);
-      const container = document.querySelector('.container, .max-w-');
-      expect(container).toBeInTheDocument();
-    });
-
-    test("les cartes devraient être dans un layout grid ou flex", () => {
-      render(<Ebpbatiment />);
-      const cardsContainer = document.querySelector('.grid, .flex, .software_cards_container');
-      expect(cardsContainer).toBeInTheDocument();
-    });
-
-    test("devrait avoir des classes CSS appropriées pour le responsive", () => {
-      render(<Ebpbatiment />);
-      const container = document.querySelector('.max-w-7xl, [class*="max-w"]');
+      const container = document.querySelector('[class*="max-w"]');
       expect(container).toBeInTheDocument();
     });
 
@@ -292,7 +280,7 @@ describe("Ebpbatiment Component", () => {
 
     test("devrait afficher les différentes versions de logiciels", () => {
       render(<Ebpbatiment />);
-      const softwareCards = document.querySelectorAll(".software_card");
+      const softwareCards = document.querySelectorAll(".grid .bg-white");
       
       // Il devrait y avoir plusieurs cartes pour différents logiciels
       expect(softwareCards.length).toBeGreaterThanOrEqual(2);
