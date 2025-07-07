@@ -1,87 +1,57 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import "./Ebpgestionco.scss";
+import { EBPTemplate } from '@/components/ui';
 
-function Ebpgestionco() {
+export default function EBPGestionCo() {
   return (
-    <div className="ebp_gestionco">
-      <h1 className="title_ebp">EBP Gestion Commerciale</h1>
-      <p className="description">
-        Commerçants, professionnels du bâtiment ou de l’automobile, découvrez
-        quel logiciel de devis et facture EBP correspond à votre secteur
-        d’activité. Prenant en compte les besoins spécifiques liés à votre
-        métier, nos solutions vous assurent de gérer votre entreprise en toute
-        sérénité.
-      </p>
-      <div className="software_grid">
-        {[
-          {
-            title: "Logiciel Gestion Commerciale ACTIV",
-            features: [
-              "Gestion des ventes",
-              "Relances clients",
-              "Synchronisation bancaire",
-              "Récupération des factures fournisseurs",
-              "Accès à la compta automatisée",
-              "Facturation périodique",
-              "Assistance téléphonique",
-            ],
-            link: "assets/ebp-logiciel-gestion-commerciale-activ-2022.pdf",
-          },
-          {
-            title: "Logiciel Gestion Commerciale PRO",
-            features: [
-              "Gestion des ventes",
-              "Relances clients",
-              "Achats et stocks",
-              "Tableau de bord",
-              "Statistiques détaillées",
-              "Application mobile EBP - Suivi devis factures",
-            ],
-            link: "assets/ebp-logiciel-gestion-commerciale-pro-2022.pdf",
-          },
-          {
-            title: "Logiciel Gestion Commerciale ELITE",
-            features: [
-              "Gestion des ventes",
-              "Relances clients",
-              "Achats et stocks",
-              "Tableau de bord",
-              "Statistiques détaillées",
-              "Facturation périodique",
-              "Planification des ressources",
-              "Application mobile EBP - Suivi devis factures",
-            ],
-            link: "assets/ebp-logiciel-gestion-commerciale-elite-2022.pdf",
-          },
-        ].map((software, index) => (
-          <div className="software_card" key={index}>
-            <h3 className="title_software">{software.title}</h3>
-            <ul className="features_list">
-              {software.features.map((feature, idx) => (
-                <li key={idx}>
-                  <FontAwesomeIcon
-                    className="gestionco_icons"
-                    icon={faCheck}
-                  />
-                  {feature}
-                </li>
-              ))}
-            </ul>
-            <a
-              className="btn_help"
-              href={software.link}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              En savoir plus ?
-            </a>
-          </div>
-        ))}
-      </div>
-    </div>
+    <EBPTemplate
+      title="EBP Gestion Commerciale"
+      description="Optimisez votre gestion commerciale avec les solutions EBP dédiées aux ventes, achats, stocks et relation client. Des outils puissants pour développer votre chiffre d'affaires et fidéliser votre clientèle avec une gestion commerciale professionnelle et intuitive."
+      category="Gestion Commerciale"
+      colorScheme="green"
+      softwares={[
+        {
+          title: "EBP Gestion Commerciale ACTIV",
+          subtitle: "L'essentiel pour débuter en gestion commerciale",
+          level: "Essentiel",
+          features: [
+            "Gestion clients et fournisseurs",
+            "Catalogue articles et tarifs",
+            "Devis et factures simples",
+            "Suivi des stocks de base",
+            "Statistiques commerciales"
+          ],
+          pdfLink: "ebp-logiciel-gestion-commerciale-activ-2022.pdf"
+        },
+        {
+          title: "EBP Gestion Commerciale PRO",
+          subtitle: "La solution complète pour professionnels",
+          level: "Professionnel",
+          popular: true,
+          features: [
+            "Gestion commerciale complète",
+            "Cycle de vente intégral",
+            "Gestion avancée des stocks",
+            "Encaissements et règlements",
+            "CRM et relances clients",
+            "Tableaux de bord commerciaux"
+          ],
+          pdfLink: "ebp-logiciel-gestion-commerciale-pro-2022.pdf"
+        },
+        {
+          title: "EBP Gestion Commerciale ELITE",
+          subtitle: "L'excellence pour les experts du commerce",
+          level: "Expert",
+          features: [
+            "Toutes fonctionnalités PRO incluses",
+            "Multi-sociétés et multi-devises",
+            "Gestion multi-magasins",
+            "Personnalisation avancée",
+            "API et connecteurs e-commerce",
+            "Workflow et automatisations",
+            "Reporting et analytics avancés"
+          ],
+          pdfLink: "ebp-logiciel-gestion-commerciale-elite-2022.pdf"
+        }
+      ]}
+    />
   );
 }
-
-export default Ebpgestionco;

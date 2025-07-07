@@ -1,49 +1,41 @@
-import Image from "next/image";
-import "./formationcompta.scss";
-import React from "react";
+import { FormationTemplate } from '@/components/ui';
 
-function FormationCompta() {
+export default function FormationCompta() {
   return (
-    <div className="container">
-      <h1>FORMATION AU LOGICIEL EBP COMPTABILITE</h1>
-      <div className="logo_formation">
-        <Image
-          className="device_sli"
-          alt="logo_solution_logique_informatique"
-          src="/assets/EBP_Compta-Gesco.PNG"
-          width={300}
-          height={300} 
-        />
-      </div>
-      <div className="home_conseils_sli">
-        <div className="home_conseils_sli_left">
-          <Image
-            className="img_right_side"
-            alt="logo_solution_logique_informatique"
-            src="/assets/formations_ebp.webp"
-            width={400}
-            height={300}
-          />
-        </div>
-        <div className="home_conseils_sli_right">
-          <h1>Notre programme Comptabilité</h1>
-          <h2>Vous voulez en savoir plus ?</h2>
-          <p>
-            Accédez à notre programme EBP comptabilité, une formation complète
-            et personnalisée pour enrichir vos compétences.
-          </p>
-          <a
-            href="/assets/Programme_Comptabilite_NivInitial.pdf"
-            className="btn_help btn_help_right"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            En savoir plus
-          </a>
-        </div>
-      </div>
-    </div>
+    <FormationTemplate
+      title="Formation EBP Comptabilité"
+      subtitle="Maîtrisez parfaitement le logiciel EBP Comptabilité et optimisez votre gestion comptable"
+      description="Notre formation EBP Comptabilité vous permettra d'acquérir une maîtrise complète du logiciel. De la saisie des écritures à l'édition des états comptables, vous apprendrez toutes les fonctionnalités essentielles pour une gestion comptable efficace."
+      logoImage="/assets/EBP_Compta-Gesco.PNG"
+      formationImage="/assets/formations_ebp.webp"
+      pdfUrl="/assets/Programme_Comptabilite_NivInitial.pdf"
+      duration="3 jours"
+      level="Débutant à intermédiaire"
+      price="Sur devis"
+      objectives={[
+        "Maîtriser les bases de la comptabilité dans EBP",
+        "Paramétrer et personnaliser le logiciel",
+        "Effectuer la saisie comptable au quotidien",
+        "Réaliser les opérations de fin de période",
+        "Éditer les états comptables réglementaires",
+        "Gérer la TVA et les déclarations fiscales"
+      ]}
+      program={[
+        "Découverte de l'interface et paramétrage initial",
+        "Création et gestion du plan comptable",
+        "Saisie des écritures comptables",
+        "Rapprochement bancaire et lettrage",
+        "Gestion des immobilisations",
+        "TVA et déclarations fiscales",
+        "Clôture d'exercice et états de synthèse",
+        "Sauvegarde et archivage des données"
+      ]}
+      prerequisites={[
+        "Connaissances de base en comptabilité générale",
+        "Utilisation courante de Windows",
+        "Notions de base en informatique"
+      ]}
+      colorScheme="blue"
+    />
   );
 }
-
-export default FormationCompta;
