@@ -85,8 +85,8 @@ const config: Config = {
         '9xl': '96rem',
       },
       screens: {
-        'mobile': {'max': '414px'},
-        'tablet': {'max': '830px'},
+        'mobile': '414px',
+        'tablet': '830px',
       },
       container: {
         center: true,

@@ -5,6 +5,7 @@ import {
   faFileShield,
   faShieldHeart,
 } from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
 
 function Securite() {
   return (
@@ -14,10 +15,12 @@ function Securite() {
         <h2 className="informatique_section_title">Sécurité du Système d&apos;information</h2>
         <div className="card_informatique">
           <div className="card_informatique_left_side">
-            <img
+            <Image
               alt="logo_solution_logique_informatique"
-              src="assets/securite.webp"
-            ></img>
+              src="/assets/securite.webp"
+              width={400}
+              height={300}
+            />
           </div>
           <div className="card_informatique_right_side">
             <div className="informations_informatique">

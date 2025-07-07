@@ -30,7 +30,7 @@ const CallbackModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
             } else {
                 setStatus("Erreur lors de l'envoi. Veuillez réessayer.");
             }
-        } catch (error) {
+        } catch {
             setStatus("Erreur réseau. Veuillez vérifier votre connexion.");
         }
     };
