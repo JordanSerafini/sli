@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -10,6 +11,7 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,6 +37,15 @@ function Navbar() {
     { href: '/telemaintenance', label: 'Télémaintenance', highlight: true },
     { href: '/contact', label: 'Contactez-nous' }
   ];
+
+  // Fonction pour vérifier si un élément de navigation est actif
+  const isActiveNavItem = (item: any) => {
+    if (item.dropdown) {
+      // Pour les éléments avec dropdown, vérifier si on est sur la page principale ou sur une des sous-pages
+      return pathname === item.href || item.dropdown.some((subItem: any) => pathname === subItem.href);
+    }
+    return pathname === item.href;
+  };
 
   return (
     <header className={cn(
@@ -69,7 +80,12 @@ function Navbar() {
                   >
                     <Link
                       href={item.href}
-                      className="flex items-center px-4 py-2 text-sm font-medium text-slate-700 rounded-lg transition-colors hover:text-blue-600 hover:bg-slate-50"
+                      className={cn(
+                        "flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-colors",
+                        isActiveNavItem(item)
+                          ? "text-blue-600 bg-slate-100"
+                          : "text-slate-700 hover:text-blue-600 hover:bg-slate-50"
+                      )}
                     >
                       {item.label}
                       <ChevronDown className="ml-1 h-4 w-4" />
@@ -81,7 +97,12 @@ function Navbar() {
                           <Link
                             key={subItem.href}
                             href={subItem.href}
-                            className="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition-colors"
+                            className={cn(
+                              "block px-4 py-2 text-sm transition-colors",
+                              pathname === subItem.href
+                                ? "text-blue-600 bg-slate-100"
+                                : "text-slate-700 hover:bg-slate-50 hover:text-blue-600"
+                            )}
                           >
                             {subItem.label}
                           </Link>
@@ -96,6 +117,8 @@ function Navbar() {
                       "px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200",
                       item.highlight
                         ? "bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:from-blue-600 hover:to-cyan-600 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+                        : isActiveNavItem(item)
+                        ? "text-blue-600 bg-slate-100"
                         : "text-slate-700 hover:text-blue-600 hover:bg-slate-50"
                     )}
                   >
@@ -127,6 +150,8 @@ function Navbar() {
                       "block px-4 py-3 text-base font-medium rounded-lg transition-colors",
                       item.highlight
                         ? "bg-gradient-to-r from-blue-500 to-cyan-500 text-white"
+                        : isActiveNavItem(item)
+                        ? "text-blue-600 bg-slate-100"
                         : "text-slate-700 hover:text-blue-600 hover:bg-slate-50"
                     )}
                     onClick={() => setIsOpen(false)}
@@ -140,7 +165,12 @@ function Navbar() {
                         <Link
                           key={subItem.href}
                           href={subItem.href}
-                          className="block px-4 py-2 text-sm text-slate-600 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-colors"
+                          className={cn(
+                            "block px-4 py-2 text-sm rounded-lg transition-colors",
+                            pathname === subItem.href
+                              ? "text-blue-600 bg-slate-100"
+                              : "text-slate-600 hover:text-blue-600 hover:bg-slate-50"
+                          )}
                           onClick={() => setIsOpen(false)}
                         >
                           {subItem.label}
