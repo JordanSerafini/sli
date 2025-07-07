@@ -58,6 +58,16 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Test simple pour vérifier que le handler est appelé
+    alert('Formulaire soumis ! Test en cours...');
+    
+    // Validation côté client
+    if (!formData.name || !formData.email || !formData.message) {
+      showErrorModal('Veuillez remplir tous les champs obligatoires.');
+      return;
+    }
+    
     setIsLoading(true);
 
     try {
@@ -124,7 +134,7 @@ export default function Contact() {
               </div>
               <div className="flex items-center text-gray-300">
                 <FaEnvelope className="w-6 h-6 mr-4 text-primary" />
-                <a href="mailto:accueil@solution-logique.com" className="hover:text-primary">accueil@solution-logique.com</a>
+                <a href="mailto:site@solution-logique.fr" className="hover:text-primary">site@solution-logique.fr</a>
               </div>
             </div>
             <div className="mt-8">

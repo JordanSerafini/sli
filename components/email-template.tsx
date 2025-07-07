@@ -68,7 +68,7 @@ export function ContactEmailTemplate({
         fontSize: '14px',
         fontStyle: 'italic'
       }}>
-        Envoyé depuis le formulaire de contact du site Solution Logique
+        Envoyé depuis le formulaire de contact du site Solution Logique Informatique
       </div>
     </div>
   );

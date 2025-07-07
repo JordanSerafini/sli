@@ -71,8 +71,8 @@ export async function GET() {
 
     // Test d'envoi d'email de rappel
     const { data, error } = await resend.emails.send({
-      from: 'Acme <onboarding@resend.dev>',
-      to: ['jordanserafini.74@gmail.com'],
+      from: 'Solution Logique <site@solution-logique.fr>',
+      to: ['site@solution-logique.fr'],
       subject: 'TEST - Demande de rappel depuis le site web',
       react: TestCallbackEmailTemplate({ 
         phone: '01 23 45 67 89'

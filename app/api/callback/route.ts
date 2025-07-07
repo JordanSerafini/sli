@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+
 import { Resend } from 'resend';
 import * as React from 'react';
 
@@ -81,8 +82,8 @@ export async function POST(req: Request) {
   try {
     // Envoi de l'email via Resend
     const { data, error } = await resend.emails.send({
-      from: 'Acme <onboarding@resend.dev>',
-      to: ['jordanserafini.74@gmail.com'],
+      from: 'Solution Logique <site@solution-logique.fr>',
+      to: ['site@solution-logique.fr'],
       subject: 'Demande de rappel depuis le site web',
       react: CallbackEmailTemplate({ phone }),
     });
