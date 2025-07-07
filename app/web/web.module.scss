@@ -1,0 +1,20 @@
+@use '../styles/_variables.scss' as *;
+@use '../styles/_mixins.scss' as *;
+@import "../../global.scss";
+
+.card{
+    width: 33.33%;
+    background-color: #04a2df;
+    padding: 50px;
+    margin: 10px;
+
+    @include mobile{
+        width: 100%;
+        padding: 0px;
+      }
+
+      @include tablet{
+        width: 80%;
+        align-items: center;
+      }
+}

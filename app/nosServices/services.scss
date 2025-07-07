@@ -1,0 +1,357 @@
+@use "../styles/global.scss" as *;
+@use '../styles/_variables.scss' as *;
+
+.nos_services {
+  margin-top: 100px;
+}
+
+.fullscreen {
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  justify-content: space-evenly;
+  
+
+  @include tablet{
+    height: 100%;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  @include mobile{
+    height: 100%;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+  .card {
+    overflow: hidden;
+    width: 30%;
+    height: 70%;
+    background: $white;
+    box-shadow: 1px 22px 44px rgba(0, 0, 0, 0.19);
+    transition: 0.6s;
+    position: relative;
+    display: flex;
+    cursor: pointer;
+    border-radius: 15px;
+
+    @include mobile{
+      height: 100%;
+      height: 100%;
+      padding: 50px 0;
+    }
+
+    @include tablet{
+      width: 100%;
+      height: 100%;
+
+    }
+    .second_description {
+      list-style-type: circle;
+    }
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 1px 12px 34px rgba(0, 0, 0, 0.31);
+      .sinopse {
+        opacity: 1;
+        transition-delay: 0.4s;
+        .view {
+          opacity: 1;
+          transform: translateY(0%);
+          transition: 0.6s;
+          transition-delay: 0.5s;
+        }
+        .content-sinopse {
+          .text {
+            font-size: 0.9em;
+            transform: translateY(0);
+            transition-delay: 0.6s;
+          }
+          .title {
+            font-size: 1.5em;
+            transform: translateY(0);
+            transition-delay: 0.2s;
+
+            @include mobile{
+              font-size: 1.5em;
+            }
+          }
+        }
+      }
+      .date {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      .content_services {
+        transform: translateY(100%);
+        opacity: 0;
+      }
+    }
+    .date {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      color: $white;
+      font-weight: 300;
+      font-size: 1.2em;
+      transition: 0.8s;
+    }
+    .content_services {
+      transition: 0.8s;
+      display: flex;
+      flex-wrap: wrap;
+      padding: 25px 25px 50px 25px;
+      background: rgb(255 255 255 / 70%);
+      .title {
+        width: 100%;
+        color: black;
+        font-size: 44px;
+        font-weight: 700;
+        line-height: 50px;
+        margin-bottom: 12px;
+        text-align: center;
+      }
+      .text {
+        width: 100%;
+        color: black;
+        font-size: 16px;
+        font-weight: 300;
+      }
+    }
+    .sinopse {
+      width: 75%;
+      height: 75%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 25px 25px 50px 25px;
+      color: black;
+      background: rgb(255 255 255 / 100%);
+      font-weight: 300;
+      opacity: 0;
+      transition: 0.8s;
+      display: flex;
+      flex-wrap: wrap;
+      margin: 25px;
+      justify-content: center;
+
+      .content-sinopse {
+
+        @include mobile{
+          display: none;
+        }
+        .title {
+          font-size: 22px;
+          font-weight: 700;
+          margin-bottom: 12px;
+          transform: translateY(-100%);
+          transition: 0.6s;
+        }
+        .text {
+          transform: translateY(100%);
+          transition: 0.6s;
+          font-weight: 300;
+          font-size: 10px;
+        }
+      }
+    }
+    &_1 {
+      background-color: $main-color;
+    }
+    &_2 {
+      background-color: $main-color;
+    }
+    &_3 {
+      background-color: $main-color;
+    }
+  }
+}
+
+@media (min-width: 580px) and (max-width: 992px) {
+  .fullscreen {
+    height: auto;
+    .container {
+      flex-wrap: wrap;
+
+      justify-content: space-evenly;
+
+      .card {
+        overflow: hidden;
+        width: 45%;
+        height: 400px;
+        background: $white;
+        box-shadow: 1px 22px 44px rgba(0, 0, 0, 0.19);
+        transition: 0.6s;
+        border-radius: 2px;
+        position: relative;
+        display: flex;
+        margin-bottom: 10%;
+        &:nth-child(-n + 2) {
+          margin-top: 10%;
+        }
+        .content_services {
+          .title {
+            width: 100%;
+            color: $white;
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 36px;
+            margin-bottom: 12px;
+            text-align: center;
+          }
+          .text {
+            width: 100%;
+            color: $white;
+            font-size: 14px;
+            font-weight: 300;
+          }
+        }
+        .sinopse {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          padding: 25px 25px 50px 25px;
+          background: rgba(0, 0, 0, 0.78);
+          color: #fff;
+          font-weight: 300;
+          opacity: 0;
+          transition: 0.8s;
+          display: flex;
+          align-items: flex-end;
+          flex-wrap: wrap;
+          iframe {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            margin-left: -30px;
+            height: 260px;
+          }
+          .view {
+            position: absolute;
+            bottom: 15px;
+            right: 25px;
+            color: $white;
+            font-size: 14px;
+            border-bottom: 1px solid $white;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: 0.6s;
+            cursor: pointer;
+          }
+          .content-sinopse {
+            .title {
+              color: rgba(255, 255, 255, 0.6);
+              font-size: 22px;
+              font-weight: 700;
+              margin-bottom: 12px;
+              transform: translateY(-100%);
+              transition: 0.6s;
+            }
+            .text {
+              transform: translateY(100%);
+              transition: 0.6s;
+              color: rgba(255, 255, 255, 0.6);
+              font-weight: 300;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 580px) {
+  .fullscreen {
+    height: auto;
+    .container {
+      flex-wrap: wrap;
+      .card {
+        overflow: hidden;
+        width: 90%;
+        height: 400px;
+        background: $white;
+        box-shadow: 1px 22px 44px rgba(0, 0, 0, 0.19);
+        transition: 0.6s;
+        border-radius: 2px;
+        position: relative;
+        display: flex;
+        margin-bottom: 10%;
+        .content_services {
+          .title {
+            width: 100%;
+            color: $white;
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 36px;
+            margin-bottom: 12px;
+          }
+          .text {
+            width: 100%;
+            color: $white;
+            font-size: 14px;
+            font-weight: 300;
+          }
+        }
+        .sinopse {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          padding: 25px 25px 50px 25px;
+          background: rgba(0, 0, 0, 0.78);
+          color: $white;
+          font-weight: 300;
+          opacity: 0;
+          transition: 0.8s;
+          display: flex;
+          align-items: flex-end;
+          flex-wrap: wrap;
+          iframe {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            margin-left: -30px;
+            height: 260px;
+          }
+          .view {
+            position: absolute;
+            bottom: 15px;
+            right: 25px;
+            color: $white;
+            font-size: 14px;
+            border-bottom: 1px solid $white;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: 0.6s;
+            cursor: pointer;
+          }
+          .content-sinopse {
+            pointer-events: none;
+            .title {
+              color: rgba(255, 255, 255, 0.6);
+              font-size: 22px;
+              font-weight: 700;
+              margin-bottom: 12px;
+              transform: translateY(-100%);
+              transition: 0.6s;
+            }
+            .text {
+              pointer-events: none;
+              transform: translateY(100%);
+              transition: 0.6s;
+              color: rgba(255, 255, 255, 0.6);
+              font-weight: 300;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,3 @@
+- Changer Rhone-alpes vers Haute-Savoie
+- Revoir les Partenaires page Home
+- Qualiopi certification a conserver

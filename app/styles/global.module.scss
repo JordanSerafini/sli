@@ -1,0 +1,14 @@
+@use '../styles/_variables.scss' as *;
+@use '../styles/_mixins.scss' as *;
+
+
+    @media (max-width: #{$width}){
+        @content
+    }
+};
+
+    @media (max-width: #{$width-tablet}){
+        @content
+    }
+}
+

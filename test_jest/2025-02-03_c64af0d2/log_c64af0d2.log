@@ -1,0 +1,22 @@
+
+> web@0.1.0 test
+> jest
+
+(node:12056) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+PASS app/nosServices/page.test.tsx
+(node:6120) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+PASS app/ebpbatiment/page.test.tsx
+(node:22344) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+PASS app/footer/page.test.tsx
+(node:13088) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+PASS app/informatique/page.test.tsx
+
+Test Suites: 4 passed, 4 total
+Tests:       13 passed, 13 total
+Snapshots:   0 total
+Time:        3.241 s
+Ran all test suites.

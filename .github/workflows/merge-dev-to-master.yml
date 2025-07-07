@@ -1,0 +1,60 @@
+name: Auto Merge Dev to Master
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  auto-merge:
+    name: Auto Merge Dev to Master
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Git
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+      - name: Fetch all branches
+        run: |
+          git fetch origin
+
+      - name: Check mergeability
+        id: check_merge
+        run: |
+          git checkout master
+          if git merge --no-commit --no-ff origin/dev; then
+            echo "Able to merge."
+            git merge --abort
+            echo "mergeable=true" >> $GITHUB_OUTPUT
+          else
+            echo "Merge conflict detected!"
+            echo "mergeable=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Merge Dev to Master
+        if: steps.check_merge.outputs.mergeable == 'true'
+        run: |
+          git checkout master
+          git merge origin/dev --no-ff -m "Automated merge from dev to master"
+
+      - name: Push changes to Master
+        if: steps.check_merge.outputs.mergeable == 'true'
+        run: |
+          git push origin master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Notify Merge Conflict
+        if: steps.check_merge.outputs.mergeable == 'false'
+        run: |
+          echo "Le merge automatique de 'dev' dans 'master' a échoué en raison de conflits."

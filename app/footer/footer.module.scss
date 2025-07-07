@@ -1,0 +1,53 @@
+@use '../styles/_variables.scss' as *;
+@use '../styles/_mixins.scss' as *;
+@use "../styles/global.scss" as *;
+
+.footer {
+	background-color: $main-color;
+	padding: 40px 0;
+	color: $white;
+	
+
+	.footer_description{
+		display: flex;
+		text-align: center;
+		justify-content: center;
+		font-size: 1.2em;
+
+		@include mobile{
+			flex-direction: column;
+		  }
+
+		a{
+			text-decoration: none;
+			color: $white;
+		}
+
+		@include tablet{
+			font-size: 0.9em;
+		  }
+
+		li{
+			list-style: none;
+			padding: 0px 25px;
+
+			@include mobile{
+				padding: 10px 0px;
+			  }
+		}
+	}
+	.copyright_sli{
+		padding-top: 15px;
+		p{
+			text-align: center;
+			text-decoration: none;
+		}
+		a{
+			text-decoration: none;
+		}
+		.copyright_sli_bot{
+			font-weight: 800;
+			color: $white;
+		}
+	}
+}
