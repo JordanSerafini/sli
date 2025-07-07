@@ -7,6 +7,7 @@ import { TextPlugin } from "gsap/dist/TextPlugin";
 import Button from "@/components/ui/Button";
 import Section from "@/components/ui/Section";
 import { ArrowRight, Phone } from "lucide-react";
+import Link from "next/link";
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(TextPlugin);
@@ -109,10 +110,13 @@ function Hero() {
 
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
-                <Button size="lg" className="group">
+                <Link
+                  href="/nosServices"
+                  className="group inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:from-blue-600 hover:to-cyan-600 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 h-12 px-8 text-lg"
+                >
                   Découvrir nos services
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </Button>
+                </Link>
                 
                 <Button variant="outline" size="lg" className="group">
                   <Phone className="mr-2 h-5 w-5" />

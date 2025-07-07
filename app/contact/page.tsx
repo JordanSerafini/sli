@@ -74,7 +74,7 @@ export default function Contact() {
             <div className="space-y-4">
               <div className="flex items-center text-gray-300">
                 <FaMapMarkerAlt className="w-6 h-6 mr-4 text-primary" />
-                <span>PAE Les Glaisins, 1 Av. du Pré Félin, 74940 Annecy</span>
+                <span>475 Route des Vernes, 74370 Annecy</span>
               </div>
               <div className="flex items-center text-gray-300">
                 <FaPhoneAlt className="w-6 h-6 mr-4 text-primary" />
@@ -82,7 +82,7 @@ export default function Contact() {
               </div>
               <div className="flex items-center text-gray-300">
                 <FaEnvelope className="w-6 h-6 mr-4 text-primary" />
-                <a href="mailto:contact@solution-logique.com" className="hover:text-primary">contact@solution-logique.com</a>
+                <a href="mailto:accueil@solution-logique.com" className="hover:text-primary">accueil@solution-logique.com</a>
               </div>
             </div>
             <div className="mt-8">
