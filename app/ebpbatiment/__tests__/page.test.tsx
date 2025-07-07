@@ -36,22 +36,23 @@ describe("Ebpbatiment Component", () => {
 
     test("devrait afficher le titre principal", () => {
       render(<Ebpbatiment />);
-      const titleElement = screen.getByText(/EBP Bâtiment/i);
-      expect(titleElement).toBeInTheDocument();
-      // Vérifier que c'est bien un titre
-      expect(titleElement.tagName).toBe('H1');
+      const titleElements = screen.getAllByText(/EBP Bâtiment/i);
+      expect(titleElements[0]).toBeInTheDocument();
+      // Vérifier qu'il y a un H1 avec ce texte
+      const h1Element = document.querySelector('h1');
+      expect(h1Element).toHaveTextContent('EBP Bâtiment');
     });
 
     test("devrait afficher la description", () => {
       render(<Ebpbatiment />);
-      const descriptionElement = screen.getByText(/Grâce à notre logiciel de gestion dédié au bâtiment/i);
+      const descriptionElement = screen.getByText(/Solutions spécialisées pour les professionnels du BTP/i);
       expect(descriptionElement).toBeInTheDocument();
     });
 
     test("devrait avoir un badge indiquant \"Logiciels EBP Bâtiment\"", () => {
       render(<Ebpbatiment />);
       expect(screen.getByText(/Logiciels EBP/)).toBeInTheDocument();
-      expect(screen.getByText(/Bâtiment/)).toBeInTheDocument();
+      expect(screen.getAllByText(/Bâtiment/)[0]).toBeInTheDocument();
     });
   });
 
