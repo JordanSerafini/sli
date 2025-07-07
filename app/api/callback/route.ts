@@ -1,11 +1,7 @@
 import { NextResponse } from 'next/server';
 import mailjet from 'node-mailjet';
 
-// Configuration Mailjet
-const mailjetClient = mailjet.apiConnect(
-  process.env.MJ_APIKEY_PUBLIC || '',
-  process.env.MJ_APIKEY_PRIVATE || ''
-);
+
 
 export async function POST(req: Request) {
   // Vérification que les clés API sont configurées
