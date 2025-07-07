@@ -4,12 +4,13 @@ import { useState } from "react";
 import { ModernCard } from "@/components/ui/modernCard";
 import { ModernButton } from "@/components/ui/modernButton";
 import { Input } from "@/components/ui/Input";
-import { Download, ExternalLink, Shield, Monitor } from "lucide-react";
+import { Download, Shield, Monitor, CheckCircle } from "lucide-react";
 
 export default function IslClient() {
   const [code, setCode] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [downloadSuccess, setDownloadSuccess] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,6 +21,7 @@ export default function IslClient() {
 
     setIsLoading(true);
     setError(null);
+    setDownloadSuccess(false);
 
     try {
       const downloadUrl = `/api/islClient?code=${code}`;
@@ -32,6 +34,12 @@ export default function IslClient() {
       document.body.removeChild(a);
       
       setError(null);
+      setDownloadSuccess(true);
+      
+      // Réinitialiser le message de succès après 5 secondes
+      setTimeout(() => {
+        setDownloadSuccess(false);
+      }, 5000);
       
     } catch (err) {
       setError("Erreur lors du téléchargement. Veuillez réessayer.");
@@ -80,6 +88,17 @@ export default function IslClient() {
                 <p className="text-error text-sm font-medium">{error}</p>
               </div>
             )}
+
+            {downloadSuccess && (
+              <div className="bg-success/10 border border-success/20 rounded-lg p-3">
+                <div className="flex items-center space-x-2">
+                  <CheckCircle className="w-5 h-5 text-success" />
+                  <p className="text-success text-sm font-medium">
+                    Téléchargement initié ! Vérifiez vos téléchargements et lancez l'application.
+                  </p>
+                </div>
+              </div>
+            )}
             
             <ModernButton
               type="submit"
@@ -114,7 +133,7 @@ export default function IslClient() {
             </li>
             <li className="flex items-start space-x-3">
               <span className="w-6 h-6 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0 mt-0.5">2</span>
-              <span>Téléchargez l'application ISL Light Client</span>
+              <span>Téléchargez l'application ISL Light Client depuis notre serveur sécurisé</span>
             </li>
             <li className="flex items-start space-x-3">
               <span className="w-6 h-6 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0 mt-0.5">3</span>
@@ -132,23 +151,16 @@ export default function IslClient() {
         </div>
       </ModernCard>
 
-      {/* Aide alternative */}
-      <ModernCard variant="glass" className="bg-accent-50/50 border-accent-200">
+      {/* Information sécurité */}
+      <ModernCard variant="glass" className="bg-success-50/50 border-success-200">
         <div className="text-center space-y-3">
-          <h4 className="font-semibold text-foreground">Problème de téléchargement ?</h4>
+          <div className="flex items-center justify-center space-x-2">
+            <Shield className="w-5 h-5 text-success-600" />
+            <h4 className="font-semibold text-foreground">Téléchargement sécurisé</h4>
+          </div>
           <p className="text-sm text-foreground-muted">
-            Vous pouvez aussi télécharger directement depuis le site officiel
+            Le fichier est téléchargé directement depuis nos serveurs sécurisés et personnalisé avec votre code de connexion.
           </p>
-          <ModernButton
-            variant="outline"
-            size="sm"
-            icon={<ExternalLink />}
-            iconPosition="right"
-            href="https://www.islonline.com/downloads/isl-light-client.htm"
-            className="mt-2"
-          >
-            Site officiel ISL Online
-          </ModernButton>
         </div>
       </ModernCard>
     </div>
