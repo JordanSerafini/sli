@@ -51,24 +51,25 @@ function Partners() {
             freeMode={true}
             grabCursor={false}
             slidesPerView="auto"
-            spaceBetween={60}
+            spaceBetween={80}
             centeredSlides={false}
             className="partners-swiper"
           >
             {/* Dupliquer les partenaires pour un défilement infini */}
             {[...partners, ...partners, ...partners].map((partner, index) => (
               <SwiperSlide key={`${partner.name}-${index}`} className="!w-auto">
-                <div className="group flex items-center justify-center h-24 px-8">
-                  <div className="relative transition-transform duration-300 group-hover:scale-110">
+                <div className="group flex items-center justify-center h-36 px-8">
+                  <div className="relative transition-all duration-500 group-hover:scale-110">
                     <Image
                       alt={`Logo ${partner.name}`}
                       src={`/assets/${partner.logo}`}
-                      width={160}
-                      height={80}
-                      className="h-16 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
+                      width={200}
+                      height={120}
+                      className="h-20 w-auto object-contain transition-all duration-300 group-hover:brightness-110"
                       style={{
-                        maxHeight: "64px",
+                        maxHeight: "80px",
                         width: "auto",
+                        minWidth: "120px",
                       }}
                     />
                   </div>
@@ -79,9 +80,10 @@ function Partners() {
         </div>
 
         {/* Additional info */}
-        <div className="pt-8 border-t border-slate-100">
-          <p className="text-sm text-slate-500">
-                         Plus de 30 ans d&apos;expertise avec les meilleurs partenaires technologiques
+        <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-8">
+          <p className="text-slate-700 font-medium">
+            Plus de <span className="text-blue-600 font-bold">30 ans</span> d'expérience 
+            avec des partenaires technologiques de premier plan
           </p>
         </div>
       </div>

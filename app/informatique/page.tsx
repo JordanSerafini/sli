@@ -11,7 +11,8 @@ import {
   Users,
   ArrowRight,
   CheckCircle,
-  Star
+  Star,
+  Phone
 } from "lucide-react";
 
 const servicesData = [
@@ -133,8 +134,11 @@ export default function Informatique() {
               </ModernButton>
               
               <ModernButton 
+                href="tel:0450640233"
                 variant="secondary" 
                 size="lg"
+                icon={<Phone />}
+                iconPosition="left"
               >
                 04 50 64 02 33
               </ModernButton>
@@ -244,11 +248,14 @@ export default function Informatique() {
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 items-center">
           {partnersLogos.map((partner, index) => (
-            <div key={index} className="flex items-center justify-center p-6 bg-white rounded-xl border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all duration-300 group">
+            <div key={index} className="flex items-center justify-center p-8 bg-white rounded-xl border border-slate-200 hover:border-slate-300 hover:shadow-xl transition-all duration-300 group min-h-[120px]">
               <img 
                 src={partner.logo} 
                 alt={partner.name}
-                className="h-12 w-auto opacity-60 group-hover:opacity-100 transition-opacity duration-300"
+                className="h-16 w-auto max-w-[140px] object-contain transition-all duration-300 group-hover:scale-105 group-hover:brightness-110"
+                style={{
+                  minWidth: "100px"
+                }}
               />
             </div>
           ))}
@@ -265,13 +272,27 @@ export default function Informatique() {
             Contactez nos experts pour une consultation gratuite et découvrez comment optimiser votre infrastructure.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-blue-700 hover:to-cyan-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch">
+            <ModernButton 
+              href="/contact"
+              variant="accent" 
+              size="lg"
+              icon={<ArrowRight />}
+              iconPosition="right"
+              className="min-w-[200px] h-12"
+            >
               Consultation gratuite
-            </button>
-            <button className="bg-white/10 backdrop-blur text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/20 border border-white/20 hover:border-white/30 transition-all duration-200">
+            </ModernButton>
+            <ModernButton 
+              href="tel:0450640233"
+              variant="secondary" 
+              size="lg"
+              icon={<Phone />}
+              iconPosition="left"
+              className="min-w-[200px] h-12"
+            >
               04 50 64 02 33
-            </button>
+            </ModernButton>
           </div>
         </div>
       </ModernSection>

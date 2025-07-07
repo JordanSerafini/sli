@@ -242,7 +242,7 @@ export function EBPTemplate({
       </ModernSection>
 
       {/* CTA Section */}
-      <ModernSection background="dark" padding="2xl">
+      <ModernSection background="dark" padding="lg">
         <div className="text-center">
           <h2 className="text-4xl lg:text-5xl font-bold mb-6">
             Prêt à optimiser votre gestion ?

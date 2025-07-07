@@ -61,8 +61,8 @@ export function ModernButton({
   const sizes = {
     sm: "h-9 px-3 text-sm rounded-lg",
     md: "h-10 px-4 text-sm rounded-lg",
-    lg: "h-11 px-6 text-base rounded-lg",
-    xl: "h-12 px-8 text-lg rounded-xl"
+    lg: "h-12 px-6 text-base rounded-lg min-h-[48px]",
+    xl: "h-14 px-8 text-lg rounded-xl min-h-[56px]"
   };
 
   const iconSizes = {

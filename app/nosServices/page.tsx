@@ -80,14 +80,14 @@ const servicesData = [
 
 function NosServices() {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Titre principal */}
-      <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-16 text-slate-900">
+      <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-12 text-slate-900">
         NOS SERVICES
       </h1>
       
       {/* Grille des cartes de services */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
         {servicesData.map((service, index) => (
           <div
             key={index}
@@ -163,7 +163,7 @@ function NosServices() {
       </div>
 
       {/* Section Télémaintenance - Design moderne */}
-      <div className="bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50 rounded-2xl p-8 md:p-12 shadow-xl border border-slate-200/50 mt-16">
+      <div className="bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50 rounded-2xl p-6 md:p-8 shadow-xl border border-slate-200/50 mt-8">
         <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-8">
           {/* Image à gauche */}
           <div className="flex-shrink-0 lg:w-1/2">

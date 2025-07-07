@@ -13,7 +13,8 @@ import {
   CheckCircle,
   ArrowRight,
   TrendingUp,
-  Zap
+  Zap,
+  Phone
 } from "lucide-react";
 
 const securityServices = [
@@ -174,8 +175,11 @@ export default function Securite() {
             </ModernButton>
             
             <ModernButton 
+              href="tel:0450640233"
               variant="secondary" 
               size="lg"
+              icon={<Phone />}
+              iconPosition="left"
             >
               04 50 64 02 33
             </ModernButton>
@@ -333,12 +337,15 @@ export default function Securite() {
         </div>
 
         <div className="flex justify-center">
-          <div className="grid grid-cols-1 gap-6 max-w-md">
-            <div className="flex items-center justify-center p-6 bg-white rounded-xl border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all duration-300 group">
+          <div className="grid grid-cols-1 gap-8 max-w-md">
+            <div className="flex items-center justify-center p-10 bg-white rounded-xl border border-slate-200 hover:border-slate-300 hover:shadow-xl transition-all duration-300 group min-h-[140px]">
               <img 
                 src="/assets/stormshield.webp" 
                 alt="Stormshield"
-                className="h-12 w-auto opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                className="h-20 w-auto max-w-[180px] object-contain transition-all duration-300 group-hover:scale-105 group-hover:brightness-110"
+                style={{
+                  minWidth: "120px"
+                }}
               />
             </div>
           </div>
@@ -356,17 +363,27 @@ export default function Securite() {
             de votre infrastructure avant qu'il ne soit trop tard.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch">
             <ModernButton 
               href="/contact"
               variant="accent" 
               size="lg"
+              icon={<ArrowRight />}
+              iconPosition="right"
+              className="min-w-[200px] h-12"
             >
-              Demander un devis
+              Consultation gratuite
             </ModernButton>
-            <button className="bg-white/10 backdrop-blur text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/20 border border-white/20 hover:border-white/30 transition-all duration-200">
+            <ModernButton 
+              href="tel:0450640233"
+              variant="secondary" 
+              size="lg"
+              icon={<Phone />}
+              iconPosition="left"
+              className="min-w-[200px] h-12"
+            >
               04 50 64 02 33
-            </button>
+            </ModernButton>
           </div>
         </div>
       </ModernSection>

@@ -141,8 +141,11 @@ export default function Telecom() {
             </ModernButton>
             
             <ModernButton 
+              href="tel:0450640233"
               variant="secondary" 
               size="lg"
+              icon={<Phone />}
+              iconPosition="left"
             >
               04 50 64 02 33
             </ModernButton>
@@ -294,17 +297,27 @@ export default function Telecom() {
             vos coûts tout en améliorant vos communications.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch">
             <ModernButton 
               href="/contact"
               variant="accent" 
               size="lg"
+              icon={<ArrowRight />}
+              iconPosition="right"
+              className="min-w-[200px] h-12"
             >
-              Demander un devis
+              Consultation gratuite
             </ModernButton>
-            <button className="bg-white/10 backdrop-blur text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/20 border border-white/20 hover:border-white/30 transition-all duration-200">
+            <ModernButton 
+              href="tel:0450640233"
+              variant="secondary" 
+              size="lg"
+              icon={<Phone />}
+              iconPosition="left"
+              className="min-w-[200px] h-12"
+            >
               04 50 64 02 33
-            </button>
+            </ModernButton>
           </div>
         </div>
       </ModernSection>

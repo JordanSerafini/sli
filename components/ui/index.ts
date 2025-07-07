@@ -5,6 +5,7 @@ export { ModernSection } from './modernSection';
 export { ServiceCard } from './serviceCard';
 export { FormationTemplate } from './formationTemplate';
 export { EBPTemplate } from './ebpTemplate';
+export { LogoCard } from './logoCard';
 
 // Export des composants existants
 export { default as Button } from './Button';
