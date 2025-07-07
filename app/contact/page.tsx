@@ -82,7 +82,7 @@ export default function Contact() {
       } else {
         showErrorModal(data.message || "Une erreur s'est produite. Veuillez réessayer.");
       }
-    } catch (error) {
+    } catch {
       showErrorModal("Erreur de connexion. Vérifiez votre connexion internet et réessayez.");
     } finally {
       setIsLoading(false);

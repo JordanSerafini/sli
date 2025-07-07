@@ -152,21 +152,7 @@ function Informatique() {
       
       {/* Mode Carrousel */}
       <div className="relative w-full max-w-6xl mx-auto my-12 p-6 bg-gradient-to-br from-white/90 to-blue-50/80 rounded-3xl shadow-2xl overflow-hidden">
-        {/* Navigation Controls */}
-        <div className="absolute top-1/2 -translate-y-1/2 w-full flex justify-between pointer-events-none z-10">
-          <button 
-            className="pointer-events-auto bg-blue-500/90 hover:bg-blue-600 border-none rounded-full w-12 h-12 lg:w-14 lg:h-14 flex items-center justify-center text-white text-lg lg:text-xl cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-lg ml-5 backdrop-blur-sm"
-            onClick={prevSlide}
-          >
-            <FontAwesomeIcon icon={faChevronLeft} />
-          </button>
-          <button 
-            className="pointer-events-auto bg-blue-500/90 hover:bg-blue-600 border-none rounded-full w-12 h-12 lg:w-14 lg:h-14 flex items-center justify-center text-white text-lg lg:text-xl cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-lg mr-5 backdrop-blur-sm"
-            onClick={nextSlide}
-          >
-            <FontAwesomeIcon icon={faChevronRight} />
-          </button>
-        </div>
+        {/* Navigation Controls - Positionnées par rapport à la carte principale */}
 
         {/* Indicators */}
         <div className="flex justify-center gap-4 mb-8">
@@ -197,40 +183,55 @@ function Informatique() {
             {currentService.description}
           </p>
           
-          <div className="mt-10 bg-white rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
-            <div className="flex flex-col lg:flex-row">
-              <div className="w-full lg:w-1/2 p-6">
+          <div className="relative mt-10 bg-white rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl h-[600px] lg:h-[500px]">
+            {/* Navigation Controls - Centrées par rapport à la carte */}
+            <div className="absolute top-1/2 -translate-y-1/2 w-full flex justify-between pointer-events-none z-10 px-4">
+              <button 
+                className="pointer-events-auto bg-blue-500/90 hover:bg-blue-600 border-none rounded-full w-12 h-12 lg:w-14 lg:h-14 flex items-center justify-center text-white text-lg lg:text-xl cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-lg backdrop-blur-sm"
+                onClick={prevSlide}
+              >
+                <FontAwesomeIcon icon={faChevronLeft} />
+              </button>
+              <button 
+                className="pointer-events-auto bg-blue-500/90 hover:bg-blue-600 border-none rounded-full w-12 h-12 lg:w-14 lg:h-14 flex items-center justify-center text-white text-lg lg:text-xl cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-lg backdrop-blur-sm"
+                onClick={nextSlide}
+              >
+                <FontAwesomeIcon icon={faChevronRight} />
+              </button>
+            </div>
+            <div className="flex flex-col lg:flex-row h-full">
+              <div className="w-full lg:w-1/2 p-6 flex items-center justify-center">
                 <Image
                   alt={`Solution Logique - ${currentService.title}`}
                   src={currentService.image}
                   width={500}
                   height={400}
-                  className="w-full rounded-2xl transition-transform duration-300 hover:scale-105"
+                  className="w-full max-h-full object-cover rounded-2xl transition-transform duration-300 hover:scale-105"
                 />
               </div>
-              <div className="w-full lg:w-1/2 p-8">
-                <div className="grid gap-6">
-                  {currentService.services.map((item, index) => (
-                    <div 
-                      key={index} 
-                      className="flex items-start gap-5 p-5 bg-gradient-to-r from-blue-50 to-sky-50 rounded-xl transition-all duration-300 hover:translate-x-2 hover:from-blue-100 hover:to-sky-100 border-l-4 border-transparent hover:border-blue-500"
-                    >
-                      <div className="flex-shrink-0 w-15 h-15 bg-gradient-to-br from-blue-500 to-sky-500 rounded-xl flex items-center justify-center shadow-lg">
-                        <FontAwesomeIcon 
-                          className="text-white text-xl" 
-                          icon={item.icon} 
-                        />
+              <div className="w-full lg:w-1/2 p-8 overflow-y-auto">
+                <div className="grid gap-4 h-full content-start">
+                                      {currentService.services.map((item, index) => (
+                      <div 
+                        key={index} 
+                        className="flex items-start gap-4 p-4 bg-gradient-to-r from-blue-50 to-sky-50 rounded-xl transition-all duration-300 hover:translate-x-2 hover:from-blue-100 hover:to-sky-100 border-l-4 border-transparent hover:border-blue-500"
+                      >
+                        <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-sky-500 rounded-xl flex items-center justify-center shadow-lg">
+                          <FontAwesomeIcon 
+                            className="text-white text-lg" 
+                            icon={item.icon} 
+                          />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-blue-600 text-lg font-semibold mb-1">
+                            {item.title}
+                          </h3>
+                          <p className="text-gray-600 text-sm leading-relaxed">
+                            {item.detail}
+                          </p>
+                        </div>
                       </div>
-                      <div className="flex-1">
-                        <h3 className="text-blue-600 text-xl font-semibold mb-2">
-                          {item.title}
-                        </h3>
-                        <p className="text-gray-600 text-sm leading-relaxed">
-                          {item.detail}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
+                    ))}
                 </div>
               </div>
             </div>
