@@ -7,29 +7,29 @@ describe("Ebpbatiment Component", () => {
   test("devrait se rendre sans crash", () => {
     render(<Ebpbatiment />);
     // Vérification que le titre principal est présent
-    const titleElement = screen.getByText(/EBP Bâtiment/i);
-    expect(titleElement).toBeInTheDocument();
+    const titleElements = screen.getAllByText(/EBP Bâtiment/i);
+    expect(titleElements[0]).toBeInTheDocument();
   });
 
   test("devrait afficher la description", () => {
     render(<Ebpbatiment />);
-    const descriptionElement = screen.getByText(/Grâce à notre logiciel de gestion dédié au bâtiment/i);
+    const descriptionElement = screen.getByText(/Solutions spécialisées pour les professionnels du BTP/i);
     expect(descriptionElement).toBeInTheDocument();
   });
 
   test("devrait afficher au moins une carte de logiciel", () => {
     render(<Ebpbatiment />);
-    // Vérifie qu'il y a au moins un élément avec la classe "software_card"
-    const softwareCards = document.querySelectorAll(".software_card");
+    // Vérifie qu'il y a au moins un élément avec les classes des cartes
+    const softwareCards = document.querySelectorAll(".grid .bg-white");
     expect(softwareCards.length).toBeGreaterThan(0);
   });
 
-  test("chaque carte de logiciel devrait comporter un lien 'En savoir plus ?'", () => {
+  test("chaque carte de logiciel devrait comporter un lien 'Télécharger la fiche'", () => {
     render(<Ebpbatiment />);
     // Récupère tous les boutons/liens contenant ce texte
-    const learnMoreButtons = screen.getAllByText(/En savoir plus ?/i);
-    expect(learnMoreButtons.length).toBeGreaterThan(0);
-    learnMoreButtons.forEach((button) => {
+    const downloadButtons = screen.getAllByText(/Télécharger la fiche/i);
+    expect(downloadButtons.length).toBeGreaterThan(0);
+    downloadButtons.forEach((button) => {
       expect(button).toHaveAttribute("href");
     });
   });
