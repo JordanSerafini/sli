@@ -350,7 +350,7 @@ export default function Logiciels() {
               <div className="bg-white/10 backdrop-blur rounded-2xl p-6">
                 <h4 className="text-xl font-semibold mb-4">📞 Contact formation</h4>
                 <div className="space-y-3 text-slate-300">
-                  <p>📧 formation@solution-logique.fr</p>
+                  <p>📧 site@solution-logique.fr</p>
                   <p>📞 04 50 64 02 33</p>
                   <p>📍 475 Route des Vernes, 74370 Annecy</p>
                 </div>

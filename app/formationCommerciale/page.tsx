@@ -1,49 +1,41 @@
-import Image from "next/image";
-import "./formationcommerciale.scss";
-import React from "react";
+import { FormationTemplate } from '@/components/ui';
 
-function FormationCommerciale() {
+export default function FormationCommerciale() {
   return (
-    <div className="container">
-      <h1>FORMATION AU LOGICIEL EBP GESTION COMMERCIALE</h1>
-      <div className="logo_formation">
-        <Image
-          className="device_sli"
-          alt="logo_solution_logique_informatique"
-          src="/assets/EBP_Compta-Gesco.PNG"
-          width={300}
-          height={300}
-        />
-      </div>
-      <div className="home_conseils_sli">
-        <div className="home_conseils_sli_left">
-          <Image
-            className="img_right_side"
-            alt="logo_solution_logique_informatique"
-            src="/assets/formations_ebp.webp"
-            width={400}
-            height={300}
-          />
-        </div>
-        <div className="home_conseils_sli_right">
-          <h1>Notre programme Gestion commerciale</h1>
-          <h2>Vous voulez en savoir plus ?</h2>
-          <p>
-            Accédez à notre programme EBP Gestion commerciale, une formation
-            complète et personnalisée pour enrichir vos compétences.
-          </p>
-          <a
-            href="/assets/Programme_GestionCommerciale_NivInitial.pdf" // Place le PDF dans "public/assets"
-            className="btn_help btn_help_right"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            En savoir plus
-          </a>
-        </div>
-      </div>
-    </div>
+    <FormationTemplate
+      title="Formation EBP Gestion Commerciale"
+      subtitle="Optimisez votre gestion commerciale avec EBP et boostez votre activité"
+      description="Apprenez à maîtriser toutes les fonctionnalités d'EBP Gestion Commerciale pour gérer efficacement vos ventes, achats, stocks et relations clients. Une formation complète pour transformer votre approche commerciale."
+      logoImage="/assets/EBP_Compta-Gesco.PNG"
+      formationImage="/assets/formations_ebp.webp"
+      pdfUrl="/assets/Programme_GestionCommerciale_NivInitial.pdf"
+      duration="3 jours"
+      level="Débutant à confirmé"
+      price="Sur devis"
+      objectives={[
+        "Paramétrer EBP Gestion Commerciale selon vos besoins",
+        "Gérer efficacement vos fichiers clients et fournisseurs",
+        "Maîtriser le processus de vente complet",
+        "Optimiser la gestion des stocks et approvisionnements",
+        "Éditer devis, factures et documents commerciaux",
+        "Analyser vos performances commerciales"
+      ]}
+      program={[
+        "Installation et paramétrage du logiciel",
+        "Création des fichiers clients et fournisseurs",
+        "Gestion du catalogue articles et tarifs",
+        "Cycle de vente : devis, commandes, livraisons, factures",
+        "Gestion des achats et des stocks",
+        "Encaissements et règlements",
+        "États et statistiques commerciales",
+        "Liaison avec la comptabilité"
+      ]}
+      prerequisites={[
+        "Connaissances de base en gestion commerciale",
+        "Maîtrise de l'environnement Windows",
+        "Expérience en gestion d'entreprise recommandée"
+      ]}
+      colorScheme="green"
+    />
   );
 }
-
-export default FormationCommerciale;
