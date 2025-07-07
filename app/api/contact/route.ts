@@ -72,7 +72,7 @@ export async function POST(req: Request) {
     
     // Gestion des erreurs SendGrid
     if (error && typeof error === 'object' && 'response' in error) {
-      const sgError = error as any;
+      const sgError = error as { response?: { body?: unknown }; code?: number };
       console.error('Erreur SendGrid:', sgError.response?.body);
       
       if (sgError.code === 401) {
