@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import IntroLeft from "./IntroLeft";
 import IntroRight from "./IntroRight";

@@ -48,10 +48,10 @@ describe("Page Informatique", () => {
     expect(images.length).toBeGreaterThan(0);
   });
 
-  it("affiche des icônes via FontAwesome", () => {
+  it("affiche des icônes Lucide", () => {
     render(<Informatique />);
-    // On recherche les éléments avec la classe 'icons_informatique'
-    const icons = document.querySelectorAll(".icons_informatique");
+    // On recherche les éléments SVG (icônes Lucide) dans la page
+    const icons = document.querySelectorAll("svg");
     expect(icons.length).toBeGreaterThan(0);
   });
 });

@@ -1,3 +1,4 @@
+import React from 'react';
 import { EBPTemplate } from '@/components/ui';
 
 export default function EBPBatiment() {

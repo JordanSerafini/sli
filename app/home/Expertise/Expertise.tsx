@@ -1,50 +1,49 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faComputer,
-  faServer,
-  faPrint,
-  faFloppyDisk,
-  faPhone,
-  faShield,
-} from "@fortawesome/free-solid-svg-icons";
+  Monitor,
+  Server,
+  Printer,
+  Save,
+  Phone,
+  Shield,
+} from "lucide-react";
 import { ModernCard } from "@/components/ui/modernCard";
 import Section from "@/components/ui/Section";
 
 function Expertise() {
   const services = [
     {
-      icon: faComputer,
+      icon: Monitor,
       title: "Matériels Informatique",
       text: "Optez pour une solution sur mesure",
       color: "from-primary-500 to-primary-600"
     },
     {
-      icon: faServer,
+      icon: Server,
       title: "Virtualisation & Serveur",
       text: "Optimisez votre productivité",
       color: "from-accent-500 to-accent-600"
     },
     {
-      icon: faPrint,
+      icon: Printer,
       title: "Système d'impression",
       text: "Mettez-vous à la page",
       color: "from-blue-500 to-blue-600"
     },
     {
-      icon: faFloppyDisk,
+      icon: Save,
       title: "Sauvegarde de données",
       text: "Protégez vos données",
       color: "from-purple-500 to-purple-600"
     },
     {
-      icon: faPhone,
+      icon: Phone,
       title: "Opérateur Télécom",
       text: "Choisissez une téléphonie moderne",
       color: "from-teal-500 to-teal-600"
     },
     {
-      icon: faShield,
+      icon: Shield,
       title: "Sécurité Informatique",
       text: "Protégez votre système",
       color: "from-green-500 to-green-600"
@@ -87,9 +86,8 @@ function Expertise() {
             <div className="text-center space-y-4">
               {/* Icon avec gradient background */}
               <div className={`w-16 h-16 mx-auto rounded-2xl bg-gradient-to-r ${service.color} flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300`}>
-                <FontAwesomeIcon
-                  icon={service.icon}
-                  className="text-2xl text-white"
+                <service.icon
+                  className="w-6 h-6 text-white"
                 />
               </div>
               

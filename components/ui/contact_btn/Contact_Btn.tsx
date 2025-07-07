@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Phone, MessageCircle, Mail, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import React from 'react';
 
 function Contact_Btn() {
   const [isExpanded, setIsExpanded] = useState(false);
