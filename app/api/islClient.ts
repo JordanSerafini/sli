@@ -10,24 +10,30 @@ export async function GET(req: Request) {
   }
 
   try {
-    // Remplace l'URL par celle fournie par ISL pour générer le fichier
-    const islUrl = `https://www.islonline.com/fr/fr/join/#${code}`;
+    const islClientUrl = 'https://www.islonline.com/start/isllight/client.exe';
 
-    // Télécharge le fichier depuis l'API ISL
-    const response = await axios.get(islUrl, { responseType: "stream" });
+    const response = await axios.get(islClientUrl, { 
+      responseType: "arraybuffer",
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+      }
+    });
 
-    // Crée une réponse en streaming directement depuis la source
+    // Retourne le fichier avec les bons headers
     return new NextResponse(response.data, {
       headers: {
-        "Content-Disposition": `attachment; filename="isl-client-${code}.exe"`,
+        "Content-Disposition": `attachment; filename="isl-light-client-${code}.exe"`,
         "Content-Type": "application/octet-stream",
+        "Content-Length": response.data.byteLength.toString(),
       },
     });
 
   } catch (error) {
-    console.error("Erreur avec l'API ISL :");
+    console.error("Erreur avec le téléchargement ISL :");
     console.error(error);
-    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-    return NextResponse.json({ error: "Impossible de récupérer le fichier.", details: errorMessage }, { status: 500 });
+    
+    // En cas d'erreur, on redirige vers la page officielle ISL avec le code
+    const islJoinUrl = `https://www.islonline.com/fr/fr/join/#${code}`;
+    return NextResponse.redirect(islJoinUrl);
   }
 }
