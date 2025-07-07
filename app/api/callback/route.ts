@@ -1,12 +1,70 @@
 import { NextResponse } from 'next/server';
-import mailjet from 'node-mailjet';
+import { Resend } from 'resend';
 
+// Configuration Resend
+const resend = new Resend(process.env.RESEND_API_KEY);
 
+// Template pour l'email de rappel en format JSX
+import * as React from 'react';
+
+function CallbackEmailTemplate({ phone }: { phone: string }): React.ReactElement {
+  return React.createElement(
+    'div',
+    { style: { fontFamily: 'Arial, sans-serif', maxWidth: '600px', margin: '0 auto', padding: '20px' } },
+    React.createElement(
+      'div',
+      { style: { backgroundColor: '#f8f9fa', padding: '20px', borderRadius: '8px', marginBottom: '20px' } },
+      React.createElement(
+        'h2',
+        { style: { color: '#333', margin: '0 0 20px 0' } },
+        '🔔 Demande de rappel depuis le site web'
+      )
+    ),
+    React.createElement(
+      'div',
+      { style: { backgroundColor: '#ffffff', padding: '20px', border: '1px solid #e9ecef', borderRadius: '8px' } },
+      React.createElement(
+        'p',
+        { style: { marginBottom: '15px', color: '#212529' } },
+        'Un client demande à être rappelé au numéro suivant :'
+      ),
+      React.createElement(
+        'div',
+        { 
+          style: { 
+            padding: '15px', 
+            backgroundColor: '#e3f2fd', 
+            borderRadius: '4px',
+            borderLeft: '4px solid #2196f3',
+            marginBottom: '20px'
+          }
+        },
+        React.createElement(
+          'strong',
+          { style: { fontSize: '18px', color: '#1565c0' } },
+          `📱 ${phone}`
+        )
+      ),
+      React.createElement(
+        'p',
+        { 
+          style: { 
+            color: '#6c757d', 
+            fontSize: '14px', 
+            fontStyle: 'italic',
+            marginBottom: '0'
+          }
+        },
+        `Demande reçue le ${new Date().toLocaleString('fr-FR')}`
+      )
+    )
+  );
+}
 
 export async function POST(req: Request) {
-  // Vérification que les clés API sont configurées
-  if (!process.env.MJ_APIKEY_PUBLIC || !process.env.MJ_APIKEY_PRIVATE) {
-    console.error('Clés API Mailjet non configurées');
+  // Vérification que la clé API Resend est configurée
+  if (!process.env.RESEND_API_KEY) {
+    console.error('Clé API Resend non configurée');
     return NextResponse.json(
       { message: 'Configuration du serveur de messagerie manquante.' },
       { status: 500 }
@@ -23,35 +81,23 @@ export async function POST(req: Request) {
   }
 
   try {
-    // Envoi de l'email via Mailjet
-    const request = mailjetClient
-      .post('send', { version: 'v3.1' })
-      .request({
-        Messages: [
-          {
-            From: {
-              Email: 'jordanserafini74370@gmail.com',
-              Name: 'Site Web Solution Logique'
-            },
-            To: [
-              {
-                Email: 'jordan@solution-logique.fr',
-                Name: 'Jordan'
-              }
-            ],
-            Subject: 'Demande de rappel depuis le site web',
-            TextPart: `Un client demande à être rappelé au numéro suivant : ${phone}`,
-            HTMLPart: `
-              <h2>🔔 Demande de rappel</h2>
-              <p>Un client demande à être rappelé au numéro suivant :</p>
-              <p><strong>📱 ${phone}</strong></p>
-              <p><em>Demande reçue le ${new Date().toLocaleString('fr-FR')}</em></p>
-            `
-          }
-        ]
-      });
+    // Envoi de l'email via Resend
+    const { data, error } = await resend.emails.send({
+      from: 'Acme <onboarding@resend.dev>',
+      to: ['jordanserafini.74@gmail.com'],
+      subject: 'Demande de rappel depuis le site web',
+      react: CallbackEmailTemplate({ phone }),
+    });
 
-    await request;
+    if (error) {
+      console.error('Erreur Resend:', error);
+      return NextResponse.json(
+        { message: 'Erreur lors de l\'envoi de la demande.' },
+        { status: 500 }
+      );
+    }
+
+    console.log('Email de rappel envoyé avec succès:', data);
 
     return NextResponse.json(
       { message: 'Demande de rappel envoyée avec succès' },
@@ -61,19 +107,6 @@ export async function POST(req: Request) {
   } catch (error) {
     console.error("Erreur lors de l'envoi de l'e-mail de rappel :", error);
     
-    // Gestion des erreurs Mailjet
-    if (error && typeof error === 'object' && 'response' in error) {
-      const mjError = error as { response?: { status?: number; data?: unknown } };
-      console.error('Erreur Mailjet:', mjError.response?.data);
-      
-      if (mjError.response?.status === 401) {
-        return NextResponse.json(
-          { message: 'Erreur d\'authentification du service de messagerie.' },
-          { status: 500 }
-        );
-      }
-    }
-
     return NextResponse.json(
       { message: 'Erreur lors de l\'envoi de la demande.' },
       { status: 500 }
