@@ -42,12 +42,12 @@ export async function POST(req: Request) {
     `;
 
     const msg = {
-      to: 'accueil@solution-logique.com', // Email de destination
-      from: 'noreply@solution-logique.com', // Email expéditeur (doit être vérifié dans SendGrid)
+      to: 'jordan@solution-logique.fr',
+      from: 'site@solution-logique.fr',
       subject: `Nouveau message de contact - ${name}`,
       text: emailContent,
       html: emailContent.replace(/\n/g, '<br>'),
-      replyTo: email, // Permet de répondre directement au client
+      replyTo: email,
     };
 
     // Vérification que la clé API est configurée
