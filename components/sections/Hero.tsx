@@ -64,10 +64,10 @@ function Hero() {
       <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary-50/50 to-transparent" />
       
       <div ref={heroRef} className="relative">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[500px]">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[400px]">
           
           {/* Left Content */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             {/* Logo SLI */}
             <div className="flex justify-center lg:justify-start">
               <Image
@@ -81,7 +81,7 @@ function Hero() {
             </div>
 
             {/* Main Content avec espacements optimisés */}
-            <div className="space-y-6 text-center lg:text-left">
+            <div className="space-y-4 text-center lg:text-left">
               <h1 
                 ref={titleRef}
                 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight tracking-tight"
@@ -109,7 +109,7 @@ function Hero() {
               </p>
 
               {/* CTAs avec nouveaux boutons modernisés */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2">
+              <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start pt-2">
                 <Link href="/nosServices">
                   <ModernButton 
                     variant="accent" 
@@ -139,8 +139,8 @@ function Hero() {
             className="relative"
           >
             <div className="gradient-primary rounded-3xl p-8 lg:p-10 text-white shadow-xl hover:shadow-2xl transition-all duration-300">
-              <div className="space-y-6">
-                <div className="space-y-4">
+              <div className="space-y-4">
+                <div className="space-y-3">
                   <h3 className="text-2xl lg:text-3xl font-bold leading-tight force-white-title">
                     Apporteur de solution informatique
                   </h3>

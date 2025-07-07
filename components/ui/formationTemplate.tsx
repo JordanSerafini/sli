@@ -98,7 +98,7 @@ export function FormationTemplate({
             />
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
               href={pdfUrl}
               target="_blank"
@@ -121,7 +121,7 @@ export function FormationTemplate({
 
       {/* Formation Details */}
       <ModernSection background="white" padding="2xl">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-3xl font-bold text-slate-900 mb-6">
               Programme de formation
@@ -132,7 +132,7 @@ export function FormationTemplate({
             </p>
 
             {/* Formation Info */}
-            <div className="grid md:grid-cols-3 gap-6 mb-8">
+            <div className="grid md:grid-cols-3 gap-4 mb-6">
               <div className={`${currentColors.bg} p-4 rounded-xl text-center`}>
                 <Clock className={`w-6 h-6 ${currentColors.accent} mx-auto mb-2`} />
                 <div className="font-semibold text-slate-900">{duration}</div>
@@ -182,7 +182,7 @@ export function FormationTemplate({
 
       {/* Program Details */}
       <ModernSection background="gray" padding="2xl">
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-8">
           {/* Program Content */}
           <div>
             <h3 className="text-2xl font-bold text-slate-900 mb-6">
@@ -204,7 +204,7 @@ export function FormationTemplate({
           </div>
 
           {/* Prerequisites & Info */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             {prerequisites.length > 0 && (
               <div>
                 <h4 className="text-xl font-semibold text-slate-900 mb-4">

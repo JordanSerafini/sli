@@ -129,7 +129,7 @@ export default function Telecom() {
             Téléphonie IP, connectivité haut débit et réseaux sécurisés.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <ModernButton 
               href="/contact"
               variant="accent" 
@@ -178,7 +178,7 @@ export default function Telecom() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {telecomSolutions.map((solution, index) => (
             <div key={index} className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-2xl mb-4">
@@ -193,7 +193,7 @@ export default function Telecom() {
         </div>
 
         {/* Detailed Services */}
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-2 gap-6">
           {telecomServices.map((service, index) => (
             <ServiceCard
               key={service.id}
@@ -212,7 +212,7 @@ export default function Telecom() {
       {/* Detailed Service View */}
       <ModernSection background="white" padding="2xl">
         <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-3xl p-8 lg:p-12">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
               <div className="inline-flex items-center px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-medium mb-6">
                 <Signal className="w-4 h-4 mr-2" />
@@ -227,7 +227,7 @@ export default function Telecom() {
                 {telecomServices[activeService].description}
               </p>
 
-              <div className="grid grid-cols-3 gap-4 mb-8">
+              <div className="grid grid-cols-3 gap-3 mb-6">
                 {telecomServices[activeService].benefits.map((benefit, index) => (
                   <div key={index} className="text-center p-4 bg-white rounded-xl shadow-sm">
                     <CheckCircle className="w-6 h-6 text-green-600 mx-auto mb-2" />
@@ -245,7 +245,7 @@ export default function Telecom() {
               </ModernButton>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3">
               <h4 className="text-xl font-semibold text-slate-900 mb-4">
                 Fonctionnalités incluses
               </h4>
@@ -294,7 +294,7 @@ export default function Telecom() {
             vos coûts tout en améliorant vos communications.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <ModernButton 
               href="/contact"
               variant="accent" 

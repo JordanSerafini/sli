@@ -8,7 +8,7 @@ import { ArrowRight, Headphones, Monitor } from "lucide-react";
 function Telemaintenance() {
   return (
     <Section padding="xl" className="bg-slate-50">
-      <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         
         {/* Left Content - Image */}
         <div className="relative order-2 lg:order-1">
@@ -38,9 +38,9 @@ function Telemaintenance() {
         </div>
 
         {/* Right Content - Text & CTA */}
-        <div className="space-y-8 order-1 lg:order-2">
-          <div className="space-y-6">
-            <div className="space-y-4">
+        <div className="space-y-6 order-1 lg:order-2">
+          <div className="space-y-4">
+            <div className="space-y-3">
               <div className="flex items-center space-x-2 text-blue-600">
                 <Monitor className="w-6 h-6" />
                 <span className="font-semibold text-sm uppercase tracking-wide">Support technique</span>
@@ -62,7 +62,7 @@ function Telemaintenance() {
             </p>
 
             {/* Features list */}
-            <div className="space-y-3">
+            <div className="space-y-2">
               {[
                 "Intervention immédiate",
                 "Support sécurisé",
@@ -78,7 +78,7 @@ function Telemaintenance() {
           </div>
 
           {/* CTAs */}
-          <div className="space-y-4">
+          <div className="space-y-3">
             <Link href="/telemaintenance">
               <Button size="xl" className="w-full sm:w-auto group">
                 <Headphones className="mr-2 h-5 w-5" />
@@ -87,7 +87,7 @@ function Telemaintenance() {
               </Button>
             </Link>
             
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-3">
               <Button variant="outline" size="lg" className="group">
                 📞 04.50.64.02.33
               </Button>

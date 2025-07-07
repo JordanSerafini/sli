@@ -87,7 +87,7 @@ function NosServices() {
       </h1>
       
       {/* Grille des cartes de services */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-20">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
         {servicesData.map((service, index) => (
           <div
             key={index}
@@ -105,7 +105,7 @@ function NosServices() {
             {/* Contenu principal */}
             <div className="relative h-full flex flex-col justify-end p-6 text-white">
               <div className="transform transition-transform duration-500 group-hover:translate-y-0 translate-y-2">
-                <h3 className="text-2xl font-bold mb-3 group-hover:text-cyan-300 transition-colors duration-300">
+                <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-cyan-300 transition-colors duration-300">
                   {service.title}
                 </h3>
                 <p className="text-gray-200 text-sm leading-relaxed overflow-hidden transition-all duration-300" style={{
@@ -121,12 +121,12 @@ function NosServices() {
             {/* Overlay détails au hover */}
             <Link href={service.link} className="absolute inset-0">
               <div className="absolute inset-0 bg-gradient-to-t from-blue-900/95 via-blue-800/85 to-blue-700/75 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-start pt-8 p-6 text-white overflow-y-auto">
-                <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">
+                <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100 flex flex-col h-full">
                   <h4 className="text-xl font-semibold mb-4 text-cyan-300 border-b border-cyan-300/30 pb-2">
                     Plus d&apos;informations :
                   </h4>
                   
-                  <div className="space-y-4">
+                  <div className="space-y-4 flex-1">
                     {service.details.map((detail, i) => (
                       <div key={i} className="space-y-2">
                         <h5 className="font-semibold text-cyan-200 text-sm uppercase tracking-wide">
@@ -147,7 +147,7 @@ function NosServices() {
                   </div>
                   
                   {/* Bouton d'action */}
-                  <div className="mt-6 pt-4 border-t border-cyan-300/30">
+                  <div className="mt-auto pt-4 pb-2 border-t border-cyan-300/30">
                     <div className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 shadow-lg">
                       En savoir plus
                       <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -164,7 +164,7 @@ function NosServices() {
 
       {/* Section Télémaintenance - Design moderne */}
       <div className="bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50 rounded-2xl p-8 md:p-12 shadow-xl border border-slate-200/50 mt-16">
-        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+        <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-8">
           {/* Image à gauche */}
           <div className="flex-shrink-0 lg:w-1/2">
             <div className="relative overflow-hidden rounded-xl shadow-lg group">
@@ -181,7 +181,7 @@ function NosServices() {
           </div>
 
           {/* Contenu à droite */}
-          <div className="flex-1 text-center lg:text-left space-y-6">
+          <div className="flex-1 text-center lg:text-left space-y-4">
             {/* Badge */}
             <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-700 rounded-full text-sm font-medium border border-blue-200/50">
               <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
@@ -191,7 +191,7 @@ function NosServices() {
             </div>
 
             {/* Titre principal */}
-            <div className="space-y-2">
+            <div className="space-y-1">
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
                 Nous contacter
               </h2>
@@ -208,7 +208,7 @@ function NosServices() {
             </p>
 
             {/* Avantages */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 py-3">
               <div className="flex items-center text-slate-600">
                 <svg className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -254,7 +254,7 @@ function NosServices() {
             {/* Contact alternatif */}
             <div className="pt-6 border-t border-slate-200">
               <p className="text-sm text-slate-500 mb-3">Besoin d&apos;une autre forme de support ?</p>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2">
                 <Link 
                   href="/contact" 
                   className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium text-sm transition-colors"

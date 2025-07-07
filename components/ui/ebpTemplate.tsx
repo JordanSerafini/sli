@@ -100,7 +100,7 @@ export function EBPTemplate({
             {description}
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
               href="/contact"
               className={`${currentColors.button} text-white px-8 py-4 rounded-lg font-semibold transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center`}
@@ -130,7 +130,7 @@ export function EBPTemplate({
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-6">
           {softwares.map((software, index) => (
             <div 
               key={index} 
@@ -175,7 +175,7 @@ export function EBPTemplate({
                 ))}
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-3 mb-6">
                 <a
                   href={`/assets/${software.pdfLink}`}
                   target="_blank"
@@ -206,7 +206,7 @@ export function EBPTemplate({
           </h3>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="text-center">
             <div className={`inline-flex items-center justify-center w-16 h-16 ${currentColors.bg} rounded-2xl mb-4`}>
               <Shield className={`w-8 h-8 ${currentColors.accent}`} />
@@ -252,19 +252,24 @@ export function EBPTemplate({
             peut transformer votre gestion quotidienne.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
               href="/contact"
               className={`${currentColors.button} text-white px-8 py-4 rounded-lg font-semibold transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1`}
             >
-              Demander une démo
+              Demander une démonstration
+              <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
-            <button className="bg-white/10 backdrop-blur text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/20 border border-white/20 hover:border-white/30 transition-all duration-200">
-              04 50 64 02 33
-            </button>
+            
+            <Link
+              href="/formationCompta"
+              className="bg-white/90 backdrop-blur text-slate-700 px-8 py-4 rounded-lg font-semibold hover:bg-white border border-slate-200 hover:border-slate-300 transition-all duration-200 shadow-lg"
+            >
+              Voir les formations
+            </Link>
           </div>
         </div>
       </ModernSection>
     </main>
   );
-} 
+}

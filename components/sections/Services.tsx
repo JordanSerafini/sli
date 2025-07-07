@@ -60,7 +60,7 @@ function Services() {
       centered
     >
       {/* Header Section avec contraste amélioré */}
-      <div className="space-y-6 mb-12">
+      <div className="space-y-4 mb-8">
         <h2 className="text-4xl lg:text-5xl font-bold text-white">
           Notre expertise
         </h2>
@@ -77,14 +77,14 @@ function Services() {
       </div>
 
       {/* Services Grid modernisé */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         {services.map((service, index) => (
           <ModernCard 
             key={index}
             variant="glass" 
             className="group bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105"
           >
-            <div className="text-center space-y-4">
+            <div className="text-center space-y-3">
               {/* Icon avec gradient background */}
               <div className={`w-16 h-16 mx-auto rounded-2xl bg-gradient-to-r ${service.color} flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300`}>
                 <FontAwesomeIcon

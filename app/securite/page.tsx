@@ -162,7 +162,7 @@ export default function Securite() {
             Infrastructure, réseaux et données sécurisés.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <ModernButton 
               href="/contact"
               variant="accent" 
@@ -185,7 +185,7 @@ export default function Securite() {
 
       {/* Stats Section */}
       <ModernSection background="white" padding="lg">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
           {statsData.map((stat, index) => (
             <div key={index} className="text-center group">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-red-100 rounded-2xl mb-4 group-hover:bg-red-600 transition-colors duration-300">
@@ -239,7 +239,7 @@ export default function Securite() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {securitySolutions.map((solution, index) => (
             <div key={index} className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-slate-100">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-red-100 rounded-2xl mb-4">
@@ -254,7 +254,7 @@ export default function Securite() {
         </div>
 
         {/* Detailed Services */}
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-6">
           {securityServices.map((service, index) => (
             <ServiceCard
               key={service.id}
@@ -273,7 +273,7 @@ export default function Securite() {
       {/* Detailed Service View */}
       <ModernSection background="gray" padding="2xl">
         <div className="bg-white rounded-3xl p-8 lg:p-12 shadow-xl">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
               <div className="inline-flex items-center px-4 py-2 bg-red-100 text-red-700 rounded-full text-sm font-medium mb-6">
                 <Shield className="w-4 h-4 mr-2" />
@@ -288,7 +288,7 @@ export default function Securite() {
                 {securityServices[activeService].description}
               </p>
 
-              <div className="grid grid-cols-3 gap-4 mb-8">
+              <div className="grid grid-cols-3 gap-3 mb-6">
                 {securityServices[activeService].benefits.map((benefit, index) => (
                   <div key={index} className="text-center p-4 bg-red-50 rounded-xl">
                     <CheckCircle className="w-6 h-6 text-red-600 mx-auto mb-2" />
@@ -306,7 +306,7 @@ export default function Securite() {
               </ModernButton>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3">
               <h4 className="text-xl font-semibold text-slate-900 mb-4">
                 Fonctionnalités incluses
               </h4>
@@ -333,7 +333,7 @@ export default function Securite() {
         </div>
 
         <div className="flex justify-center">
-          <div className="grid grid-cols-1 gap-8 max-w-md">
+          <div className="grid grid-cols-1 gap-6 max-w-md">
             <div className="flex items-center justify-center p-6 bg-white rounded-xl border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all duration-300 group">
               <img 
                 src="/assets/stormshield.webp" 
@@ -356,7 +356,7 @@ export default function Securite() {
             de votre infrastructure avant qu'il ne soit trop tard.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <ModernButton 
               href="/contact"
               variant="accent" 

@@ -17,9 +17,9 @@ function Intro() {
 
   return (
     <div className="container mx-auto">
-      <section className="flex w-full my-[50px] mx-auto gap-20 items-center min-h-[500px] justify-center
-                          max-[414px]:flex-col max-[414px]:min-h-auto max-[414px]:my-[30px]
-                          max-[830px]:flex-col max-[830px]:min-h-auto max-[830px]:my-[40px]">
+      <section className="flex w-full my-[30px] mx-auto gap-12 items-center min-h-[400px] justify-center
+                          max-[414px]:flex-col max-[414px]:min-h-auto max-[414px]:my-[20px]
+                          max-[830px]:flex-col max-[830px]:min-h-auto max-[830px]:my-[25px]">
         
         <IntroLeft />
         
