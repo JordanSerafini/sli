@@ -12,6 +12,15 @@ jest.mock('next/navigation', () => ({
   }),
 }));
 
+// Mock Next.js Link component
+jest.mock('next/link', () => {
+  const MockLink = ({ children, href, ...props }: { children: React.ReactNode; href: string; [key: string]: unknown }) => {
+    return <a href={href} {...props}>{children}</a>;
+  };
+  MockLink.displayName = 'MockLink';
+  return MockLink;
+});
+
 describe("Ebpbatiment Component", () => {
   beforeEach(() => {
     // Reset des mocks avant chaque test
@@ -38,9 +47,56 @@ describe("Ebpbatiment Component", () => {
       const descriptionElement = screen.getByText(/Grâce à notre logiciel de gestion dédié au bâtiment/i);
       expect(descriptionElement).toBeInTheDocument();
     });
+
+    test("devrait avoir un badge indiquant \"Logiciels EBP Bâtiment\"", () => {
+      render(<Ebpbatiment />);
+      expect(screen.getByText(/Logiciels EBP/)).toBeInTheDocument();
+      expect(screen.getByText(/Bâtiment/)).toBeInTheDocument();
+    });
+  });
+
+  describe("Navigation et boutons d'action", () => {
+    test("devrait avoir un bouton \"Demander une démonstration\"", () => {
+      render(<Ebpbatiment />);
+      const demoButton = screen.getByText('Demander une démonstration');
+      expect(demoButton).toBeInTheDocument();
+      expect(demoButton.closest('a')).toHaveAttribute('href', '/contact');
+    });
+
+    test("devrait avoir un lien vers les formations", () => {
+      render(<Ebpbatiment />);
+      const formationLink = screen.getByText('Voir les formations');
+      expect(formationLink).toBeInTheDocument();
+      expect(formationLink.closest('a')).toHaveAttribute('href', '/formationCompta');
+    });
   });
 
   describe("Cartes de logiciels", () => {
+    test("devrait afficher les noms des logiciels EBP", () => {
+      render(<Ebpbatiment />);
+      expect(screen.getByText('EBP Gestion Bâtiment')).toBeInTheDocument();
+      expect(screen.getByText('EBP Expert Bâtiment')).toBeInTheDocument();
+      expect(screen.getByText('EBP Bâtiment PRO')).toBeInTheDocument();
+    });
+
+    test("devrait afficher les sous-titres des logiciels", () => {
+      render(<Ebpbatiment />);
+      expect(screen.getByText('La gestion de chantiers simplifiée')).toBeInTheDocument();
+      expect(screen.getByText('L\'excellence pour les professionnels du BTP')).toBeInTheDocument();
+      expect(screen.getByText('Solution complète métré-devis-facture')).toBeInTheDocument();
+    });
+
+    test("devrait afficher les niveaux des logiciels", () => {
+      render(<Ebpbatiment />);
+      expect(screen.getAllByText('Professionnel')).toHaveLength(2);
+      expect(screen.getByText('Expert')).toBeInTheDocument();
+    });
+
+    test("devrait marquer EBP Expert Bâtiment comme populaire", () => {
+      render(<Ebpbatiment />);
+      expect(screen.getByText('Plus populaire')).toBeInTheDocument();
+    });
+
     test("devrait afficher au moins une carte de logiciel", () => {
       render(<Ebpbatiment />);
       const softwareCards = document.querySelectorAll(".software_card");
@@ -69,32 +125,31 @@ describe("Ebpbatiment Component", () => {
       });
     });
 
-    test("chaque carte de logiciel devrait comporter un lien 'En savoir plus ?'", () => {
+    test("chaque carte de logiciel devrait comporter un lien 'Télécharger la fiche'", () => {
       render(<Ebpbatiment />);
-      const learnMoreButtons = screen.getAllByText(/En savoir plus ?/i);
-      expect(learnMoreButtons.length).toBeGreaterThan(0);
+      const downloadButtons = screen.getAllByText(/Télécharger la fiche/i);
+      expect(downloadButtons.length).toBeGreaterThan(0);
       
-      learnMoreButtons.forEach((button) => {
-        expect(button).toHaveAttribute("href");
-        expect(button.getAttribute("href")).toBeTruthy();
+      downloadButtons.forEach((button) => {
+        expect(button).toBeInTheDocument();
       });
     });
 
-    test("les liens 'En savoir plus' devraient pointer vers des PDFs", () => {
+    test("les liens 'Télécharger la fiche' devraient pointer vers des PDFs", () => {
       render(<Ebpbatiment />);
-      const learnMoreButtons = screen.getAllByText(/En savoir plus ?/i);
+      const downloadButtons = screen.getAllByText(/Télécharger la fiche/i);
       
-      learnMoreButtons.forEach((button) => {
+      downloadButtons.forEach((button) => {
         const href = button.getAttribute("href");
-        expect(href).toMatch(/\.pdf$/i);
+        expect(href).toMatch(/\.pdf$/);
       });
     });
 
     test("les liens devraient s'ouvrir dans un nouvel onglet", () => {
       render(<Ebpbatiment />);
-      const learnMoreButtons = screen.getAllByText(/En savoir plus ?/i);
+      const downloadButtons = screen.getAllByText(/Télécharger la fiche/i);
       
-      learnMoreButtons.forEach((button) => {
+      downloadButtons.forEach((button) => {
         expect(button).toHaveAttribute("target", "_blank");
         expect(button).toHaveAttribute("rel", "noopener noreferrer");
       });
@@ -123,15 +178,21 @@ describe("Ebpbatiment Component", () => {
         expect(src).not.toBe('#');
       });
     });
+
+    test("devrait contenir des icônes SVG", () => {
+      render(<Ebpbatiment />);
+      const svgElements = document.querySelectorAll('svg');
+      expect(svgElements.length).toBeGreaterThan(0);
+    });
   });
 
   describe("Navigation et interactivité", () => {
     test("devrait permettre la navigation entre les cartes au clavier", () => {
       render(<Ebpbatiment />);
-      const learnMoreButtons = screen.getAllByText(/En savoir plus ?/i);
+      const downloadButtons = screen.getAllByText(/Télécharger la fiche/i);
       
-      if (learnMoreButtons.length > 0) {
-        const firstButton = learnMoreButtons[0];
+      if (downloadButtons.length > 0) {
+        const firstButton = downloadButtons[0];
         firstButton.focus();
         expect(firstButton).toHaveFocus();
       }
@@ -141,6 +202,12 @@ describe("Ebpbatiment Component", () => {
       render(<Ebpbatiment />);
       const focusableElements = document.querySelectorAll('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])');
       
+      expect(focusableElements.length).toBeGreaterThan(0);
+    });
+
+    test("devrait avoir des éléments focusables", () => {
+      render(<Ebpbatiment />);
+      const focusableElements = document.querySelectorAll('a, button, [tabindex="0"]');
       expect(focusableElements.length).toBeGreaterThan(0);
     });
   });
@@ -179,6 +246,14 @@ describe("Ebpbatiment Component", () => {
         expect(alt).not.toBeNull();
       });
     });
+
+    test("les liens devraient avoir des attributs appropriés", () => {
+      render(<Ebpbatiment />);
+      const externalLinks = document.querySelectorAll('a[target="_blank"]');
+      externalLinks.forEach(link => {
+        expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+      });
+    });
   });
 
   describe("Responsive et mise en page", () => {
@@ -192,6 +267,18 @@ describe("Ebpbatiment Component", () => {
       render(<Ebpbatiment />);
       const cardsContainer = document.querySelector('.grid, .flex, .software_cards_container');
       expect(cardsContainer).toBeInTheDocument();
+    });
+
+    test("devrait avoir des classes CSS appropriées pour le responsive", () => {
+      render(<Ebpbatiment />);
+      const container = document.querySelector('.max-w-7xl, [class*="max-w"]');
+      expect(container).toBeInTheDocument();
+    });
+
+    test("les cartes devraient être dans un layout grid ou flex", () => {
+      render(<Ebpbatiment />);
+      const gridContainer = document.querySelector('[class*="grid"], [class*="flex"]');
+      expect(gridContainer).toBeInTheDocument();
     });
   });
 
@@ -220,6 +307,25 @@ describe("Ebpbatiment Component", () => {
       // Vérifier la présence de fonctionnalités typiques
       const features = /gestion|suivi|planification|budget|planning/i;
       expect(content).toMatch(features);
+    });
+
+    test("devrait lister les fonctionnalités des logiciels", () => {
+      render(<Ebpbatiment />);
+      expect(screen.getByText(/Devis et métrés BTP/)).toBeInTheDocument();
+      expect(screen.getByText(/Gestion des chantiers/)).toBeInTheDocument();
+      expect(screen.getByText(/Planning et ressources/)).toBeInTheDocument();
+    });
+
+    test("devrait avoir des badges pour identifier les types de logiciels", () => {
+      render(<Ebpbatiment />);
+      const badges = document.querySelectorAll('[class*="badge"], [class*="rounded-full"]');
+      expect(badges.length).toBeGreaterThan(0);
+    });
+
+    test("devrait mentionner les différents publics cibles", () => {
+      render(<Ebpbatiment />);
+      const content = document.body.textContent || '';
+      expect(content).toMatch(/artisan|entreprise|BTP|professionnel/i);
     });
   });
 
@@ -261,6 +367,21 @@ describe("Ebpbatiment Component", () => {
         // L'application devrait continuer à fonctionner
         expect(document.body).toBeInTheDocument();
       });
+    });
+  });
+
+  describe("SEO et métadonnées", () => {
+    test("devrait avoir des titres hiérarchiques appropriés", () => {
+      render(<Ebpbatiment />);
+      expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument();
+      const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+      expect(headings.length).toBeGreaterThan(1);
+    });
+
+    test("devrait contenir du contenu descriptif pour le SEO", () => {
+      render(<Ebpbatiment />);
+      const text = document.body.textContent || '';
+      expect(text).toMatch(/BTP|bâtiment|devis|chantier/i);
     });
   });
 }); 
