@@ -14,7 +14,6 @@ import {
   Users,
   CheckCircle,
   ArrowRight,
-  FileText,
   Laptop,
   Shield
 } from "lucide-react";
@@ -185,7 +184,7 @@ export default function Logiciels() {
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8 mb-16">
-            {logicielsData.map((logiciel, index) => (
+            {logicielsData.map((logiciel) => (
               <div key={logiciel.id} className="relative">
                 {logiciel.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">

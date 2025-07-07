@@ -10,17 +10,11 @@ import {
   Network, 
   Signal,
   Headphones,
-  Globe,
-  Radio,
-  Cable,
   ArrowRight,
   CheckCircle,
-  Star,
   Users,
-  Clock,
-  Shield
+  Clock
 } from "lucide-react";
-import Image from "next/image";
 
 const telecomServices = [
   {

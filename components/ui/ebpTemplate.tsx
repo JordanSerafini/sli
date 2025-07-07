@@ -26,7 +26,6 @@ interface EBPSoftware {
 interface EBPTemplateProps {
   title: string;
   description: string;
-  logoImage?: string;
   softwares: EBPSoftware[];
   colorScheme?: 'blue' | 'green' | 'orange';
   category: string;
@@ -35,7 +34,6 @@ interface EBPTemplateProps {
 export function EBPTemplate({
   title,
   description,
-  logoImage,
   softwares,
   colorScheme = 'blue',
   category

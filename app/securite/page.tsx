@@ -9,16 +9,11 @@ import {
   AlertTriangle, 
   ShieldCheck, 
   Server,
-  Wifi,
-  Database,
   CheckCircle,
   ArrowRight,
-  Users,
-  Clock,
   TrendingUp,
   Zap
 } from "lucide-react";
-import Image from "next/image";
 
 const securityServices = [
   {

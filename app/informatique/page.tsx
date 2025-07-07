@@ -7,13 +7,7 @@ import {
   Monitor, 
   Shield, 
   Cloud, 
-  Network, 
-  HardDrive,
   Users,
-  Lock,
-  Database,
-  Wifi,
-  Mail,
   ArrowRight,
   CheckCircle,
   Star
