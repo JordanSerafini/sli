@@ -17,7 +17,7 @@ export async function GET() {
     // Test d'envoi d'email
     const { data, error } = await resend.emails.send({
       from: 'Acme <onboarding@resend.dev>',
-      to: ['jordan@solution-logique.fr'],
+      to: ['jordanserafini.74@gmail.com'],
       subject: 'Test Resend - Configuration réussie',
       react: ContactEmailTemplate({
         name: 'Test Utilisateur',

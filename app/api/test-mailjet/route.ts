@@ -30,21 +30,21 @@ export async function GET() {
     let userInfo = {};
     try {
       const userResponse = await mailjetClient.get('user').request();
-      const userData = userResponse.body as any;
+      const userData = userResponse.body as { Data?: Array<{ Email?: string; Username?: string }> };
       userInfo = {
         email: userData?.Data?.[0]?.Email || 'N/A',
         username: userData?.Data?.[0]?.Username || 'N/A'
       };
-    } catch (userError) {
+    } catch {
       userInfo = { error: 'Impossible de récupérer les infos utilisateur' };
     }
 
     // Test 2: Vérification des statistiques récentes
     let stats = {};
     try {
-      const statsResponse = await mailjetClient.get('statcounters').request();
+      await mailjetClient.get('statcounters').request();
       stats = { success: true, message: 'Statistiques accessibles' };
-    } catch (statsError) {
+    } catch {
       stats = { error: 'Impossible d\'accéder aux statistiques' };
     }
 
@@ -76,15 +76,21 @@ export async function GET() {
       sendTest = { 
         success: true, 
         message: 'Test d\'envoi réussi ✅',
-        messageId: (sendResponse.body as any)?.Messages?.[0]?.To?.[0]?.MessageID || 'ID non disponible'
+        messageId: (sendResponse.body as { Messages?: Array<{ To?: Array<{ MessageID?: string }> }> })?.Messages?.[0]?.To?.[0]?.MessageID || 'ID non disponible'
       };
-    } catch (sendError: any) {
+    } catch (sendError: unknown) {
+      const errorInfo = sendError as { 
+        message?: string; 
+        statusCode?: string | number; 
+        ErrorCode?: string; 
+        ErrorIdentifier?: string 
+      };
       sendTest = { 
         success: false,
-        error: sendError.message || 'Erreur inconnue',
-        statusCode: sendError.statusCode || 'N/A',
-        errorCode: sendError.ErrorCode || 'N/A',
-        errorIdentifier: sendError.ErrorIdentifier || 'N/A'
+        error: errorInfo.message || 'Erreur inconnue',
+        statusCode: errorInfo.statusCode || 'N/A',
+        errorCode: errorInfo.ErrorCode || 'N/A',
+        errorIdentifier: errorInfo.ErrorIdentifier || 'N/A'
       };
     }
     
@@ -105,7 +111,7 @@ export async function GET() {
     // Plus de détails sur l'erreur Mailjet
     let mailjetError = 'Erreur de connexion';
     if (error && typeof error === 'object' && 'response' in error) {
-      const mjError = error as { response?: { status?: number; data?: any } };
+      const mjError = error as { response?: { status?: number; data?: unknown } };
       mailjetError = `Status: ${mjError.response?.status}, Data: ${JSON.stringify(mjError.response?.data)}`;
     }
     

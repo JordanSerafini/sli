@@ -59,7 +59,7 @@ export async function POST() {
     console.error('❌ Erreur détaillée:', error);
     
     if (error && typeof error === 'object' && 'response' in error) {
-      const mjError = error as { response?: { status?: number; data?: any; text?: string } };
+      const mjError = error as { response?: { status?: number; data?: unknown; text?: string } };
       console.error('📋 Détails erreur Mailjet:');
       console.error('Status:', mjError.response?.status);
       console.error('Data:', mjError.response?.data);

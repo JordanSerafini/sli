@@ -11,7 +11,6 @@ import {
   faGraduationCap,
   faAward,
   faCertificate,
-  faChartLine,
   faLaptopCode,
   faHandshake,
   faMapMarkerAlt,
