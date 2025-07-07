@@ -1,11 +1,27 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Phone, MessageCircle, Mail, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 function Contact_Btn() {
   const [isExpanded, setIsExpanded] = useState(false);
+
+  // Gestion de la touche Échap
+  useEffect(() => {
+    const handleEscapeKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsExpanded(false);
+      }
+    };
+
+    if (isExpanded) {
+      document.addEventListener('keydown', handleEscapeKey);
+      return () => {
+        document.removeEventListener('keydown', handleEscapeKey);
+      };
+    }
+  }, [isExpanded]);
 
   const handleMainClick = () => {
     if (!isExpanded) {
@@ -69,7 +85,6 @@ function Contact_Btn() {
         {/* Bouton principal */}
         <button
           onClick={handleMainClick}
-          onBlur={() => setIsExpanded(false)}
           className="relative gradient-primary hover:from-primary-700 hover:to-accent-700 text-white p-4 rounded-full shadow-xl transition-all duration-300 hover:scale-110 hover:shadow-2xl group/btn border-2 border-white/20"
         >
           {/* Animation de rotation du texte */}
