@@ -8,7 +8,7 @@ import Partners from "@/components/sections/Partners";
 
 function Home() {
   return (
-    <main>
+    <main className="overflow-x-hidden">
       <Hero />
       <Services />
       <Telemaintenance />
