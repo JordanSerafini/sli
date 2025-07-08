@@ -33,7 +33,6 @@ const logicielsData = [
       "Synchronisation bancaire",
       "Sauvegarde cloud sécurisée"
     ],
-    price: "À partir de 149€/an",
     popular: false
   },
   {
@@ -49,7 +48,6 @@ const logicielsData = [
       "Statistiques commerciales avancées",
       "Mobile et multi-sites"
     ],
-    price: "À partir de 199€/an",
     popular: true
   },
   {
@@ -65,7 +63,6 @@ const logicielsData = [
       "Planning et ressources",
       "Facturation intégrée"
     ],
-    price: "À partir de 299€/an",
     popular: false
   }
 ];
@@ -207,8 +204,7 @@ export default function Logiciels() {
                 
                 <div className="mt-4 p-6 bg-slate-50 rounded-xl">
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-2xl font-bold text-slate-900">{logiciel.price}</span>
-                    <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
+                    <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium w-full">
                       Version d'essai gratuite
                     </span>
                   </div>
