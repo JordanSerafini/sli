@@ -88,9 +88,11 @@ function Telemaintenance() {
             </Link>
             
             <div className="flex flex-col sm:flex-row gap-3">
-              <Button variant="outline" size="lg" className="group">
-                📞 04.50.64.02.33
-              </Button>
+              <Link href="tel:+33450640233">
+                <Button variant="outline" size="lg" className="group">
+                  📞 04.50.64.02.33
+                </Button>
+              </Link>
               
               <Button variant="ghost" size="lg" className="group">
                 <Monitor className="mr-2 h-5 w-5" />
