@@ -36,57 +36,67 @@ function Contact_Btn() {
     <div className="fixed bottom-6 right-6 z-50 group">
       {/* Options expandues */}
       {isExpanded && (
-        <div className="absolute bottom-20 right-0 space-y-3 animate-fade-in-up">
-          {/* Email */}
-          <div className="flex items-center space-x-3 group/item">
-            <span className="bg-white/95 backdrop-blur-sm text-foreground px-3 py-2 rounded-lg text-sm font-medium shadow-lg border border-border opacity-0 group-hover/item:opacity-100 translate-x-2 group-hover/item:translate-x-0 transition-all duration-200 whitespace-nowrap">
-              Envoyer un email
-            </span>
-            <a
-              href="mailto:site@solution-logique.fr"
-              className="bg-accent-500 hover:bg-accent-600 text-white p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 hover:shadow-xl border-2 border-white/20"
+        <div className="absolute bottom-20 right-16 transform -translate-x-full space-y-3 transition-all duration-300 ease-out opacity-100 translate-y-0">
+          {/* Bouton fermer */}
+          <div className="flex justify-end mb-2">
+            <button
+              onClick={() => setIsExpanded(false)}
+              className="bg-gray-500 hover:bg-gray-600 text-white p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
+              title="Fermer"
             >
-              <Mail className="w-5 h-5" />
-            </a>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
           </div>
+
+          {/* Email */}
+          <a
+            href="mailto:site@solution-logique.fr"
+            className="bg-white hover:bg-gray-50 text-gray-800 px-4 py-3 rounded-full shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl border border-gray-200 flex items-center space-x-3 min-w-max"
+            title="Envoyer un email"
+          >
+            <div className="bg-green-500 text-white p-2 rounded-full">
+              <Mail className="w-4 h-4" />
+            </div>
+            <span className="font-medium">Email</span>
+          </a>
 
           {/* Téléphone */}
-          <div className="flex items-center space-x-3 group/item">
-            <span className="bg-white/95 backdrop-blur-sm text-foreground px-3 py-2 rounded-lg text-sm font-medium shadow-lg border border-border opacity-0 group-hover/item:opacity-100 translate-x-2 group-hover/item:translate-x-0 transition-all duration-200 whitespace-nowrap">
-              04 50 64 02 33
-            </span>
-            <a
-              href="tel:0450640233"
-              className="bg-primary-500 hover:bg-primary-600 text-white p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 hover:shadow-xl border-2 border-white/20"
-            >
-              <Phone className="w-5 h-5" />
-            </a>
-          </div>
+          <a
+            href="tel:0450640233"
+            className="bg-white hover:bg-gray-50 text-gray-800 px-4 py-3 rounded-full shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl border border-gray-200 flex items-center space-x-3 min-w-max"
+            title="Appeler"
+          >
+            <div className="bg-blue-500 text-white p-2 rounded-full">
+              <Phone className="w-4 h-4" />
+            </div>
+            <span className="font-medium">04 50 64 02 33</span>
+          </a>
 
           {/* Télémaintenance */}
-          <div className="flex items-center space-x-3 group/item">
-            <span className="bg-white/95 backdrop-blur-sm text-foreground px-3 py-2 rounded-lg text-sm font-medium shadow-lg border border-border opacity-0 group-hover/item:opacity-100 translate-x-2 group-hover/item:translate-x-0 transition-all duration-200 whitespace-nowrap">
-              Support technique
-            </span>
-            <Link
-              href="/telemaintenance"
-              className="bg-secondary-600 hover:bg-secondary-700 text-white p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 hover:shadow-xl border-2 border-white/20"
-            >
-              <MessageCircle className="w-5 h-5" />
-            </Link>
-          </div>
+          <Link
+            href="/telemaintenance"
+            className="bg-white hover:bg-gray-50 text-gray-800 px-4 py-3 rounded-full shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl border border-gray-200 flex items-center space-x-3 min-w-max"
+            title="Support technique"
+          >
+            <div className="bg-gray-600 text-white p-2 rounded-full">
+              <MessageCircle className="w-4 h-4" />
+            </div>
+            <span className="font-medium">Support</span>
+          </Link>
         </div>
       )}
 
       {/* Bouton principal */}
       <div className="relative">
         {/* Cercle lumineux en arrière-plan */}
-        <div className="absolute inset-0 gradient-primary rounded-full animate-pulse-subtle opacity-40 scale-110"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-500 rounded-full animate-pulse opacity-40 scale-110"></div>
         
         {/* Bouton principal */}
         <button
           onClick={handleMainClick}
-          className="relative gradient-primary hover:from-primary-700 hover:to-accent-700 text-white p-4 rounded-full shadow-xl transition-all duration-300 hover:scale-110 hover:shadow-2xl group/btn border-2 border-white/20"
+          className="relative bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white p-4 rounded-full shadow-xl transition-all duration-300 hover:scale-110 hover:shadow-2xl group/btn border-2 border-white/20"
         >
           {/* Animation de rotation du texte */}
           <div className="absolute inset-0 rounded-full">
@@ -130,7 +140,7 @@ function Contact_Btn() {
 
         {/* Badge notification modernisé */}
         {!isExpanded && (
-          <div className="absolute -top-2 -right-2 bg-error text-white text-xs w-6 h-6 rounded-full flex items-center justify-center font-bold animate-bounce shadow-lg border-2 border-white">
+          <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center font-bold animate-bounce shadow-lg border-2 border-white">
             !
           </div>
         )}
