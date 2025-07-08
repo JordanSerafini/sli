@@ -68,7 +68,7 @@ describe("Ebpbatiment Component", () => {
       render(<Ebpbatiment />);
       const formationLinks = screen.getAllByText('Voir les formations');
       expect(formationLinks[0]).toBeInTheDocument();
-      expect(formationLinks[0].closest('a')).toHaveAttribute('href', '/formationCompta');
+      expect(formationLinks[0].closest('a')).toHaveAttribute('href', '/formationBatiment');
     });
   });
 
