@@ -57,17 +57,31 @@ function validateOrigin(request: NextRequest): boolean {
 function detectBot(request: NextRequest): boolean {
   const userAgent = request.headers.get('user-agent') || '';
   
-  // Patterns de bots malveillants
+  // Bots légitimes à autoriser
+  const legitimateBots = [
+    /googlebot/i,
+    /bingbot/i,
+    /slurp/i,
+    /duckduckbot/i,
+    /facebookexternalhit/i,
+    /twitterbot/i,
+  ];
+  
+  // Vérifier si c'est un bot légitime
+  for (const pattern of legitimateBots) {
+    if (pattern.test(userAgent)) {
+      return false; // Autoriser les bots légitimes
+    }
+  }
+  
+  // Patterns de bots malveillants à bloquer
   const suspiciousBotPatterns = [
     /curl/i,
     /wget/i,
-    /python/i,
+    /python-requests/i,
     /scrapy/i,
-    /bot/i,
     /spider/i,
     /crawler/i,
-    // Autoriser les bots légitimes
-    /(?!googlebot|bingbot|slurp|duckduckbot)/i,
   ];
   
   // Si pas d'user agent, c'est suspect
