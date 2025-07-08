@@ -1,20 +1,17 @@
 import { NextRequest } from 'next/server';
 import { POST } from '../route';
 
-// Mock de Resend
-const mockEmailsSend = jest.fn();
-jest.mock('resend', () => {
-  return {
-    Resend: jest.fn().mockImplementation(() => ({
-      emails: {
-        send: mockEmailsSend
-      }
-    }))
-  };
-});
+// Type pour le mock global
+declare global {
+  // eslint-disable-next-line no-var
+  var mockEmailsSend: jest.Mock;
+}
+
+// Utiliser le mock global défini dans jest.setup.js
+const mockEmailsSend = global.mockEmailsSend;
 
 // Mock du composant email-template
-jest.mock('../../../components/email-template', () => ({
+jest.mock('../../../../components/email-template', () => ({
   ContactEmailTemplate: jest.fn(({ name, email, phone, message }) => 
     `ContactEmailTemplate: ${name}, ${email}, ${phone || 'no phone'}, ${message}`
   )

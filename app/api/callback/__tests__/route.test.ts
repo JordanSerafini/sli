@@ -1,17 +1,14 @@
 import { NextRequest } from 'next/server';
 import { POST } from '../route';
 
-// Mock de Resend
-const mockEmailsSend = jest.fn();
-jest.mock('resend', () => {
-  return {
-    Resend: jest.fn().mockImplementation(() => ({
-      emails: {
-        send: mockEmailsSend
-      }
-    }))
-  };
-});
+// Type pour le mock global
+declare global {
+  // eslint-disable-next-line no-var
+  var mockEmailsSend: jest.Mock;
+}
+
+// Utiliser le mock global défini dans jest.setup.js
+const mockEmailsSend = global.mockEmailsSend;
 
 // Tests pour l'API Callback
 describe('Callback API Route', () => {

@@ -10,7 +10,12 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { name, email, message, phone } = body;
 
-    if (!name || !email || !message) {
+    // Trimmer les champs pour éviter les espaces vides
+    const trimmedName = name?.trim();
+    const trimmedEmail = email?.trim();
+    const trimmedMessage = message?.trim();
+
+    if (!trimmedName || !trimmedEmail || !trimmedMessage) {
       return NextResponse.json(
         { message: 'Nom, email et message sont requis.' },
         { status: 400 }
@@ -18,7 +23,7 @@ export async function POST(req: Request) {
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    if (!emailRegex.test(trimmedEmail)) {
       return NextResponse.json(
         { message: 'Adresse email invalide.' },
         { status: 400 }
@@ -36,14 +41,14 @@ export async function POST(req: Request) {
     const { data, error } = await resend.emails.send({
       from: 'Solution Logique <site@solution-logique.fr>',
       to: ['site@solution-logique.fr'],
-      subject: `Nouveau message de contact - ${name}`,
+      subject: `Nouveau message de contact - ${trimmedName}`,
       react: ContactEmailTemplate({ 
-        name, 
-        email, 
+        name: trimmedName, 
+        email: trimmedEmail, 
         phone, 
-        message 
+        message: trimmedMessage 
       }),
-      replyTo: email,
+      replyTo: trimmedEmail,
     });
 
     if (error) {

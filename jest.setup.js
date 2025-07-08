@@ -1,4 +1,8 @@
 import '@testing-library/jest-dom';
+import { configure } from '@testing-library/react';
+
+// Configuration de testing-library
+configure({ testIdAttribute: 'data-testid' });
 
 // Configuration de l'environnement DOM pour les tests
 Object.defineProperty(window, 'matchMedia', {
@@ -31,6 +35,17 @@ global.IntersectionObserver = jest.fn().mockImplementation(() => ({
   unobserve: jest.fn(),
   disconnect: jest.fn(),
 }));
+
+// Configuration DOM pour les tests
+if (typeof document !== 'undefined') {
+  // Créer un conteneur root par défaut
+  const div = document.createElement('div');
+  div.setAttribute('id', 'root');
+  document.body.appendChild(div);
+}
+
+// Mock pour URL.createObjectURL
+global.URL.createObjectURL = jest.fn();
 
 // Mock Next.js router
 jest.mock('next/router', () => ({
@@ -65,7 +80,11 @@ jest.mock('next/server', () => ({
     }
     
     async json() {
-      return JSON.parse(this.body || '{}');
+      try {
+        return JSON.parse(this.body || '{}');
+      } catch {
+        throw new SyntaxError(`Unexpected token '${this.body?.[0] || 'undefined'}', "${this.body || 'undefined'}" is not valid JSON`);
+      }
     }
   },
   NextResponse: {
@@ -80,6 +99,20 @@ jest.mock('next/server', () => ({
 // Mock fetch globally
 global.fetch = jest.fn();
 
+// Mock Resend globalement pour tous les tests
+const mockEmailsSend = jest.fn();
+
+// Créer un mock global pour Resend
+global.mockEmailsSend = mockEmailsSend;
+
+jest.mock('resend', () => ({
+  Resend: jest.fn().mockImplementation(() => ({
+    emails: {
+      send: mockEmailsSend
+    }
+  }))
+}));
+
 // Mock Request and Response for API tests
 global.Request = class MockRequest {
   constructor(input, init) {
@@ -90,7 +123,11 @@ global.Request = class MockRequest {
   }
   
   async json() {
-    return JSON.parse(this.body || '{}');
+    try {
+      return JSON.parse(this.body || '{}');
+    } catch {
+      throw new SyntaxError(`Unexpected token '${this.body?.[0] || 'undefined'}', "${this.body || 'undefined'}" is not valid JSON`);
+    }
   }
 };
 
