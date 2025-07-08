@@ -122,6 +122,7 @@ function Hero() {
                 </Link>
                 
                 <ModernButton 
+                  href="tel:0450640233"
                   variant="secondary" 
                   size="lg"
                   icon={<Phone />}
