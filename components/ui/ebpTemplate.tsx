@@ -30,6 +30,7 @@ interface EBPTemplateProps {
   softwares: EBPSoftware[];
   colorScheme?: 'blue' | 'green' | 'orange';
   category: string;
+  formationLink?: string;
 }
 
 export function EBPTemplate({
@@ -37,7 +38,8 @@ export function EBPTemplate({
   description,
   softwares,
   colorScheme = 'blue',
-  category
+  category,
+  formationLink = '/formationCompta'
 }: EBPTemplateProps) {
   const colors = {
     blue: {
@@ -111,7 +113,7 @@ export function EBPTemplate({
             </Link>
             
             <Link
-              href="/formationCompta"
+              href={formationLink}
               className="bg-white/90 backdrop-blur text-slate-700 px-8 py-4 rounded-lg font-semibold hover:bg-white border border-slate-200 hover:border-slate-300 transition-all duration-200 shadow-lg"
             >
               Voir les formations
@@ -263,7 +265,7 @@ export function EBPTemplate({
             </Link>
             
             <Link
-              href="/formationCompta"
+              href={formationLink}
               className="bg-white/90 backdrop-blur text-slate-700 px-8 py-4 rounded-lg font-semibold hover:bg-white border border-slate-200 hover:border-slate-300 transition-all duration-200 shadow-lg"
             >
               Voir les formations

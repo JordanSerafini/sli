@@ -3,12 +3,13 @@ import React, { useState } from "react";
 import { ModernCard } from "@/components/ui/modernCard";
 import { ModernButton } from "@/components/ui/modernButton";
 import { Input } from "@/components/ui/Input";
-import { Download, Shield, Monitor, CheckCircle } from "lucide-react";
+import { ExternalLink, Shield, Monitor, CheckCircle } from "lucide-react";
 
 export default function IslClient() {
   const [code, setCode] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [islJoinUrl, setIslJoinUrl] = useState<string | null>(null);
   const [downloadSuccess, setDownloadSuccess] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -20,45 +21,25 @@ export default function IslClient() {
 
     setIsLoading(true);
     setError(null);
+    setIslJoinUrl(null);
     setDownloadSuccess(false);
 
     try {
-      const downloadUrl = `/api/islClient?code=${code}`;
+      // Redirection directe vers ISL avec le code
+      const islJoinUrl = `https://www.islonline.com/fr/fr/join/#${code}`;
       
-      // Utiliser fetch pour pouvoir gérer les erreurs
-      const response = await fetch(downloadUrl);
+      // Ouvrir dans un nouvel onglet
+      window.open(islJoinUrl, '_blank');
       
-      if (!response.ok) {
-        // Si la réponse n'est pas ok, c'est probablement une erreur JSON
-        const errorData = await response.json();
-        setError(errorData.error || "Erreur lors du téléchargement. Veuillez réessayer.");
-        return;
-      }
-
-      // Si tout va bien, créer le téléchargement
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `isl-light-client-${code}.exe`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      
-      // Nettoyer l'URL blob
-      window.URL.revokeObjectURL(url);
-      
-      setError(null);
       setDownloadSuccess(true);
       
-      // Réinitialiser le message de succès après 5 secondes
+      // Réinitialiser le message de succès après 8 secondes
       setTimeout(() => {
         setDownloadSuccess(false);
-      }, 5000);
+      }, 8000);
       
     } catch (err) {
-      setError("Erreur lors du téléchargement. Veuillez réessayer.");
+      setError("Erreur lors de la redirection. Veuillez réessayer.");
       console.error("Erreur:", err);
     } finally {
       setIsLoading(false);
@@ -100,8 +81,20 @@ export default function IslClient() {
             </div>
             
             {error && (
-              <div className="bg-error/10 border border-error/20 rounded-lg p-3">
+              <div className="bg-error/10 border border-error/20 rounded-lg p-4 space-y-3">
                 <p className="text-error text-sm font-medium">{error}</p>
+                {islJoinUrl && (
+                  <ModernButton
+                    variant="outline"
+                    size="sm"
+                    onClick={() => window.open(islJoinUrl, '_blank')}
+                    icon={<ExternalLink />}
+                    iconPosition="right"
+                    className="w-full"
+                  >
+                    Accéder directement à ISL Online
+                  </ModernButton>
+                )}
               </div>
             )}
 
@@ -110,7 +103,7 @@ export default function IslClient() {
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="w-5 h-5 text-success" />
                   <p className="text-success text-sm font-medium">
-                    Téléchargement initié ! Vérifiez vos téléchargements et lancez l'application.
+                    Redirection effectuée ! ISL Online va se lancer automatiquement dans le nouvel onglet.
                   </p>
                 </div>
               </div>
@@ -122,11 +115,11 @@ export default function IslClient() {
               size="lg"
               disabled={isLoading || !code.trim()}
               loading={isLoading}
-              icon={<Download />}
+              icon={<ExternalLink />}
               iconPosition="left"
               className="w-full"
             >
-              Télécharger ISL Light Client
+              Se connecter via ISL Online
             </ModernButton>
           </form>
         </div>
@@ -149,19 +142,19 @@ export default function IslClient() {
             </li>
             <li className="flex items-start space-x-3">
               <span className="w-6 h-6 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0 mt-0.5">2</span>
-              <span>Téléchargez l'application ISL Light Client depuis notre serveur sécurisé</span>
+              <span>Cliquez sur "Se connecter" pour accéder à ISL Online</span>
             </li>
             <li className="flex items-start space-x-3">
               <span className="w-6 h-6 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0 mt-0.5">3</span>
-              <span>Lancez l'application téléchargée</span>
+              <span>ISL va automatiquement détecter votre code et lancer l'application</span>
             </li>
             <li className="flex items-start space-x-3">
               <span className="w-6 h-6 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0 mt-0.5">4</span>
-              <span>Entrez le même code dans l'application</span>
+              <span>Suivez les instructions sur la page ISL pour télécharger le client</span>
             </li>
             <li className="flex items-start space-x-3">
               <span className="w-6 h-6 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0 mt-0.5">5</span>
-              <span>Cliquez sur "Se connecter"</span>
+              <span>Lancez l'application et la connexion se fera automatiquement</span>
             </li>
           </ol>
         </div>
@@ -172,10 +165,10 @@ export default function IslClient() {
         <div className="text-center space-y-3">
           <div className="flex items-center justify-center space-x-2">
             <Shield className="w-5 h-5 text-success-600" />
-            <h4 className="font-semibold text-foreground">Téléchargement sécurisé</h4>
+            <h4 className="font-semibold text-foreground">Connexion sécurisée</h4>
           </div>
           <p className="text-sm text-foreground-muted">
-            Le fichier est téléchargé directement depuis nos serveurs sécurisés et personnalisé avec votre code de connexion.
+            Vous êtes redirigé directement vers ISL Online avec votre code de connexion pour une expérience optimale et sécurisée.
           </p>
         </div>
       </ModernCard>

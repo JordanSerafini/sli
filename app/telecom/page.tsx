@@ -109,7 +109,7 @@ export default function Telecom() {
   return (
     <main className="overflow-hidden">
       {/* Hero Section */}
-      <ModernSection background="gradient" padding="2xl" className="relative">
+      <ModernSection background="gradient" padding="lg" className="relative">
         <div className="absolute inset-0 bg-[url('/assets/telecom.webp')] bg-cover bg-center opacity-10" />
         <div className="relative z-10 text-center">
           <div className="inline-flex items-center px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-medium mb-8">
@@ -154,7 +154,7 @@ export default function Telecom() {
       </ModernSection>
 
       {/* Stats Section */}
-      <ModernSection background="white" padding="lg">
+      <ModernSection background="white" padding="md">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
           {statsData.map((stat, index) => (
             <div key={index} className="text-center group">
@@ -171,8 +171,8 @@ export default function Telecom() {
       </ModernSection>
 
       {/* Solutions Grid */}
-      <ModernSection background="gray" padding="2xl">
-        <div className="text-center mb-16">
+      <ModernSection background="gray" padding="lg">
+        <div className="text-center mb-12">
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
             Nos solutions télécom
           </h2>
@@ -181,7 +181,7 @@ export default function Telecom() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {telecomSolutions.map((solution, index) => (
             <div key={index} className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-2xl mb-4">
@@ -204,7 +204,7 @@ export default function Telecom() {
               description={service.description}
               image={service.image}
               features={service.features}
-              variant={index === 0 ? "featured" : "default"}
+              variant={activeService === index ? "featured" : "default"}
               className="cursor-pointer"
               onClick={() => setActiveService(index)}
             />
@@ -213,7 +213,7 @@ export default function Telecom() {
       </ModernSection>
 
       {/* Detailed Service View */}
-      <ModernSection background="white" padding="2xl">
+      <ModernSection background="white" padding="lg">
         <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-3xl p-8 lg:p-12">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
@@ -264,8 +264,8 @@ export default function Telecom() {
       </ModernSection>
 
       {/* Partners Section */}
-      <ModernSection background="gray" padding="lg">
-        <div className="text-center mb-12">
+      <ModernSection background="gray" padding="md">
+        <div className="text-center mb-8">
           <h3 className="text-2xl font-bold text-slate-900 mb-4">
             Nos partenaires opérateurs
           </h3>
@@ -287,7 +287,7 @@ export default function Telecom() {
       </ModernSection>
 
       {/* CTA Section */}
-      <ModernSection background="dark" padding="2xl">
+      <ModernSection background="dark" padding="lg">
         <div className="text-center">
           <h2 className="text-4xl lg:text-5xl font-bold mb-6">
             Optimisez vos communications
