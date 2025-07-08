@@ -68,17 +68,17 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-    
-  const { phone } = await req.json();
-
-  if (!phone) {
-    return NextResponse.json(
-      { message: 'Le numéro de téléphone est obligatoire.' },
-      { status: 400 }
-    );
-  }
 
   try {
+    const { phone } = await req.json();
+
+    if (!phone) {
+      return NextResponse.json(
+        { message: 'Le numéro de téléphone est obligatoire.' },
+        { status: 400 }
+      );
+    }
+
     const { data, error } = await resend.emails.send({
       from: 'Solution Logique <site@solution-logique.fr>',
       to: ['site@solution-logique.fr'],

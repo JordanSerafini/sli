@@ -1,112 +1,357 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="242" failures="3" errors="0" time="7.309">
-  <testsuite name="Callback API Route" errors="0" failures="1" skipped="0" timestamp="2025-07-08T06:57:43" time="1.942" tests="9">
-    <testcase classname="Callback API Route Configuration de l&apos;environnement devrait retourner 500 si RESEND_API_KEY n&apos;est pas configurée" name="Callback API Route Configuration de l&apos;environnement devrait retourner 500 si RESEND_API_KEY n&apos;est pas configurée" time="0.03">
+<testsuites name="jest tests" tests="242" failures="0" errors="0" time="10.48">
+  <testsuite name="Callback API Route" errors="0" failures="0" skipped="0" timestamp="2025-07-08T07:03:15" time="2.961" tests="9">
+    <testcase classname="Callback API Route Configuration de l&apos;environnement devrait retourner 500 si RESEND_API_KEY n&apos;est pas configurée" name="Callback API Route Configuration de l&apos;environnement devrait retourner 500 si RESEND_API_KEY n&apos;est pas configurée" time="0.023">
     </testcase>
-    <testcase classname="Callback API Route Validation du numéro de téléphone devrait retourner 400 pour un numéro manquant" name="Callback API Route Validation du numéro de téléphone devrait retourner 400 pour un numéro manquant" time="0.002">
+    <testcase classname="Callback API Route Validation du numéro de téléphone devrait retourner 400 pour un numéro manquant" name="Callback API Route Validation du numéro de téléphone devrait retourner 400 pour un numéro manquant" time="0.001">
     </testcase>
     <testcase classname="Callback API Route Validation du numéro de téléphone devrait retourner 400 pour un numéro vide" name="Callback API Route Validation du numéro de téléphone devrait retourner 400 pour un numéro vide" time="0.002">
     </testcase>
-    <testcase classname="Callback API Route Validation du numéro de téléphone devrait accepter différents formats de numéros français" name="Callback API Route Validation du numéro de téléphone devrait accepter différents formats de numéros français" time="0.033">
+    <testcase classname="Callback API Route Validation du numéro de téléphone devrait accepter différents formats de numéros français" name="Callback API Route Validation du numéro de téléphone devrait accepter différents formats de numéros français" time="0.032">
     </testcase>
     <testcase classname="Callback API Route Envoi d&apos;email réussi devrait envoyer un email avec les bonnes données" name="Callback API Route Envoi d&apos;email réussi devrait envoyer un email avec les bonnes données" time="0.004">
     </testcase>
-    <testcase classname="Callback API Route Envoi d&apos;email réussi devrait inclure le numéro dans le template email" name="Callback API Route Envoi d&apos;email réussi devrait inclure le numéro dans le template email" time="0.005">
+    <testcase classname="Callback API Route Envoi d&apos;email réussi devrait inclure le numéro dans le template email" name="Callback API Route Envoi d&apos;email réussi devrait inclure le numéro dans le template email" time="0.002">
     </testcase>
-    <testcase classname="Callback API Route Gestion des erreurs Resend devrait retourner 500 en cas d&apos;erreur Resend" name="Callback API Route Gestion des erreurs Resend devrait retourner 500 en cas d&apos;erreur Resend" time="0.002">
+    <testcase classname="Callback API Route Gestion des erreurs Resend devrait retourner 500 en cas d&apos;erreur Resend" name="Callback API Route Gestion des erreurs Resend devrait retourner 500 en cas d&apos;erreur Resend" time="0.001">
     </testcase>
-    <testcase classname="Callback API Route Gestion des erreurs Resend devrait retourner 500 en cas d&apos;exception non gérée" name="Callback API Route Gestion des erreurs Resend devrait retourner 500 en cas d&apos;exception non gérée" time="0.025">
+    <testcase classname="Callback API Route Gestion des erreurs Resend devrait retourner 500 en cas d&apos;exception non gérée" name="Callback API Route Gestion des erreurs Resend devrait retourner 500 en cas d&apos;exception non gérée" time="0.023">
     </testcase>
-    <testcase classname="Callback API Route Données malformées devrait gérer un JSON invalide" name="Callback API Route Données malformées devrait gérer un JSON invalide" time="0.001">
-      <failure>SyntaxError: Unexpected token &apos;i&apos;, &quot;invalid-json&quot; is not valid JSON
-    at MockNextRequest._callee$ (C:\Users\j.serafini\Desktop\Jordan\Code\sli\jest.setup.js:86:15)
-    at call (C:\Users\j.serafini\Desktop\Jordan\Code\sli\jest.setup.js:2:1)
-    at Generator.tryCatch (C:\Users\j.serafini\Desktop\Jordan\Code\sli\jest.setup.js:2:1)
-    at Generator._invoke [as next] (C:\Users\j.serafini\Desktop\Jordan\Code\sli\jest.setup.js:2:1)
-    at asyncGeneratorStep (C:\Users\j.serafini\Desktop\Jordan\Code\sli\jest.setup.js:2:1)
-    at asyncGeneratorStep (C:\Users\j.serafini\Desktop\Jordan\Code\sli\jest.setup.js:2:1)
-    at _next (C:\Users\j.serafini\Desktop\Jordan\Code\sli\jest.setup.js:2:1)
-    at new Promise (&lt;anonymous&gt;)
-    at MockNextRequest.&lt;anonymous&gt; (C:\Users\j.serafini\Desktop\Jordan\Code\sli\jest.setup.js:2:1)
-    at MockNextRequest.apply [as json] (C:\Users\j.serafini\Desktop\Jordan\Code\sli\jest.setup.js:82:15)
-    at json (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\api\callback\route.ts:72:31)
-    at call (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\api\callback\route.ts:2:1)
-    at Generator.tryCatch (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\api\callback\route.ts:2:1)
-    at Generator._invoke [as next] (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\api\callback\route.ts:2:1)
-    at asyncGeneratorStep (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\api\callback\route.ts:2:1)
-    at asyncGeneratorStep (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\api\callback\route.ts:2:1)
-    at _next (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\api\callback\route.ts:2:1)
-    at new Promise (&lt;anonymous&gt;)
-    at C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\api\callback\route.ts:2:1
-    at apply (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\api\callback\route.ts:63:27)
-    at _callee9$ (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\api\callback\__tests__\route.test.ts:194:34)
-    at call (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\api\callback\__tests__\route.test.ts:2:1)
-    at Generator.tryCatch (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\api\callback\__tests__\route.test.ts:2:1)
-    at Generator._invoke [as next] (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\api\callback\__tests__\route.test.ts:2:1)
-    at asyncGeneratorStep (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\api\callback\__tests__\route.test.ts:2:1)
-    at asyncGeneratorStep (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\api\callback\__tests__\route.test.ts:2:1)
-    at _next (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\api\callback\__tests__\route.test.ts:2:1)
-    at new Promise (&lt;anonymous&gt;)
-    at Object.&lt;anonymous&gt; (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\api\callback\__tests__\route.test.ts:2:1)
-    at Promise.then.completed (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\utils.js:298:28)
-    at new Promise (&lt;anonymous&gt;)
-    at callAsyncCircusFn (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\utils.js:231:10)
-    at _callCircusTest (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\run.js:316:40)
-    at processTicksAndRejections (node:internal/process/task_queues:105:5)
-    at _runTest (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\run.js:252:3)
-    at _runTestsForDescribeBlock (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\run.js:126:9)
-    at _runTestsForDescribeBlock (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\run.js:121:9)
-    at _runTestsForDescribeBlock (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\run.js:121:9)
-    at run (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\run.js:71:3)
-    at runAndTransformResultsToJestFormat (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
-    at jestAdapter (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
-    at runTestInternal (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-runner\build\runTest.js:367:16)
-    at runTest (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-runner\build\runTest.js:444:34)
-    at Object.worker (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-runner\build\testWorker.js:106:12)</failure>
+    <testcase classname="Callback API Route Données malformées devrait gérer un JSON invalide" name="Callback API Route Données malformées devrait gérer un JSON invalide" time="0.02">
     </testcase>
   </testsuite>
-  <testsuite name="ContactEmailTemplate" errors="0" failures="0" skipped="0" timestamp="2025-07-08T06:57:43" time="2.163" tests="13">
-    <testcase classname="ContactEmailTemplate devrait se rendre sans crash" name="ContactEmailTemplate devrait se rendre sans crash" time="0.049">
+  <testsuite name="Ebpbatiment Component" errors="0" failures="0" skipped="0" timestamp="2025-07-08T07:03:16" time="2.864" tests="4">
+    <testcase classname="Ebpbatiment Component devrait se rendre sans crash" name="Ebpbatiment Component devrait se rendre sans crash" time="0.128">
     </testcase>
-    <testcase classname="ContactEmailTemplate devrait afficher toutes les informations de contact" name="ContactEmailTemplate devrait afficher toutes les informations de contact" time="0.014">
+    <testcase classname="Ebpbatiment Component devrait afficher la description" name="Ebpbatiment Component devrait afficher la description" time="0.047">
     </testcase>
-    <testcase classname="ContactEmailTemplate devrait fonctionner sans numéro de téléphone" name="ContactEmailTemplate devrait fonctionner sans numéro de téléphone" time="0.007">
+    <testcase classname="Ebpbatiment Component devrait afficher au moins une carte de logiciel" name="Ebpbatiment Component devrait afficher au moins une carte de logiciel" time="0.034">
     </testcase>
-    <testcase classname="ContactEmailTemplate devrait gérer les caractères spéciaux dans le nom" name="ContactEmailTemplate devrait gérer les caractères spéciaux dans le nom" time="0.007">
-    </testcase>
-    <testcase classname="ContactEmailTemplate devrait gérer les accents dans le message" name="ContactEmailTemplate devrait gérer les accents dans le message" time="0.007">
-    </testcase>
-    <testcase classname="ContactEmailTemplate devrait gérer les emails avec différents formats" name="ContactEmailTemplate devrait gérer les emails avec différents formats" time="0.017">
-    </testcase>
-    <testcase classname="ContactEmailTemplate devrait gérer les numéros de téléphone avec différents formats" name="ContactEmailTemplate devrait gérer les numéros de téléphone avec différents formats" time="0.023">
-    </testcase>
-    <testcase classname="ContactEmailTemplate devrait gérer les messages longs" name="ContactEmailTemplate devrait gérer les messages longs" time="0.003">
-    </testcase>
-    <testcase classname="ContactEmailTemplate devrait gérer les messages avec des sauts de ligne" name="ContactEmailTemplate devrait gérer les messages avec des sauts de ligne" time="0.004">
-    </testcase>
-    <testcase classname="ContactEmailTemplate Structure HTML devrait avoir une structure div avec styles pour email" name="ContactEmailTemplate Structure HTML devrait avoir une structure div avec styles pour email" time="0.013">
-    </testcase>
-    <testcase classname="ContactEmailTemplate Structure HTML devrait avoir des styles inline pour la compatibilité email" name="ContactEmailTemplate Structure HTML devrait avoir des styles inline pour la compatibilité email" time="0.005">
-    </testcase>
-    <testcase classname="ContactEmailTemplate Valeurs vides ou undefined devrait gérer les propriétés undefined" name="ContactEmailTemplate Valeurs vides ou undefined devrait gérer les propriétés undefined" time="0.004">
-    </testcase>
-    <testcase classname="ContactEmailTemplate Valeurs vides ou undefined devrait gérer les chaînes vides" name="ContactEmailTemplate Valeurs vides ou undefined devrait gérer les chaînes vides" time="0.004">
+    <testcase classname="Ebpbatiment Component chaque carte de logiciel devrait comporter un lien &apos;Télécharger la fiche&apos;" name="Ebpbatiment Component chaque carte de logiciel devrait comporter un lien &apos;Télécharger la fiche&apos;" time="0.036">
     </testcase>
   </testsuite>
-  <testsuite name="Utils Functions" errors="0" failures="0" skipped="0" timestamp="2025-07-08T06:57:43" time="2.354" tests="17">
-    <testcase classname="Utils Functions cn (className merge function) devrait combiner des classes simples" name="Utils Functions cn (className merge function) devrait combiner des classes simples" time="0.018">
+  <testsuite name="Informatique Component" errors="0" failures="0" skipped="0" timestamp="2025-07-08T07:03:15" time="3.722" tests="43">
+    <testcase classname="Informatique Component Rendu de base devrait se rendre sans crash" name="Informatique Component Rendu de base devrait se rendre sans crash" time="0.135">
     </testcase>
-    <testcase classname="Utils Functions cn (className merge function) devrait gérer les valeurs undefined et null" name="Utils Functions cn (className merge function) devrait gérer les valeurs undefined et null" time="0.002">
+    <testcase classname="Informatique Component Rendu de base devrait afficher le titre principal" name="Informatique Component Rendu de base devrait afficher le titre principal" time="0.067">
     </testcase>
-    <testcase classname="Utils Functions cn (className merge function) devrait gérer les valeurs booléennes" name="Utils Functions cn (className merge function) devrait gérer les valeurs booléennes" time="0.001">
+    <testcase classname="Informatique Component Rendu de base devrait afficher la description" name="Informatique Component Rendu de base devrait afficher la description" time="0.039">
+    </testcase>
+    <testcase classname="Informatique Component Rendu de base devrait avoir un badge informatique" name="Informatique Component Rendu de base devrait avoir un badge informatique" time="0.046">
+    </testcase>
+    <testcase classname="Informatique Component Services informatiques devrait afficher les différents services proposés" name="Informatique Component Services informatiques devrait afficher les différents services proposés" time="0.034">
+    </testcase>
+    <testcase classname="Informatique Component Services informatiques devrait avoir des sections clairement définies" name="Informatique Component Services informatiques devrait avoir des sections clairement définies" time="0.052">
+    </testcase>
+    <testcase classname="Informatique Component Services informatiques devrait afficher des cartes de services" name="Informatique Component Services informatiques devrait afficher des cartes de services" time="0.045">
+    </testcase>
+    <testcase classname="Informatique Component Services informatiques devrait afficher les descriptions des services" name="Informatique Component Services informatiques devrait afficher les descriptions des services" time="0.037">
+    </testcase>
+    <testcase classname="Informatique Component Services informatiques devrait afficher les fonctionnalités de chaque service" name="Informatique Component Services informatiques devrait afficher les fonctionnalités de chaque service" time="0.05">
+    </testcase>
+    <testcase classname="Informatique Component Images et médias devrait contenir des images relatives à l&apos;informatique" name="Informatique Component Images et médias devrait contenir des images relatives à l&apos;informatique" time="0.037">
+    </testcase>
+    <testcase classname="Informatique Component Images et médias les images devraient avoir des sources valides" name="Informatique Component Images et médias les images devraient avoir des sources valides" time="0.025">
+    </testcase>
+    <testcase classname="Informatique Component Navigation et liens devrait contenir des liens de contact ou d&apos;action" name="Informatique Component Navigation et liens devrait contenir des liens de contact ou d&apos;action" time="0.027">
+    </testcase>
+    <testcase classname="Informatique Component Navigation et liens les liens externes devraient s&apos;ouvrir dans un nouvel onglet" name="Informatique Component Navigation et liens les liens externes devraient s&apos;ouvrir dans un nouvel onglet" time="0.027">
+    </testcase>
+    <testcase classname="Informatique Component Navigation et liens devrait permettre la navigation au clavier" name="Informatique Component Navigation et liens devrait permettre la navigation au clavier" time="0.031">
+    </testcase>
+    <testcase classname="Informatique Component Accessibilité devrait avoir une hiérarchie de titres appropriée" name="Informatique Component Accessibilité devrait avoir une hiérarchie de titres appropriée" time="0.03">
+    </testcase>
+    <testcase classname="Informatique Component Accessibilité tous les éléments interactifs devraient être accessibles" name="Informatique Component Accessibilité tous les éléments interactifs devraient être accessibles" time="0.022">
+    </testcase>
+    <testcase classname="Informatique Component Accessibilité devrait avoir des contrastes appropriés pour les textes" name="Informatique Component Accessibilité devrait avoir des contrastes appropriés pour les textes" time="0.037">
+    </testcase>
+    <testcase classname="Informatique Component Accessibilité devrait avoir des liens accessibles" name="Informatique Component Accessibilité devrait avoir des liens accessibles" time="0.024">
+    </testcase>
+    <testcase classname="Informatique Component Accessibilité devrait avoir des rôles appropriés" name="Informatique Component Accessibilité devrait avoir des rôles appropriés" time="0.018">
+    </testcase>
+    <testcase classname="Informatique Component Responsive design devrait avoir des classes responsive" name="Informatique Component Responsive design devrait avoir des classes responsive" time="0.029">
+    </testcase>
+    <testcase classname="Informatique Component Responsive design devrait gérer différentes tailles d&apos;écran" name="Informatique Component Responsive design devrait gérer différentes tailles d&apos;écran" time="0.021">
+    </testcase>
+    <testcase classname="Informatique Component Responsive design devrait avoir des grilles responsive" name="Informatique Component Responsive design devrait avoir des grilles responsive" time="0.027">
+    </testcase>
+    <testcase classname="Informatique Component Contenu spécifique devrait mentionner les technologies supportées" name="Informatique Component Contenu spécifique devrait mentionner les technologies supportées" time="0.024">
+    </testcase>
+    <testcase classname="Informatique Component Contenu spécifique devrait afficher les types d&apos;intervention" name="Informatique Component Contenu spécifique devrait afficher les types d&apos;intervention" time="0.03">
+    </testcase>
+    <testcase classname="Informatique Component Contenu spécifique devrait mentionner la zone géographique ou les modalités" name="Informatique Component Contenu spécifique devrait mentionner la zone géographique ou les modalités" time="0.033">
+    </testcase>
+    <testcase classname="Informatique Component Contenu spécifique devrait mentionner les technologies et partenaires" name="Informatique Component Contenu spécifique devrait mentionner les technologies et partenaires" time="0.041">
+    </testcase>
+    <testcase classname="Informatique Component Contenu spécifique devrait avoir des sections distinctes" name="Informatique Component Contenu spécifique devrait avoir des sections distinctes" time="0.027">
+    </testcase>
+    <testcase classname="Informatique Component Performance ne devrait pas avoir de rendu excessif" name="Informatique Component Performance ne devrait pas avoir de rendu excessif" time="0.023">
+    </testcase>
+    <testcase classname="Informatique Component Performance devrait se charger rapidement" name="Informatique Component Performance devrait se charger rapidement" time="0.022">
+    </testcase>
+    <testcase classname="Informatique Component Interactivité devrait gérer les clics sur les éléments interactifs" name="Informatique Component Interactivité devrait gérer les clics sur les éléments interactifs" time="0.018">
+    </testcase>
+    <testcase classname="Informatique Component Interactivité devrait gérer les événements de survol" name="Informatique Component Interactivité devrait gérer les événements de survol" time="0.052">
+    </testcase>
+    <testcase classname="Informatique Component Interactivité devrait avoir des éléments cliquables" name="Informatique Component Interactivité devrait avoir des éléments cliquables" time="0.039">
+    </testcase>
+    <testcase classname="Informatique Component Interactivité devrait permettre la navigation au clavier" name="Informatique Component Interactivité devrait permettre la navigation au clavier" time="0.026">
+    </testcase>
+    <testcase classname="Informatique Component Gestion d&apos;erreurs devrait gérer les erreurs de chargement d&apos;images" name="Informatique Component Gestion d&apos;erreurs devrait gérer les erreurs de chargement d&apos;images" time="0.019">
+    </testcase>
+    <testcase classname="Informatique Component Gestion d&apos;erreurs devrait continuer à fonctionner même avec des props undefined" name="Informatique Component Gestion d&apos;erreurs devrait continuer à fonctionner même avec des props undefined" time="0.017">
+    </testcase>
+    <testcase classname="Informatique Component SEO et métadonnées devrait avoir du contenu textuel pour le SEO" name="Informatique Component SEO et métadonnées devrait avoir du contenu textuel pour le SEO" time="0.037">
+    </testcase>
+    <testcase classname="Informatique Component SEO et métadonnées devrait avoir une structure sémantique appropriée" name="Informatique Component SEO et métadonnées devrait avoir une structure sémantique appropriée" time="0.019">
+    </testcase>
+    <testcase classname="Informatique Component Statistiques devrait afficher les statistiques" name="Informatique Component Statistiques devrait afficher les statistiques" time="0.039">
+    </testcase>
+    <testcase classname="Informatique Component Statistiques devrait afficher les labels des statistiques" name="Informatique Component Statistiques devrait afficher les labels des statistiques" time="0.064">
+    </testcase>
+    <testcase classname="Informatique Component Boutons d&apos;action devrait avoir un bouton de contact" name="Informatique Component Boutons d&apos;action devrait avoir un bouton de contact" time="0.035">
+    </testcase>
+    <testcase classname="Informatique Component Boutons d&apos;action devrait avoir un bouton téléphone" name="Informatique Component Boutons d&apos;action devrait avoir un bouton téléphone" time="0.122">
+    </testcase>
+    <testcase classname="Informatique Component Contenu et structure devrait contenir des icônes SVG" name="Informatique Component Contenu et structure devrait contenir des icônes SVG" time="0.024">
+    </testcase>
+    <testcase classname="Informatique Component Contenu et structure devrait avoir une section d&apos;expertises" name="Informatique Component Contenu et structure devrait avoir une section d&apos;expertises" time="0.027">
+    </testcase>
+  </testsuite>
+  <testsuite name="Footer Component" errors="0" failures="0" skipped="0" timestamp="2025-07-08T07:03:16" time="2.988" tests="3">
+    <testcase classname="Footer Component devrait se rendre sans crash" name="Footer Component devrait se rendre sans crash" time="0.122">
+    </testcase>
+    <testcase classname="Footer Component devrait afficher les liens de navigation" name="Footer Component devrait afficher les liens de navigation" time="0.022">
+    </testcase>
+    <testcase classname="Footer Component devrait afficher l&apos;année dynamique dans le copyright" name="Footer Component devrait afficher l&apos;année dynamique dans le copyright" time="0.011">
+    </testcase>
+  </testsuite>
+  <testsuite name="CallbackModal Component" errors="0" failures="0" skipped="0" timestamp="2025-07-08T07:03:16" time="3.139" tests="18">
+    <testcase classname="CallbackModal Component Rendu de base ne devrait pas se rendre quand isOpen est false" name="CallbackModal Component Rendu de base ne devrait pas se rendre quand isOpen est false" time="0.062">
+    </testcase>
+    <testcase classname="CallbackModal Component Rendu de base devrait se rendre quand isOpen est true" name="CallbackModal Component Rendu de base devrait se rendre quand isOpen est true" time="0.04">
+    </testcase>
+    <testcase classname="CallbackModal Component Rendu de base devrait afficher le formulaire de rappel" name="CallbackModal Component Rendu de base devrait afficher le formulaire de rappel" time="0.016">
+    </testcase>
+    <testcase classname="CallbackModal Component Rendu de base devrait avoir un bouton de fermeture" name="CallbackModal Component Rendu de base devrait avoir un bouton de fermeture" time="0.019">
+    </testcase>
+    <testcase classname="CallbackModal Component Interactivité devrait fermer la modal quand on clique sur le bouton fermer" name="CallbackModal Component Interactivité devrait fermer la modal quand on clique sur le bouton fermer" time="0.016">
+    </testcase>
+    <testcase classname="CallbackModal Component Interactivité devrait fermer la modal quand on clique sur Annuler" name="CallbackModal Component Interactivité devrait fermer la modal quand on clique sur Annuler" time="0.012">
+    </testcase>
+    <testcase classname="CallbackModal Component Interactivité devrait mettre à jour la valeur du champ téléphone" name="CallbackModal Component Interactivité devrait mettre à jour la valeur du champ téléphone" time="0.014">
+    </testcase>
+    <testcase classname="CallbackModal Component Soumission du formulaire devrait empêcher la soumission avec un champ vide" name="CallbackModal Component Soumission du formulaire devrait empêcher la soumission avec un champ vide" time="0.065">
+    </testcase>
+    <testcase classname="CallbackModal Component Soumission du formulaire devrait soumettre le formulaire avec des données valides" name="CallbackModal Component Soumission du formulaire devrait soumettre le formulaire avec des données valides" time="0.025">
+    </testcase>
+    <testcase classname="CallbackModal Component Soumission du formulaire devrait afficher un message de succès après soumission réussie" name="CallbackModal Component Soumission du formulaire devrait afficher un message de succès après soumission réussie" time="0.014">
+    </testcase>
+    <testcase classname="CallbackModal Component Soumission du formulaire devrait afficher un message d&apos;erreur en cas d&apos;échec" name="CallbackModal Component Soumission du formulaire devrait afficher un message d&apos;erreur en cas d&apos;échec" time="0.01">
+    </testcase>
+    <testcase classname="CallbackModal Component Soumission du formulaire devrait gérer les erreurs réseau" name="CallbackModal Component Soumission du formulaire devrait gérer les erreurs réseau" time="0.01">
+    </testcase>
+    <testcase classname="CallbackModal Component Soumission du formulaire devrait afficher l&apos;état de chargement pendant la soumission" name="CallbackModal Component Soumission du formulaire devrait afficher l&apos;état de chargement pendant la soumission" time="0.016">
+    </testcase>
+    <testcase classname="CallbackModal Component Soumission du formulaire devrait vider le champ après succès" name="CallbackModal Component Soumission du formulaire devrait vider le champ après succès" time="0.012">
+    </testcase>
+    <testcase classname="CallbackModal Component Soumission du formulaire devrait fermer la modal après le délai de succès" name="CallbackModal Component Soumission du formulaire devrait fermer la modal après le délai de succès" time="0.018">
+    </testcase>
+    <testcase classname="CallbackModal Component Accessibilité devrait permettre la fermeture avec la touche Échap sur le bouton fermer" name="CallbackModal Component Accessibilité devrait permettre la fermeture avec la touche Échap sur le bouton fermer" time="0.007">
+    </testcase>
+    <testcase classname="CallbackModal Component Accessibilité devrait permettre la fermeture avec la barre d&apos;espace sur le bouton fermer" name="CallbackModal Component Accessibilité devrait permettre la fermeture avec la barre d&apos;espace sur le bouton fermer" time="0.006">
+    </testcase>
+    <testcase classname="CallbackModal Component États multiples ne devrait pas permettre de soumettre pendant l&apos;envoi" name="CallbackModal Component États multiples ne devrait pas permettre de soumettre pendant l&apos;envoi" time="0.017">
+    </testcase>
+  </testsuite>
+  <testsuite name="Ebpbatiment Component" errors="0" failures="0" skipped="0" timestamp="2025-07-08T07:03:15" time="3.718" tests="40">
+    <testcase classname="Ebpbatiment Component Rendu de base devrait se rendre sans crash" name="Ebpbatiment Component Rendu de base devrait se rendre sans crash" time="0.115">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Rendu de base devrait afficher le titre principal" name="Ebpbatiment Component Rendu de base devrait afficher le titre principal" time="0.069">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Rendu de base devrait afficher la description" name="Ebpbatiment Component Rendu de base devrait afficher la description" time="0.064">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Rendu de base devrait avoir un badge indiquant &quot;Logiciels EBP Bâtiment&quot;" name="Ebpbatiment Component Rendu de base devrait avoir un badge indiquant &quot;Logiciels EBP Bâtiment&quot;" time="0.032">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Navigation et boutons d&apos;action devrait avoir un bouton &quot;Demander une démonstration&quot;" name="Ebpbatiment Component Navigation et boutons d&apos;action devrait avoir un bouton &quot;Demander une démonstration&quot;" time="0.035">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Navigation et boutons d&apos;action devrait avoir un lien vers les formations" name="Ebpbatiment Component Navigation et boutons d&apos;action devrait avoir un lien vers les formations" time="0.028">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Cartes de logiciels devrait afficher les noms des logiciels EBP" name="Ebpbatiment Component Cartes de logiciels devrait afficher les noms des logiciels EBP" time="0.054">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Cartes de logiciels devrait afficher les sous-titres des logiciels" name="Ebpbatiment Component Cartes de logiciels devrait afficher les sous-titres des logiciels" time="0.042">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Cartes de logiciels devrait afficher les niveaux des logiciels" name="Ebpbatiment Component Cartes de logiciels devrait afficher les niveaux des logiciels" time="0.038">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Cartes de logiciels devrait marquer EBP Expert Bâtiment comme populaire" name="Ebpbatiment Component Cartes de logiciels devrait marquer EBP Expert Bâtiment comme populaire" time="0.029">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Cartes de logiciels devrait afficher au moins une carte de logiciel" name="Ebpbatiment Component Cartes de logiciels devrait afficher au moins une carte de logiciel" time="0.058">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Cartes de logiciels chaque carte de logiciel devrait avoir un titre" name="Ebpbatiment Component Cartes de logiciels chaque carte de logiciel devrait avoir un titre" time="0.025">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Cartes de logiciels chaque carte de logiciel devrait avoir une description" name="Ebpbatiment Component Cartes de logiciels chaque carte de logiciel devrait avoir une description" time="0.029">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Cartes de logiciels chaque carte de logiciel devrait comporter un lien &apos;Télécharger la fiche&apos;" name="Ebpbatiment Component Cartes de logiciels chaque carte de logiciel devrait comporter un lien &apos;Télécharger la fiche&apos;" time="0.045">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Cartes de logiciels les liens &apos;Télécharger la fiche&apos; devraient pointer vers des PDFs" name="Ebpbatiment Component Cartes de logiciels les liens &apos;Télécharger la fiche&apos; devraient pointer vers des PDFs" time="0.026">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Cartes de logiciels les liens devraient s&apos;ouvrir dans un nouvel onglet" name="Ebpbatiment Component Cartes de logiciels les liens devraient s&apos;ouvrir dans un nouvel onglet" time="0.025">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Images et médias devrait contenir des images de logiciels" name="Ebpbatiment Component Images et médias devrait contenir des images de logiciels" time="0.032">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Images et médias les images devraient avoir des attributs src valides" name="Ebpbatiment Component Images et médias les images devraient avoir des attributs src valides" time="0.018">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Images et médias devrait contenir des icônes SVG" name="Ebpbatiment Component Images et médias devrait contenir des icônes SVG" time="0.019">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Navigation et interactivité devrait permettre la navigation entre les cartes au clavier" name="Ebpbatiment Component Navigation et interactivité devrait permettre la navigation entre les cartes au clavier" time="0.033">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Navigation et interactivité les boutons devraient être accessibles via Tab" name="Ebpbatiment Component Navigation et interactivité les boutons devraient être accessibles via Tab" time="0.024">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Navigation et interactivité devrait avoir des éléments focusables" name="Ebpbatiment Component Navigation et interactivité devrait avoir des éléments focusables" time="0.015">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Accessibilité devrait avoir une structure de titres appropriée" name="Ebpbatiment Component Accessibilité devrait avoir une structure de titres appropriée" time="0.029">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Accessibilité tous les liens devraient avoir du texte ou des labels" name="Ebpbatiment Component Accessibilité tous les liens devraient avoir du texte ou des labels" time="0.018">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Accessibilité les images devraient avoir des attributs alt appropriés" name="Ebpbatiment Component Accessibilité les images devraient avoir des attributs alt appropriés" time="0.018">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Accessibilité les liens devraient avoir des attributs appropriés" name="Ebpbatiment Component Accessibilité les liens devraient avoir des attributs appropriés" time="0.027">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Responsive et mise en page devrait avoir des classes CSS appropriées pour le responsive" name="Ebpbatiment Component Responsive et mise en page devrait avoir des classes CSS appropriées pour le responsive" time="0.018">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Responsive et mise en page les cartes devraient être dans un layout grid ou flex" name="Ebpbatiment Component Responsive et mise en page les cartes devraient être dans un layout grid ou flex" time="0.022">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Contenu spécifique EBP Bâtiment devrait mentionner les types de logiciels bâtiment" name="Ebpbatiment Component Contenu spécifique EBP Bâtiment devrait mentionner les types de logiciels bâtiment" time="0.018">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Contenu spécifique EBP Bâtiment devrait afficher les différentes versions de logiciels" name="Ebpbatiment Component Contenu spécifique EBP Bâtiment devrait afficher les différentes versions de logiciels" time="0.023">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Contenu spécifique EBP Bâtiment devrait contenir des informations sur les fonctionnalités" name="Ebpbatiment Component Contenu spécifique EBP Bâtiment devrait contenir des informations sur les fonctionnalités" time="0.013">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Contenu spécifique EBP Bâtiment devrait lister les fonctionnalités des logiciels" name="Ebpbatiment Component Contenu spécifique EBP Bâtiment devrait lister les fonctionnalités des logiciels" time="0.025">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Contenu spécifique EBP Bâtiment devrait avoir des badges pour identifier les types de logiciels" name="Ebpbatiment Component Contenu spécifique EBP Bâtiment devrait avoir des badges pour identifier les types de logiciels" time="0.015">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Contenu spécifique EBP Bâtiment devrait mentionner les différents publics cibles" name="Ebpbatiment Component Contenu spécifique EBP Bâtiment devrait mentionner les différents publics cibles" time="0.023">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Performance et optimisation ne devrait pas avoir de rendu excessif" name="Ebpbatiment Component Performance et optimisation ne devrait pas avoir de rendu excessif" time="0.025">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Performance et optimisation devrait charger rapidement" name="Ebpbatiment Component Performance et optimisation devrait charger rapidement" time="0.018">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Gestion d&apos;erreurs devrait gérer les props manquantes gracieusement" name="Ebpbatiment Component Gestion d&apos;erreurs devrait gérer les props manquantes gracieusement" time="0.015">
+    </testcase>
+    <testcase classname="Ebpbatiment Component Gestion d&apos;erreurs devrait continuer à fonctionner si une image ne se charge pas" name="Ebpbatiment Component Gestion d&apos;erreurs devrait continuer à fonctionner si une image ne se charge pas" time="0.016">
+    </testcase>
+    <testcase classname="Ebpbatiment Component SEO et métadonnées devrait avoir des titres hiérarchiques appropriés" name="Ebpbatiment Component SEO et métadonnées devrait avoir des titres hiérarchiques appropriés" time="0.055">
+    </testcase>
+    <testcase classname="Ebpbatiment Component SEO et métadonnées devrait contenir du contenu descriptif pour le SEO" name="Ebpbatiment Component SEO et métadonnées devrait contenir du contenu descriptif pour le SEO" time="0.011">
+    </testcase>
+  </testsuite>
+  <testsuite name="IslClient Component" errors="0" failures="0" skipped="0" timestamp="2025-07-08T07:03:16" time="3.08" tests="9">
+    <testcase classname="IslClient Component Rendu de base devrait se rendre sans crash" name="IslClient Component Rendu de base devrait se rendre sans crash" time="0.085">
+    </testcase>
+    <testcase classname="IslClient Component Rendu de base devrait afficher le formulaire principal" name="IslClient Component Rendu de base devrait afficher le formulaire principal" time="0.019">
+    </testcase>
+    <testcase classname="IslClient Component Rendu de base devrait afficher les instructions" name="IslClient Component Rendu de base devrait afficher les instructions" time="0.011">
+    </testcase>
+    <testcase classname="IslClient Component Interactions utilisateur devrait permettre la saisie dans le champ code" name="IslClient Component Interactions utilisateur devrait permettre la saisie dans le champ code" time="0.017">
+    </testcase>
+    <testcase classname="IslClient Component Interactions utilisateur devrait désactiver le bouton quand le code est vide" name="IslClient Component Interactions utilisateur devrait désactiver le bouton quand le code est vide" time="0.007">
+    </testcase>
+    <testcase classname="IslClient Component Interactions utilisateur devrait activer le bouton quand un code est saisi" name="IslClient Component Interactions utilisateur devrait activer le bouton quand un code est saisi" time="0.013">
+    </testcase>
+    <testcase classname="IslClient Component Validation et erreurs devrait afficher une erreur pour un code vide" name="IslClient Component Validation et erreurs devrait afficher une erreur pour un code vide" time="0.018">
+    </testcase>
+    <testcase classname="IslClient Component Fonctionnalité de téléchargement devrait afficher le bouton de téléchargement" name="IslClient Component Fonctionnalité de téléchargement devrait afficher le bouton de téléchargement" time="0.009">
+    </testcase>
+    <testcase classname="IslClient Component Fonctionnalité de téléchargement devrait permettre de saisir un code pour activer le téléchargement" name="IslClient Component Fonctionnalité de téléchargement devrait permettre de saisir un code pour activer le téléchargement" time="0.012">
+    </testcase>
+  </testsuite>
+  <testsuite name="Contact API Route" errors="0" failures="0" skipped="0" timestamp="2025-07-08T07:03:16" time="3.098" tests="13">
+    <testcase classname="Contact API Route Validation des données devrait retourner 400 pour des champs manquants" name="Contact API Route Validation des données devrait retourner 400 pour des champs manquants" time="0.012">
+    </testcase>
+    <testcase classname="Contact API Route Validation des données devrait retourner 400 pour un email invalide" name="Contact API Route Validation des données devrait retourner 400 pour un email invalide" time="0.001">
+    </testcase>
+    <testcase classname="Contact API Route Validation des données devrait accepter un email valide" name="Contact API Route Validation des données devrait accepter un email valide" time="0.005">
+    </testcase>
+    <testcase classname="Contact API Route Validation des données devrait accepter des emails avec différents formats" name="Contact API Route Validation des données devrait accepter des emails avec différents formats" time="0.004">
+    </testcase>
+    <testcase classname="Contact API Route Configuration de l&apos;environnement devrait retourner 500 si RESEND_API_KEY n&apos;est pas configurée" name="Contact API Route Configuration de l&apos;environnement devrait retourner 500 si RESEND_API_KEY n&apos;est pas configurée" time="0.007">
+    </testcase>
+    <testcase classname="Contact API Route Envoi d&apos;email réussi devrait envoyer un email avec les bonnes données" name="Contact API Route Envoi d&apos;email réussi devrait envoyer un email avec les bonnes données" time="0.002">
+    </testcase>
+    <testcase classname="Contact API Route Envoi d&apos;email réussi devrait envoyer un email sans numéro de téléphone" name="Contact API Route Envoi d&apos;email réussi devrait envoyer un email sans numéro de téléphone" time="0.003">
+    </testcase>
+    <testcase classname="Contact API Route Gestion des erreurs Resend devrait retourner 500 en cas d&apos;erreur Resend" name="Contact API Route Gestion des erreurs Resend devrait retourner 500 en cas d&apos;erreur Resend" time="0.001">
+    </testcase>
+    <testcase classname="Contact API Route Gestion des erreurs Resend devrait retourner 500 en cas d&apos;exception non gérée" name="Contact API Route Gestion des erreurs Resend devrait retourner 500 en cas d&apos;exception non gérée" time="0.026">
+    </testcase>
+    <testcase classname="Contact API Route Données malformées devrait gérer un JSON invalide" name="Contact API Route Données malformées devrait gérer un JSON invalide" time="0.016">
+    </testcase>
+    <testcase classname="Contact API Route Données malformées devrait gérer des champs avec des espaces uniquement" name="Contact API Route Données malformées devrait gérer des champs avec des espaces uniquement" time="0">
+    </testcase>
+    <testcase classname="Contact API Route Caractères spéciaux et sécurité devrait gérer les caractères spéciaux dans le nom" name="Contact API Route Caractères spéciaux et sécurité devrait gérer les caractères spéciaux dans le nom" time="0.001">
+    </testcase>
+    <testcase classname="Contact API Route Caractères spéciaux et sécurité devrait gérer les numéros de téléphone avec différents formats" name="Contact API Route Caractères spéciaux et sécurité devrait gérer les numéros de téléphone avec différents formats" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="Page NosServices" errors="0" failures="0" skipped="0" timestamp="2025-07-08T07:03:16" time="3.231" tests="2">
+    <testcase classname="Page NosServices devrait afficher un titre principal &quot;NOS SERVICES&quot;" name="Page NosServices devrait afficher un titre principal &quot;NOS SERVICES&quot;" time="0.144">
+    </testcase>
+    <testcase classname="Page NosServices devrait comporter des liens vers les services" name="Page NosServices devrait comporter des liens vers les services" time="0.056">
+    </testcase>
+  </testsuite>
+  <testsuite name="Button Component" errors="0" failures="0" skipped="0" timestamp="2025-07-08T07:03:16" time="3.305" tests="18">
+    <testcase classname="Button Component devrait se rendre sans crash avec les props par défaut" name="Button Component devrait se rendre sans crash avec les props par défaut" time="0.101">
+    </testcase>
+    <testcase classname="Button Component Variants devrait appliquer le style primary" name="Button Component Variants devrait appliquer le style primary" time="0.01">
+    </testcase>
+    <testcase classname="Button Component Variants devrait appliquer le style secondary" name="Button Component Variants devrait appliquer le style secondary" time="0.01">
+    </testcase>
+    <testcase classname="Button Component Variants devrait appliquer le style outline" name="Button Component Variants devrait appliquer le style outline" time="0.01">
+    </testcase>
+    <testcase classname="Button Component Variants devrait appliquer le style ghost" name="Button Component Variants devrait appliquer le style ghost" time="0.015">
+    </testcase>
+    <testcase classname="Button Component Sizes devrait appliquer la taille sm" name="Button Component Sizes devrait appliquer la taille sm" time="0.003">
+    </testcase>
+    <testcase classname="Button Component Sizes devrait appliquer la taille md" name="Button Component Sizes devrait appliquer la taille md" time="0.006">
+    </testcase>
+    <testcase classname="Button Component Sizes devrait appliquer la taille lg" name="Button Component Sizes devrait appliquer la taille lg" time="0.006">
+    </testcase>
+    <testcase classname="Button Component Sizes devrait appliquer la taille xl" name="Button Component Sizes devrait appliquer la taille xl" time="0.005">
+    </testcase>
+    <testcase classname="Button Component États devrait être désactivé quand disabled=true" name="Button Component États devrait être désactivé quand disabled=true" time="0.005">
+    </testcase>
+    <testcase classname="Button Component États devrait accepter des classes CSS personnalisées" name="Button Component États devrait accepter des classes CSS personnalisées" time="0.003">
+    </testcase>
+    <testcase classname="Button Component Événements devrait gérer les clics" name="Button Component Événements devrait gérer les clics" time="0.006">
+    </testcase>
+    <testcase classname="Button Component Événements ne devrait pas déclencher onClick quand disabled" name="Button Component Événements ne devrait pas déclencher onClick quand disabled" time="0.005">
+    </testcase>
+    <testcase classname="Button Component Événements devrait gérer les événements de focus" name="Button Component Événements devrait gérer les événements de focus" time="0.004">
+    </testcase>
+    <testcase classname="Button Component Accessibilité devrait avoir les classes de focus appropriées" name="Button Component Accessibilité devrait avoir les classes de focus appropriées" time="0.004">
+    </testcase>
+    <testcase classname="Button Component Accessibilité devrait accepter les attributs aria" name="Button Component Accessibilité devrait accepter les attributs aria" time="0.005">
+    </testcase>
+    <testcase classname="Button Component Accessibilité devrait supporter le type submit" name="Button Component Accessibilité devrait supporter le type submit" time="0.007">
+    </testcase>
+    <testcase classname="Button Component Forward Ref devrait forwarder la ref correctement" name="Button Component Forward Ref devrait forwarder la ref correctement" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="Utils Functions" errors="0" failures="0" skipped="0" timestamp="2025-07-08T07:03:16" time="3.334" tests="17">
+    <testcase classname="Utils Functions cn (className merge function) devrait combiner des classes simples" name="Utils Functions cn (className merge function) devrait combiner des classes simples" time="0.014">
+    </testcase>
+    <testcase classname="Utils Functions cn (className merge function) devrait gérer les valeurs undefined et null" name="Utils Functions cn (className merge function) devrait gérer les valeurs undefined et null" time="0">
+    </testcase>
+    <testcase classname="Utils Functions cn (className merge function) devrait gérer les valeurs booléennes" name="Utils Functions cn (className merge function) devrait gérer les valeurs booléennes" time="0">
     </testcase>
     <testcase classname="Utils Functions cn (className merge function) devrait gérer les classes conditionnelles" name="Utils Functions cn (className merge function) devrait gérer les classes conditionnelles" time="0">
     </testcase>
     <testcase classname="Utils Functions cn (className merge function) devrait dédupliquer les classes identiques" name="Utils Functions cn (className merge function) devrait dédupliquer les classes identiques" time="0.001">
     </testcase>
-    <testcase classname="Utils Functions cn (className merge function) devrait gérer les objets de classes" name="Utils Functions cn (className merge function) devrait gérer les objets de classes" time="0.001">
+    <testcase classname="Utils Functions cn (className merge function) devrait gérer les objets de classes" name="Utils Functions cn (className merge function) devrait gérer les objets de classes" time="0">
     </testcase>
-    <testcase classname="Utils Functions cn (className merge function) devrait gérer les tableaux de classes" name="Utils Functions cn (className merge function) devrait gérer les tableaux de classes" time="0.001">
+    <testcase classname="Utils Functions cn (className merge function) devrait gérer les tableaux de classes" name="Utils Functions cn (className merge function) devrait gérer les tableaux de classes" time="0">
     </testcase>
     <testcase classname="Utils Functions cn (className merge function) devrait gérer les chaînes vides" name="Utils Functions cn (className merge function) devrait gérer les chaînes vides" time="0">
     </testcase>
@@ -118,499 +363,153 @@
     </testcase>
     <testcase classname="Utils Functions Edge cases devrait gérer les valeurs numériques" name="Utils Functions Edge cases devrait gérer les valeurs numériques" time="0">
     </testcase>
-    <testcase classname="Utils Functions Edge cases devrait gérer les nested objects" name="Utils Functions Edge cases devrait gérer les nested objects" time="0.001">
+    <testcase classname="Utils Functions Edge cases devrait gérer les nested objects" name="Utils Functions Edge cases devrait gérer les nested objects" time="0">
     </testcase>
     <testcase classname="Utils Functions Edge cases devrait gérer les expressions complexes" name="Utils Functions Edge cases devrait gérer les expressions complexes" time="0.001">
     </testcase>
     <testcase classname="Utils Functions Performance et cas d&apos;usage réels devrait gérer un grand nombre de classes" name="Utils Functions Performance et cas d&apos;usage réels devrait gérer un grand nombre de classes" time="0">
     </testcase>
-    <testcase classname="Utils Functions Performance et cas d&apos;usage réels devrait gérer les classes Tailwind typiques" name="Utils Functions Performance et cas d&apos;usage réels devrait gérer les classes Tailwind typiques" time="0">
+    <testcase classname="Utils Functions Performance et cas d&apos;usage réels devrait gérer les classes Tailwind typiques" name="Utils Functions Performance et cas d&apos;usage réels devrait gérer les classes Tailwind typiques" time="0.001">
     </testcase>
-    <testcase classname="Utils Functions Performance et cas d&apos;usage réels devrait être utilisable dans un composant React pattern" name="Utils Functions Performance et cas d&apos;usage réels devrait être utilisable dans un composant React pattern" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="IslClient Component" errors="0" failures="2" skipped="0" timestamp="2025-07-08T06:57:43" time="2.816" tests="9">
-    <testcase classname="IslClient Component Rendu de base devrait se rendre sans crash" name="IslClient Component Rendu de base devrait se rendre sans crash" time="0.081">
-    </testcase>
-    <testcase classname="IslClient Component Rendu de base devrait afficher le formulaire principal" name="IslClient Component Rendu de base devrait afficher le formulaire principal" time="0.018">
-    </testcase>
-    <testcase classname="IslClient Component Rendu de base devrait afficher les instructions" name="IslClient Component Rendu de base devrait afficher les instructions" time="0.015">
-    </testcase>
-    <testcase classname="IslClient Component Interactions utilisateur devrait permettre la saisie dans le champ code" name="IslClient Component Interactions utilisateur devrait permettre la saisie dans le champ code" time="0.02">
-    </testcase>
-    <testcase classname="IslClient Component Interactions utilisateur devrait désactiver le bouton quand le code est vide" name="IslClient Component Interactions utilisateur devrait désactiver le bouton quand le code est vide" time="0.008">
-    </testcase>
-    <testcase classname="IslClient Component Interactions utilisateur devrait activer le bouton quand un code est saisi" name="IslClient Component Interactions utilisateur devrait activer le bouton quand un code est saisi" time="0.015">
-    </testcase>
-    <testcase classname="IslClient Component Validation et erreurs devrait afficher une erreur pour un code vide" name="IslClient Component Validation et erreurs devrait afficher une erreur pour un code vide" time="0.017">
-    </testcase>
-    <testcase classname="IslClient Component Fonctionnalité de téléchargement devrait gérer le téléchargement avec un code valide" name="IslClient Component Fonctionnalité de téléchargement devrait gérer le téléchargement avec un code valide" time="0.002">
-      <failure>Error: Target container is not a DOM element.
-    at Object.&lt;anonymous&gt;.process.env.NODE_ENV.exports.createRoot (C:\Users\j.serafini\Desktop\Jordan\Code\sli\node_modules\react-dom\cjs\react-dom-client.development.js:24604:15)
-    at createConcurrentRoot (C:\Users\j.serafini\Desktop\Jordan\Code\sli\node_modules\@testing-library\react\dist\pure.js:146:27)
-    at render (C:\Users\j.serafini\Desktop\Jordan\Code\sli\node_modules\@testing-library\react\dist\pure.js:262:12)
-    at customRender (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\telemaintenance\__tests__\ISLinput.test.tsx:51:24)
-    at customRender (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\telemaintenance\__tests__\ISLinput.test.tsx:184:22)
-    at call (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\telemaintenance\__tests__\ISLinput.test.tsx:2:1)
-    at Generator.tryCatch (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\telemaintenance\__tests__\ISLinput.test.tsx:2:1)
-    at Generator._invoke [as next] (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\telemaintenance\__tests__\ISLinput.test.tsx:2:1)
-    at asyncGeneratorStep (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\telemaintenance\__tests__\ISLinput.test.tsx:2:1)
-    at asyncGeneratorStep (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\telemaintenance\__tests__\ISLinput.test.tsx:2:1)
-    at _next (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\telemaintenance\__tests__\ISLinput.test.tsx:2:1)
-    at new Promise (&lt;anonymous&gt;)
-    at Object.&lt;anonymous&gt; (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\telemaintenance\__tests__\ISLinput.test.tsx:2:1)
-    at Promise.then.completed (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\utils.js:298:28)
-    at new Promise (&lt;anonymous&gt;)
-    at callAsyncCircusFn (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\utils.js:231:10)
-    at _callCircusTest (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\run.js:316:40)
-    at _runTest (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\run.js:252:3)
-    at _runTestsForDescribeBlock (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\run.js:126:9)
-    at _runTestsForDescribeBlock (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\run.js:121:9)
-    at _runTestsForDescribeBlock (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\run.js:121:9)
-    at run (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\run.js:71:3)
-    at runAndTransformResultsToJestFormat (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
-    at jestAdapter (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
-    at runTestInternal (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-runner\build\runTest.js:367:16)
-    at runTest (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-runner\build\runTest.js:444:34)
-    at Object.worker (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-runner\build\testWorker.js:106:12)</failure>
-    </testcase>
-    <testcase classname="IslClient Component Fonctionnalité de téléchargement devrait afficher un message de succès" name="IslClient Component Fonctionnalité de téléchargement devrait afficher un message de succès" time="0.002">
-      <failure>Error: Target container is not a DOM element.
-    at Object.&lt;anonymous&gt;.process.env.NODE_ENV.exports.createRoot (C:\Users\j.serafini\Desktop\Jordan\Code\sli\node_modules\react-dom\cjs\react-dom-client.development.js:24604:15)
-    at createConcurrentRoot (C:\Users\j.serafini\Desktop\Jordan\Code\sli\node_modules\@testing-library\react\dist\pure.js:146:27)
-    at render (C:\Users\j.serafini\Desktop\Jordan\Code\sli\node_modules\@testing-library\react\dist\pure.js:262:12)
-    at customRender (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\telemaintenance\__tests__\ISLinput.test.tsx:51:24)
-    at customRender (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\telemaintenance\__tests__\ISLinput.test.tsx:216:22)
-    at call (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\telemaintenance\__tests__\ISLinput.test.tsx:2:1)
-    at Generator.tryCatch (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\telemaintenance\__tests__\ISLinput.test.tsx:2:1)
-    at Generator._invoke [as next] (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\telemaintenance\__tests__\ISLinput.test.tsx:2:1)
-    at asyncGeneratorStep (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\telemaintenance\__tests__\ISLinput.test.tsx:2:1)
-    at asyncGeneratorStep (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\telemaintenance\__tests__\ISLinput.test.tsx:2:1)
-    at _next (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\telemaintenance\__tests__\ISLinput.test.tsx:2:1)
-    at new Promise (&lt;anonymous&gt;)
-    at Object.&lt;anonymous&gt; (C:\Users\j.serafini\Desktop\Jordan\Code\sli\app\telemaintenance\__tests__\ISLinput.test.tsx:2:1)
-    at Promise.then.completed (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\utils.js:298:28)
-    at new Promise (&lt;anonymous&gt;)
-    at callAsyncCircusFn (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\utils.js:231:10)
-    at _callCircusTest (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\run.js:316:40)
-    at _runTest (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\run.js:252:3)
-    at _runTestsForDescribeBlock (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\run.js:126:9)
-    at _runTestsForDescribeBlock (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\run.js:121:9)
-    at _runTestsForDescribeBlock (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\run.js:121:9)
-    at run (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\run.js:71:3)
-    at runAndTransformResultsToJestFormat (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
-    at jestAdapter (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
-    at runTestInternal (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-runner\build\runTest.js:367:16)
-    at runTest (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-runner\build\runTest.js:444:34)
-    at Object.worker (C:\Users\j.serafini\AppData\Roaming\npm\node_modules\jest\node_modules\jest-runner\build\testWorker.js:106:12)</failure>
+    <testcase classname="Utils Functions Performance et cas d&apos;usage réels devrait être utilisable dans un composant React pattern" name="Utils Functions Performance et cas d&apos;usage réels devrait être utilisable dans un composant React pattern" time="0.004">
     </testcase>
   </testsuite>
-  <testsuite name="Page NosServices" errors="0" failures="0" skipped="0" timestamp="2025-07-08T06:57:43" time="2.848" tests="2">
-    <testcase classname="Page NosServices devrait afficher un titre principal &quot;NOS SERVICES&quot;" name="Page NosServices devrait afficher un titre principal &quot;NOS SERVICES&quot;" time="0.134">
+  <testsuite name="ContactEmailTemplate" errors="0" failures="0" skipped="0" timestamp="2025-07-08T07:03:16" time="3.41" tests="13">
+    <testcase classname="ContactEmailTemplate devrait se rendre sans crash" name="ContactEmailTemplate devrait se rendre sans crash" time="0.029">
     </testcase>
-    <testcase classname="Page NosServices devrait comporter des liens vers les services" name="Page NosServices devrait comporter des liens vers les services" time="0.056">
+    <testcase classname="ContactEmailTemplate devrait afficher toutes les informations de contact" name="ContactEmailTemplate devrait afficher toutes les informations de contact" time="0.005">
     </testcase>
-  </testsuite>
-  <testsuite name="CallbackModal Component" errors="0" failures="0" skipped="0" timestamp="2025-07-08T06:57:43" time="2.909" tests="18">
-    <testcase classname="CallbackModal Component Rendu de base ne devrait pas se rendre quand isOpen est false" name="CallbackModal Component Rendu de base ne devrait pas se rendre quand isOpen est false" time="0.042">
+    <testcase classname="ContactEmailTemplate devrait fonctionner sans numéro de téléphone" name="ContactEmailTemplate devrait fonctionner sans numéro de téléphone" time="0.003">
     </testcase>
-    <testcase classname="CallbackModal Component Rendu de base devrait se rendre quand isOpen est true" name="CallbackModal Component Rendu de base devrait se rendre quand isOpen est true" time="0.033">
+    <testcase classname="ContactEmailTemplate devrait gérer les caractères spéciaux dans le nom" name="ContactEmailTemplate devrait gérer les caractères spéciaux dans le nom" time="0.002">
     </testcase>
-    <testcase classname="CallbackModal Component Rendu de base devrait afficher le formulaire de rappel" name="CallbackModal Component Rendu de base devrait afficher le formulaire de rappel" time="0.018">
+    <testcase classname="ContactEmailTemplate devrait gérer les accents dans le message" name="ContactEmailTemplate devrait gérer les accents dans le message" time="0.006">
     </testcase>
-    <testcase classname="CallbackModal Component Rendu de base devrait avoir un bouton de fermeture" name="CallbackModal Component Rendu de base devrait avoir un bouton de fermeture" time="0.015">
+    <testcase classname="ContactEmailTemplate devrait gérer les emails avec différents formats" name="ContactEmailTemplate devrait gérer les emails avec différents formats" time="0.01">
     </testcase>
-    <testcase classname="CallbackModal Component Interactivité devrait fermer la modal quand on clique sur le bouton fermer" name="CallbackModal Component Interactivité devrait fermer la modal quand on clique sur le bouton fermer" time="0.011">
+    <testcase classname="ContactEmailTemplate devrait gérer les numéros de téléphone avec différents formats" name="ContactEmailTemplate devrait gérer les numéros de téléphone avec différents formats" time="0.018">
     </testcase>
-    <testcase classname="CallbackModal Component Interactivité devrait fermer la modal quand on clique sur Annuler" name="CallbackModal Component Interactivité devrait fermer la modal quand on clique sur Annuler" time="0.006">
+    <testcase classname="ContactEmailTemplate devrait gérer les messages longs" name="ContactEmailTemplate devrait gérer les messages longs" time="0.002">
     </testcase>
-    <testcase classname="CallbackModal Component Interactivité devrait mettre à jour la valeur du champ téléphone" name="CallbackModal Component Interactivité devrait mettre à jour la valeur du champ téléphone" time="0.008">
+    <testcase classname="ContactEmailTemplate devrait gérer les messages avec des sauts de ligne" name="ContactEmailTemplate devrait gérer les messages avec des sauts de ligne" time="0.004">
     </testcase>
-    <testcase classname="CallbackModal Component Soumission du formulaire devrait empêcher la soumission avec un champ vide" name="CallbackModal Component Soumission du formulaire devrait empêcher la soumission avec un champ vide" time="0.043">
+    <testcase classname="ContactEmailTemplate Structure HTML devrait avoir une structure div avec styles pour email" name="ContactEmailTemplate Structure HTML devrait avoir une structure div avec styles pour email" time="0.01">
     </testcase>
-    <testcase classname="CallbackModal Component Soumission du formulaire devrait soumettre le formulaire avec des données valides" name="CallbackModal Component Soumission du formulaire devrait soumettre le formulaire avec des données valides" time="0.019">
+    <testcase classname="ContactEmailTemplate Structure HTML devrait avoir des styles inline pour la compatibilité email" name="ContactEmailTemplate Structure HTML devrait avoir des styles inline pour la compatibilité email" time="0.005">
     </testcase>
-    <testcase classname="CallbackModal Component Soumission du formulaire devrait afficher un message de succès après soumission réussie" name="CallbackModal Component Soumission du formulaire devrait afficher un message de succès après soumission réussie" time="0.017">
+    <testcase classname="ContactEmailTemplate Valeurs vides ou undefined devrait gérer les propriétés undefined" name="ContactEmailTemplate Valeurs vides ou undefined devrait gérer les propriétés undefined" time="0.002">
     </testcase>
-    <testcase classname="CallbackModal Component Soumission du formulaire devrait afficher un message d&apos;erreur en cas d&apos;échec" name="CallbackModal Component Soumission du formulaire devrait afficher un message d&apos;erreur en cas d&apos;échec" time="0.011">
-    </testcase>
-    <testcase classname="CallbackModal Component Soumission du formulaire devrait gérer les erreurs réseau" name="CallbackModal Component Soumission du formulaire devrait gérer les erreurs réseau" time="0.009">
-    </testcase>
-    <testcase classname="CallbackModal Component Soumission du formulaire devrait afficher l&apos;état de chargement pendant la soumission" name="CallbackModal Component Soumission du formulaire devrait afficher l&apos;état de chargement pendant la soumission" time="0.011">
-    </testcase>
-    <testcase classname="CallbackModal Component Soumission du formulaire devrait vider le champ après succès" name="CallbackModal Component Soumission du formulaire devrait vider le champ après succès" time="0.01">
-    </testcase>
-    <testcase classname="CallbackModal Component Soumission du formulaire devrait fermer la modal après le délai de succès" name="CallbackModal Component Soumission du formulaire devrait fermer la modal après le délai de succès" time="0.012">
-    </testcase>
-    <testcase classname="CallbackModal Component Accessibilité devrait permettre la fermeture avec la touche Échap sur le bouton fermer" name="CallbackModal Component Accessibilité devrait permettre la fermeture avec la touche Échap sur le bouton fermer" time="0.004">
-    </testcase>
-    <testcase classname="CallbackModal Component Accessibilité devrait permettre la fermeture avec la barre d&apos;espace sur le bouton fermer" name="CallbackModal Component Accessibilité devrait permettre la fermeture avec la barre d&apos;espace sur le bouton fermer" time="0.005">
-    </testcase>
-    <testcase classname="CallbackModal Component États multiples ne devrait pas permettre de soumettre pendant l&apos;envoi" name="CallbackModal Component États multiples ne devrait pas permettre de soumettre pendant l&apos;envoi" time="0.01">
+    <testcase classname="ContactEmailTemplate Valeurs vides ou undefined devrait gérer les chaînes vides" name="ContactEmailTemplate Valeurs vides ou undefined devrait gérer les chaînes vides" time="0.003">
     </testcase>
   </testsuite>
-  <testsuite name="Contact API Route" errors="0" failures="0" skipped="0" timestamp="2025-07-08T06:57:44" time="2.878" tests="13">
-    <testcase classname="Contact API Route Validation des données devrait retourner 400 pour des champs manquants" name="Contact API Route Validation des données devrait retourner 400 pour des champs manquants" time="0.009">
+  <testsuite name="Page Informatique" errors="0" failures="0" skipped="0" timestamp="2025-07-08T07:03:16" time="3.529" tests="8">
+    <testcase classname="Page Informatique affiche le titre principal &apos;SOLUTIONS INFORMATIQUES&apos;" name="Page Informatique affiche le titre principal &apos;SOLUTIONS INFORMATIQUES&apos;" time="0.104">
     </testcase>
-    <testcase classname="Contact API Route Validation des données devrait retourner 400 pour un email invalide" name="Contact API Route Validation des données devrait retourner 400 pour un email invalide" time="0.001">
+    <testcase classname="Page Informatique affiche les titres des services" name="Page Informatique affiche les titres des services" time="0.026">
     </testcase>
-    <testcase classname="Contact API Route Validation des données devrait accepter un email valide" name="Contact API Route Validation des données devrait accepter un email valide" time="0.005">
+    <testcase classname="Page Informatique affiche le titre de la section expertise" name="Page Informatique affiche le titre de la section expertise" time="0.012">
     </testcase>
-    <testcase classname="Contact API Route Validation des données devrait accepter des emails avec différents formats" name="Contact API Route Validation des données devrait accepter des emails avec différents formats" time="0.003">
+    <testcase classname="Page Informatique affiche les statistiques" name="Page Informatique affiche les statistiques" time="0.028">
     </testcase>
-    <testcase classname="Contact API Route Configuration de l&apos;environnement devrait retourner 500 si RESEND_API_KEY n&apos;est pas configurée" name="Contact API Route Configuration de l&apos;environnement devrait retourner 500 si RESEND_API_KEY n&apos;est pas configurée" time="0.005">
+    <testcase classname="Page Informatique affiche les boutons d&apos;action" name="Page Informatique affiche les boutons d&apos;action" time="0.012">
     </testcase>
-    <testcase classname="Contact API Route Envoi d&apos;email réussi devrait envoyer un email avec les bonnes données" name="Contact API Route Envoi d&apos;email réussi devrait envoyer un email avec les bonnes données" time="0.003">
+    <testcase classname="Page Informatique affiche des icônes Lucide" name="Page Informatique affiche des icônes Lucide" time="0.01">
     </testcase>
-    <testcase classname="Contact API Route Envoi d&apos;email réussi devrait envoyer un email sans numéro de téléphone" name="Contact API Route Envoi d&apos;email réussi devrait envoyer un email sans numéro de téléphone" time="0.003">
+    <testcase classname="Page Informatique contient les informations de contact" name="Page Informatique contient les informations de contact" time="0.019">
     </testcase>
-    <testcase classname="Contact API Route Gestion des erreurs Resend devrait retourner 500 en cas d&apos;erreur Resend" name="Contact API Route Gestion des erreurs Resend devrait retourner 500 en cas d&apos;erreur Resend" time="0.002">
-    </testcase>
-    <testcase classname="Contact API Route Gestion des erreurs Resend devrait retourner 500 en cas d&apos;exception non gérée" name="Contact API Route Gestion des erreurs Resend devrait retourner 500 en cas d&apos;exception non gérée" time="0.024">
-    </testcase>
-    <testcase classname="Contact API Route Données malformées devrait gérer un JSON invalide" name="Contact API Route Données malformées devrait gérer un JSON invalide" time="0.015">
-    </testcase>
-    <testcase classname="Contact API Route Données malformées devrait gérer des champs avec des espaces uniquement" name="Contact API Route Données malformées devrait gérer des champs avec des espaces uniquement" time="0">
-    </testcase>
-    <testcase classname="Contact API Route Caractères spéciaux et sécurité devrait gérer les caractères spéciaux dans le nom" name="Contact API Route Caractères spéciaux et sécurité devrait gérer les caractères spéciaux dans le nom" time="0.001">
-    </testcase>
-    <testcase classname="Contact API Route Caractères spéciaux et sécurité devrait gérer les numéros de téléphone avec différents formats" name="Contact API Route Caractères spéciaux et sécurité devrait gérer les numéros de téléphone avec différents formats" time="0.003">
+    <testcase classname="Page Informatique affiche la description des services" name="Page Informatique affiche la description des services" time="0.014">
     </testcase>
   </testsuite>
-  <testsuite name="NosServices Component" errors="0" failures="0" skipped="0" timestamp="2025-07-08T06:57:43" time="3.06" tests="45">
-    <testcase classname="NosServices Component Rendu de base devrait se rendre sans crash" name="NosServices Component Rendu de base devrait se rendre sans crash" time="0.076">
+  <testsuite name="NosServices Component" errors="0" failures="0" skipped="0" timestamp="2025-07-08T07:03:16" time="3.847" tests="45">
+    <testcase classname="NosServices Component Rendu de base devrait se rendre sans crash" name="NosServices Component Rendu de base devrait se rendre sans crash" time="0.056">
     </testcase>
-    <testcase classname="NosServices Component Rendu de base devrait afficher le titre principal" name="NosServices Component Rendu de base devrait afficher le titre principal" time="0.028">
+    <testcase classname="NosServices Component Rendu de base devrait afficher le titre principal" name="NosServices Component Rendu de base devrait afficher le titre principal" time="0.023">
     </testcase>
-    <testcase classname="NosServices Component Rendu de base devrait afficher une introduction ou description" name="NosServices Component Rendu de base devrait afficher une introduction ou description" time="0.015">
+    <testcase classname="NosServices Component Rendu de base devrait afficher une introduction ou description" name="NosServices Component Rendu de base devrait afficher une introduction ou description" time="0.014">
     </testcase>
-    <testcase classname="NosServices Component Liste des services devrait afficher plusieurs services" name="NosServices Component Liste des services devrait afficher plusieurs services" time="0.033">
+    <testcase classname="NosServices Component Liste des services devrait afficher plusieurs services" name="NosServices Component Liste des services devrait afficher plusieurs services" time="0.031">
     </testcase>
-    <testcase classname="NosServices Component Liste des services chaque service devrait avoir un titre" name="NosServices Component Liste des services chaque service devrait avoir un titre" time="0.025">
+    <testcase classname="NosServices Component Liste des services chaque service devrait avoir un titre" name="NosServices Component Liste des services chaque service devrait avoir un titre" time="0.027">
     </testcase>
-    <testcase classname="NosServices Component Liste des services devrait afficher les descriptions des services" name="NosServices Component Liste des services devrait afficher les descriptions des services" time="0.028">
+    <testcase classname="NosServices Component Liste des services devrait afficher les descriptions des services" name="NosServices Component Liste des services devrait afficher les descriptions des services" time="0.019">
     </testcase>
-    <testcase classname="NosServices Component Liste des services devrait afficher les détails de chaque service au hover" name="NosServices Component Liste des services devrait afficher les détails de chaque service au hover" time="0.04">
+    <testcase classname="NosServices Component Liste des services devrait afficher les détails de chaque service au hover" name="NosServices Component Liste des services devrait afficher les détails de chaque service au hover" time="0.017">
     </testcase>
-    <testcase classname="NosServices Component Liste des services devrait inclure les services principaux de l&apos;entreprise" name="NosServices Component Liste des services devrait inclure les services principaux de l&apos;entreprise" time="0.029">
+    <testcase classname="NosServices Component Liste des services devrait inclure les services principaux de l&apos;entreprise" name="NosServices Component Liste des services devrait inclure les services principaux de l&apos;entreprise" time="0.016">
     </testcase>
-    <testcase classname="NosServices Component Navigation et liens devrait contenir des liens vers les pages de services détaillées" name="NosServices Component Navigation et liens devrait contenir des liens vers les pages de services détaillées" time="0.02">
+    <testcase classname="NosServices Component Navigation et liens devrait contenir des liens vers les pages de services détaillées" name="NosServices Component Navigation et liens devrait contenir des liens vers les pages de services détaillées" time="0.016">
     </testcase>
-    <testcase classname="NosServices Component Navigation et liens les liens internes devraient pointer vers des pages valides" name="NosServices Component Navigation et liens les liens internes devraient pointer vers des pages valides" time="0.023">
+    <testcase classname="NosServices Component Navigation et liens les liens internes devraient pointer vers des pages valides" name="NosServices Component Navigation et liens les liens internes devraient pointer vers des pages valides" time="0.01">
     </testcase>
-    <testcase classname="NosServices Component Navigation et liens devrait avoir des boutons d&apos;action ou de contact" name="NosServices Component Navigation et liens devrait avoir des boutons d&apos;action ou de contact" time="0.026">
+    <testcase classname="NosServices Component Navigation et liens devrait avoir des boutons d&apos;action ou de contact" name="NosServices Component Navigation et liens devrait avoir des boutons d&apos;action ou de contact" time="0.013">
     </testcase>
-    <testcase classname="NosServices Component Navigation et liens les cartes devraient être des liens vers les pages de détail" name="NosServices Component Navigation et liens les cartes devraient être des liens vers les pages de détail" time="0.019">
+    <testcase classname="NosServices Component Navigation et liens les cartes devraient être des liens vers les pages de détail" name="NosServices Component Navigation et liens les cartes devraient être des liens vers les pages de détail" time="0.008">
     </testcase>
-    <testcase classname="NosServices Component Navigation et liens devrait avoir des liens vers les pages de service" name="NosServices Component Navigation et liens devrait avoir des liens vers les pages de service" time="0.012">
+    <testcase classname="NosServices Component Navigation et liens devrait avoir des liens vers les pages de service" name="NosServices Component Navigation et liens devrait avoir des liens vers les pages de service" time="0.01">
     </testcase>
-    <testcase classname="NosServices Component Images et médias devrait contenir des images pour chaque service" name="NosServices Component Images et médias devrait contenir des images pour chaque service" time="0.02">
+    <testcase classname="NosServices Component Images et médias devrait contenir des images pour chaque service" name="NosServices Component Images et médias devrait contenir des images pour chaque service" time="0.009">
     </testcase>
-    <testcase classname="NosServices Component Images et médias devrait avoir des images de fond pour les cartes" name="NosServices Component Images et médias devrait avoir des images de fond pour les cartes" time="0.016">
+    <testcase classname="NosServices Component Images et médias devrait avoir des images de fond pour les cartes" name="NosServices Component Images et médias devrait avoir des images de fond pour les cartes" time="0.009">
     </testcase>
-    <testcase classname="NosServices Component Images et médias devrait optimiser les images pour les performances" name="NosServices Component Images et médias devrait optimiser les images pour les performances" time="0.018">
+    <testcase classname="NosServices Component Images et médias devrait optimiser les images pour les performances" name="NosServices Component Images et médias devrait optimiser les images pour les performances" time="0.008">
     </testcase>
-    <testcase classname="NosServices Component Structure et organisation devrait avoir une structure sémantique appropriée" name="NosServices Component Structure et organisation devrait avoir une structure sémantique appropriée" time="0.013">
+    <testcase classname="NosServices Component Structure et organisation devrait avoir une structure sémantique appropriée" name="NosServices Component Structure et organisation devrait avoir une structure sémantique appropriée" time="0.009">
     </testcase>
-    <testcase classname="NosServices Component Structure et organisation devrait organiser les services en catégories" name="NosServices Component Structure et organisation devrait organiser les services en catégories" time="0.027">
+    <testcase classname="NosServices Component Structure et organisation devrait organiser les services en catégories" name="NosServices Component Structure et organisation devrait organiser les services en catégories" time="0.012">
     </testcase>
-    <testcase classname="NosServices Component Structure et organisation devrait avoir une hiérarchie de titres logique" name="NosServices Component Structure et organisation devrait avoir une hiérarchie de titres logique" time="0.01">
+    <testcase classname="NosServices Component Structure et organisation devrait avoir une hiérarchie de titres logique" name="NosServices Component Structure et organisation devrait avoir une hiérarchie de titres logique" time="0.007">
     </testcase>
-    <testcase classname="NosServices Component Accessibilité tous les éléments interactifs devraient être accessibles au clavier" name="NosServices Component Accessibilité tous les éléments interactifs devraient être accessibles au clavier" time="0.017">
+    <testcase classname="NosServices Component Accessibilité tous les éléments interactifs devraient être accessibles au clavier" name="NosServices Component Accessibilité tous les éléments interactifs devraient être accessibles au clavier" time="0.009">
     </testcase>
-    <testcase classname="NosServices Component Accessibilité les liens devraient avoir des textes descriptifs" name="NosServices Component Accessibilité les liens devraient avoir des textes descriptifs" time="0.011">
+    <testcase classname="NosServices Component Accessibilité les liens devraient avoir des textes descriptifs" name="NosServices Component Accessibilité les liens devraient avoir des textes descriptifs" time="0.005">
     </testcase>
-    <testcase classname="NosServices Component Accessibilité devrait avoir des contrastes de couleur appropriés" name="NosServices Component Accessibilité devrait avoir des contrastes de couleur appropriés" time="0.014">
+    <testcase classname="NosServices Component Accessibilité devrait avoir des contrastes de couleur appropriés" name="NosServices Component Accessibilité devrait avoir des contrastes de couleur appropriés" time="0.007">
     </testcase>
-    <testcase classname="NosServices Component Accessibilité devrait avoir des liens accessibles" name="NosServices Component Accessibilité devrait avoir des liens accessibles" time="0.008">
+    <testcase classname="NosServices Component Accessibilité devrait avoir des liens accessibles" name="NosServices Component Accessibilité devrait avoir des liens accessibles" time="0.005">
     </testcase>
-    <testcase classname="NosServices Component Accessibilité devrait avoir des images avec attributs alt" name="NosServices Component Accessibilité devrait avoir des images avec attributs alt" time="0.01">
+    <testcase classname="NosServices Component Accessibilité devrait avoir des images avec attributs alt" name="NosServices Component Accessibilité devrait avoir des images avec attributs alt" time="0.009">
     </testcase>
-    <testcase classname="NosServices Component Responsive design devrait utiliser des classes responsive" name="NosServices Component Responsive design devrait utiliser des classes responsive" time="0.024">
+    <testcase classname="NosServices Component Responsive design devrait utiliser des classes responsive" name="NosServices Component Responsive design devrait utiliser des classes responsive" time="0.009">
     </testcase>
-    <testcase classname="NosServices Component Responsive design devrait adapter la mise en page pour mobile" name="NosServices Component Responsive design devrait adapter la mise en page pour mobile" time="0.012">
+    <testcase classname="NosServices Component Responsive design devrait adapter la mise en page pour mobile" name="NosServices Component Responsive design devrait adapter la mise en page pour mobile" time="0.009">
     </testcase>
-    <testcase classname="NosServices Component Responsive design devrait utiliser un layout grid ou flex" name="NosServices Component Responsive design devrait utiliser un layout grid ou flex" time="0.013">
+    <testcase classname="NosServices Component Responsive design devrait utiliser un layout grid ou flex" name="NosServices Component Responsive design devrait utiliser un layout grid ou flex" time="0.011">
     </testcase>
     <testcase classname="NosServices Component Contenu et informations devrait fournir des informations détaillées sur chaque service" name="NosServices Component Contenu et informations devrait fournir des informations détaillées sur chaque service" time="0.018">
     </testcase>
-    <testcase classname="NosServices Component Contenu et informations devrait mentionner les avantages ou bénéfices" name="NosServices Component Contenu et informations devrait mentionner les avantages ou bénéfices" time="0.018">
+    <testcase classname="NosServices Component Contenu et informations devrait mentionner les avantages ou bénéfices" name="NosServices Component Contenu et informations devrait mentionner les avantages ou bénéfices" time="0.011">
     </testcase>
-    <testcase classname="NosServices Component Contenu et informations devrait inclure des informations de contact ou d&apos;action" name="NosServices Component Contenu et informations devrait inclure des informations de contact ou d&apos;action" time="0.029">
+    <testcase classname="NosServices Component Contenu et informations devrait inclure des informations de contact ou d&apos;action" name="NosServices Component Contenu et informations devrait inclure des informations de contact ou d&apos;action" time="0.012">
     </testcase>
-    <testcase classname="NosServices Component Performance et optimisation devrait se charger rapidement" name="NosServices Component Performance et optimisation devrait se charger rapidement" time="0.016">
+    <testcase classname="NosServices Component Performance et optimisation devrait se charger rapidement" name="NosServices Component Performance et optimisation devrait se charger rapidement" time="0.005">
     </testcase>
-    <testcase classname="NosServices Component Performance et optimisation ne devrait pas avoir de fuites mémoire" name="NosServices Component Performance et optimisation ne devrait pas avoir de fuites mémoire" time="0.012">
+    <testcase classname="NosServices Component Performance et optimisation ne devrait pas avoir de fuites mémoire" name="NosServices Component Performance et optimisation ne devrait pas avoir de fuites mémoire" time="0.007">
     </testcase>
-    <testcase classname="NosServices Component Interactivité devrait gérer les interactions utilisateur" name="NosServices Component Interactivité devrait gérer les interactions utilisateur" time="0.03">
+    <testcase classname="NosServices Component Interactivité devrait gérer les interactions utilisateur" name="NosServices Component Interactivité devrait gérer les interactions utilisateur" time="0.02">
     </testcase>
-    <testcase classname="NosServices Component Interactivité devrait avoir des états hover/focus visibles" name="NosServices Component Interactivité devrait avoir des états hover/focus visibles" time="0.008">
+    <testcase classname="NosServices Component Interactivité devrait avoir des états hover/focus visibles" name="NosServices Component Interactivité devrait avoir des états hover/focus visibles" time="0.005">
     </testcase>
-    <testcase classname="NosServices Component Interactivité devrait avoir des effets de survol sur les cartes" name="NosServices Component Interactivité devrait avoir des effets de survol sur les cartes" time="0.014">
+    <testcase classname="NosServices Component Interactivité devrait avoir des effets de survol sur les cartes" name="NosServices Component Interactivité devrait avoir des effets de survol sur les cartes" time="0.007">
     </testcase>
-    <testcase classname="NosServices Component Interactivité devrait permettre la navigation au clavier" name="NosServices Component Interactivité devrait permettre la navigation au clavier" time="0.011">
+    <testcase classname="NosServices Component Interactivité devrait permettre la navigation au clavier" name="NosServices Component Interactivité devrait permettre la navigation au clavier" time="0.006">
     </testcase>
-    <testcase classname="NosServices Component SEO et contenu devrait avoir un contenu riche en mots-clés pertinents" name="NosServices Component SEO et contenu devrait avoir un contenu riche en mots-clés pertinents" time="0.01">
+    <testcase classname="NosServices Component SEO et contenu devrait avoir un contenu riche en mots-clés pertinents" name="NosServices Component SEO et contenu devrait avoir un contenu riche en mots-clés pertinents" time="0.006">
     </testcase>
-    <testcase classname="NosServices Component SEO et contenu devrait avoir une longueur de contenu appropriée pour le SEO" name="NosServices Component SEO et contenu devrait avoir une longueur de contenu appropriée pour le SEO" time="0.021">
+    <testcase classname="NosServices Component SEO et contenu devrait avoir une longueur de contenu appropriée pour le SEO" name="NosServices Component SEO et contenu devrait avoir une longueur de contenu appropriée pour le SEO" time="0.014">
     </testcase>
-    <testcase classname="NosServices Component Gestion d&apos;erreurs devrait gérer les erreurs de rendu gracieusement" name="NosServices Component Gestion d&apos;erreurs devrait gérer les erreurs de rendu gracieusement" time="0.012">
+    <testcase classname="NosServices Component Gestion d&apos;erreurs devrait gérer les erreurs de rendu gracieusement" name="NosServices Component Gestion d&apos;erreurs devrait gérer les erreurs de rendu gracieusement" time="0.006">
     </testcase>
-    <testcase classname="NosServices Component Gestion d&apos;erreurs devrait continuer à fonctionner avec des props manquantes" name="NosServices Component Gestion d&apos;erreurs devrait continuer à fonctionner avec des props manquantes" time="0.017">
+    <testcase classname="NosServices Component Gestion d&apos;erreurs devrait continuer à fonctionner avec des props manquantes" name="NosServices Component Gestion d&apos;erreurs devrait continuer à fonctionner avec des props manquantes" time="0.008">
     </testcase>
-    <testcase classname="NosServices Component Section Télémaintenance devrait afficher la section télémaintenance" name="NosServices Component Section Télémaintenance devrait afficher la section télémaintenance" time="0.019">
+    <testcase classname="NosServices Component Section Télémaintenance devrait afficher la section télémaintenance" name="NosServices Component Section Télémaintenance devrait afficher la section télémaintenance" time="0.014">
     </testcase>
-    <testcase classname="NosServices Component Section Télémaintenance devrait afficher l&apos;image d&apos;assistance" name="NosServices Component Section Télémaintenance devrait afficher l&apos;image d&apos;assistance" time="0.015">
+    <testcase classname="NosServices Component Section Télémaintenance devrait afficher l&apos;image d&apos;assistance" name="NosServices Component Section Télémaintenance devrait afficher l&apos;image d&apos;assistance" time="0.006">
     </testcase>
-    <testcase classname="NosServices Component Section Télémaintenance devrait avoir des informations de contact" name="NosServices Component Section Télémaintenance devrait avoir des informations de contact" time="0.013">
+    <testcase classname="NosServices Component Section Télémaintenance devrait avoir des informations de contact" name="NosServices Component Section Télémaintenance devrait avoir des informations de contact" time="0.007">
     </testcase>
-    <testcase classname="NosServices Component Contenu spécifique devrait lister les fonctionnalités détaillées" name="NosServices Component Contenu spécifique devrait lister les fonctionnalités détaillées" time="0.015">
+    <testcase classname="NosServices Component Contenu spécifique devrait lister les fonctionnalités détaillées" name="NosServices Component Contenu spécifique devrait lister les fonctionnalités détaillées" time="0.011">
     </testcase>
-    <testcase classname="NosServices Component Contenu spécifique devrait avoir des badges ou indicateurs visuels" name="NosServices Component Contenu spécifique devrait avoir des badges ou indicateurs visuels" time="0.018">
-    </testcase>
-  </testsuite>
-  <testsuite name="Footer Component" errors="0" failures="0" skipped="0" timestamp="2025-07-08T06:57:44" time="2.929" tests="3">
-    <testcase classname="Footer Component devrait se rendre sans crash" name="Footer Component devrait se rendre sans crash" time="0.087">
-    </testcase>
-    <testcase classname="Footer Component devrait afficher les liens de navigation" name="Footer Component devrait afficher les liens de navigation" time="0.025">
-    </testcase>
-    <testcase classname="Footer Component devrait afficher l&apos;année dynamique dans le copyright" name="Footer Component devrait afficher l&apos;année dynamique dans le copyright" time="0.006">
-    </testcase>
-  </testsuite>
-  <testsuite name="Page Informatique" errors="0" failures="0" skipped="0" timestamp="2025-07-08T06:57:43" time="2.992" tests="8">
-    <testcase classname="Page Informatique affiche le titre principal &apos;SOLUTIONS INFORMATIQUES&apos;" name="Page Informatique affiche le titre principal &apos;SOLUTIONS INFORMATIQUES&apos;" time="0.122">
-    </testcase>
-    <testcase classname="Page Informatique affiche les titres des services" name="Page Informatique affiche les titres des services" time="0.032">
-    </testcase>
-    <testcase classname="Page Informatique affiche le titre de la section expertise" name="Page Informatique affiche le titre de la section expertise" time="0.025">
-    </testcase>
-    <testcase classname="Page Informatique affiche les statistiques" name="Page Informatique affiche les statistiques" time="0.036">
-    </testcase>
-    <testcase classname="Page Informatique affiche les boutons d&apos;action" name="Page Informatique affiche les boutons d&apos;action" time="0.022">
-    </testcase>
-    <testcase classname="Page Informatique affiche des icônes Lucide" name="Page Informatique affiche des icônes Lucide" time="0.015">
-    </testcase>
-    <testcase classname="Page Informatique contient les informations de contact" name="Page Informatique contient les informations de contact" time="0.031">
-    </testcase>
-    <testcase classname="Page Informatique affiche la description des services" name="Page Informatique affiche la description des services" time="0.019">
-    </testcase>
-  </testsuite>
-  <testsuite name="Button Component" errors="0" failures="0" skipped="0" timestamp="2025-07-08T06:57:44" time="2.983" tests="18">
-    <testcase classname="Button Component devrait se rendre sans crash avec les props par défaut" name="Button Component devrait se rendre sans crash avec les props par défaut" time="0.086">
-    </testcase>
-    <testcase classname="Button Component Variants devrait appliquer le style primary" name="Button Component Variants devrait appliquer le style primary" time="0.017">
-    </testcase>
-    <testcase classname="Button Component Variants devrait appliquer le style secondary" name="Button Component Variants devrait appliquer le style secondary" time="0.011">
-    </testcase>
-    <testcase classname="Button Component Variants devrait appliquer le style outline" name="Button Component Variants devrait appliquer le style outline" time="0.017">
-    </testcase>
-    <testcase classname="Button Component Variants devrait appliquer le style ghost" name="Button Component Variants devrait appliquer le style ghost" time="0.012">
-    </testcase>
-    <testcase classname="Button Component Sizes devrait appliquer la taille sm" name="Button Component Sizes devrait appliquer la taille sm" time="0.006">
-    </testcase>
-    <testcase classname="Button Component Sizes devrait appliquer la taille md" name="Button Component Sizes devrait appliquer la taille md" time="0.005">
-    </testcase>
-    <testcase classname="Button Component Sizes devrait appliquer la taille lg" name="Button Component Sizes devrait appliquer la taille lg" time="0.006">
-    </testcase>
-    <testcase classname="Button Component Sizes devrait appliquer la taille xl" name="Button Component Sizes devrait appliquer la taille xl" time="0.007">
-    </testcase>
-    <testcase classname="Button Component États devrait être désactivé quand disabled=true" name="Button Component États devrait être désactivé quand disabled=true" time="0.006">
-    </testcase>
-    <testcase classname="Button Component États devrait accepter des classes CSS personnalisées" name="Button Component États devrait accepter des classes CSS personnalisées" time="0.004">
-    </testcase>
-    <testcase classname="Button Component Événements devrait gérer les clics" name="Button Component Événements devrait gérer les clics" time="0.01">
-    </testcase>
-    <testcase classname="Button Component Événements ne devrait pas déclencher onClick quand disabled" name="Button Component Événements ne devrait pas déclencher onClick quand disabled" time="0.004">
-    </testcase>
-    <testcase classname="Button Component Événements devrait gérer les événements de focus" name="Button Component Événements devrait gérer les événements de focus" time="0.004">
-    </testcase>
-    <testcase classname="Button Component Accessibilité devrait avoir les classes de focus appropriées" name="Button Component Accessibilité devrait avoir les classes de focus appropriées" time="0.005">
-    </testcase>
-    <testcase classname="Button Component Accessibilité devrait accepter les attributs aria" name="Button Component Accessibilité devrait accepter les attributs aria" time="0.007">
-    </testcase>
-    <testcase classname="Button Component Accessibilité devrait supporter le type submit" name="Button Component Accessibilité devrait supporter le type submit" time="0.003">
-    </testcase>
-    <testcase classname="Button Component Forward Ref devrait forwarder la ref correctement" name="Button Component Forward Ref devrait forwarder la ref correctement" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="Ebpbatiment Component" errors="0" failures="0" skipped="0" timestamp="2025-07-08T06:57:43" time="3.209" tests="40">
-    <testcase classname="Ebpbatiment Component Rendu de base devrait se rendre sans crash" name="Ebpbatiment Component Rendu de base devrait se rendre sans crash" time="0.1">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Rendu de base devrait afficher le titre principal" name="Ebpbatiment Component Rendu de base devrait afficher le titre principal" time="0.03">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Rendu de base devrait afficher la description" name="Ebpbatiment Component Rendu de base devrait afficher la description" time="0.033">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Rendu de base devrait avoir un badge indiquant &quot;Logiciels EBP Bâtiment&quot;" name="Ebpbatiment Component Rendu de base devrait avoir un badge indiquant &quot;Logiciels EBP Bâtiment&quot;" time="0.034">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Navigation et boutons d&apos;action devrait avoir un bouton &quot;Demander une démonstration&quot;" name="Ebpbatiment Component Navigation et boutons d&apos;action devrait avoir un bouton &quot;Demander une démonstration&quot;" time="0.029">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Navigation et boutons d&apos;action devrait avoir un lien vers les formations" name="Ebpbatiment Component Navigation et boutons d&apos;action devrait avoir un lien vers les formations" time="0.033">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Cartes de logiciels devrait afficher les noms des logiciels EBP" name="Ebpbatiment Component Cartes de logiciels devrait afficher les noms des logiciels EBP" time="0.043">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Cartes de logiciels devrait afficher les sous-titres des logiciels" name="Ebpbatiment Component Cartes de logiciels devrait afficher les sous-titres des logiciels" time="0.033">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Cartes de logiciels devrait afficher les niveaux des logiciels" name="Ebpbatiment Component Cartes de logiciels devrait afficher les niveaux des logiciels" time="0.026">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Cartes de logiciels devrait marquer EBP Expert Bâtiment comme populaire" name="Ebpbatiment Component Cartes de logiciels devrait marquer EBP Expert Bâtiment comme populaire" time="0.031">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Cartes de logiciels devrait afficher au moins une carte de logiciel" name="Ebpbatiment Component Cartes de logiciels devrait afficher au moins une carte de logiciel" time="0.017">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Cartes de logiciels chaque carte de logiciel devrait avoir un titre" name="Ebpbatiment Component Cartes de logiciels chaque carte de logiciel devrait avoir un titre" time="0.015">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Cartes de logiciels chaque carte de logiciel devrait avoir une description" name="Ebpbatiment Component Cartes de logiciels chaque carte de logiciel devrait avoir une description" time="0.033">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Cartes de logiciels chaque carte de logiciel devrait comporter un lien &apos;Télécharger la fiche&apos;" name="Ebpbatiment Component Cartes de logiciels chaque carte de logiciel devrait comporter un lien &apos;Télécharger la fiche&apos;" time="0.024">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Cartes de logiciels les liens &apos;Télécharger la fiche&apos; devraient pointer vers des PDFs" name="Ebpbatiment Component Cartes de logiciels les liens &apos;Télécharger la fiche&apos; devraient pointer vers des PDFs" time="0.026">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Cartes de logiciels les liens devraient s&apos;ouvrir dans un nouvel onglet" name="Ebpbatiment Component Cartes de logiciels les liens devraient s&apos;ouvrir dans un nouvel onglet" time="0.02">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Images et médias devrait contenir des images de logiciels" name="Ebpbatiment Component Images et médias devrait contenir des images de logiciels" time="0.016">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Images et médias les images devraient avoir des attributs src valides" name="Ebpbatiment Component Images et médias les images devraient avoir des attributs src valides" time="0.017">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Images et médias devrait contenir des icônes SVG" name="Ebpbatiment Component Images et médias devrait contenir des icônes SVG" time="0.009">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Navigation et interactivité devrait permettre la navigation entre les cartes au clavier" name="Ebpbatiment Component Navigation et interactivité devrait permettre la navigation entre les cartes au clavier" time="0.016">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Navigation et interactivité les boutons devraient être accessibles via Tab" name="Ebpbatiment Component Navigation et interactivité les boutons devraient être accessibles via Tab" time="0.021">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Navigation et interactivité devrait avoir des éléments focusables" name="Ebpbatiment Component Navigation et interactivité devrait avoir des éléments focusables" time="0.016">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Accessibilité devrait avoir une structure de titres appropriée" name="Ebpbatiment Component Accessibilité devrait avoir une structure de titres appropriée" time="0.018">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Accessibilité tous les liens devraient avoir du texte ou des labels" name="Ebpbatiment Component Accessibilité tous les liens devraient avoir du texte ou des labels" time="0.017">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Accessibilité les images devraient avoir des attributs alt appropriés" name="Ebpbatiment Component Accessibilité les images devraient avoir des attributs alt appropriés" time="0.007">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Accessibilité les liens devraient avoir des attributs appropriés" name="Ebpbatiment Component Accessibilité les liens devraient avoir des attributs appropriés" time="0.01">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Responsive et mise en page devrait avoir des classes CSS appropriées pour le responsive" name="Ebpbatiment Component Responsive et mise en page devrait avoir des classes CSS appropriées pour le responsive" time="0.012">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Responsive et mise en page les cartes devraient être dans un layout grid ou flex" name="Ebpbatiment Component Responsive et mise en page les cartes devraient être dans un layout grid ou flex" time="0.018">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Contenu spécifique EBP Bâtiment devrait mentionner les types de logiciels bâtiment" name="Ebpbatiment Component Contenu spécifique EBP Bâtiment devrait mentionner les types de logiciels bâtiment" time="0.011">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Contenu spécifique EBP Bâtiment devrait afficher les différentes versions de logiciels" name="Ebpbatiment Component Contenu spécifique EBP Bâtiment devrait afficher les différentes versions de logiciels" time="0.013">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Contenu spécifique EBP Bâtiment devrait contenir des informations sur les fonctionnalités" name="Ebpbatiment Component Contenu spécifique EBP Bâtiment devrait contenir des informations sur les fonctionnalités" time="0.024">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Contenu spécifique EBP Bâtiment devrait lister les fonctionnalités des logiciels" name="Ebpbatiment Component Contenu spécifique EBP Bâtiment devrait lister les fonctionnalités des logiciels" time="0.026">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Contenu spécifique EBP Bâtiment devrait avoir des badges pour identifier les types de logiciels" name="Ebpbatiment Component Contenu spécifique EBP Bâtiment devrait avoir des badges pour identifier les types de logiciels" time="0.012">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Contenu spécifique EBP Bâtiment devrait mentionner les différents publics cibles" name="Ebpbatiment Component Contenu spécifique EBP Bâtiment devrait mentionner les différents publics cibles" time="0.01">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Performance et optimisation ne devrait pas avoir de rendu excessif" name="Ebpbatiment Component Performance et optimisation ne devrait pas avoir de rendu excessif" time="0.01">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Performance et optimisation devrait charger rapidement" name="Ebpbatiment Component Performance et optimisation devrait charger rapidement" time="0.007">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Gestion d&apos;erreurs devrait gérer les props manquantes gracieusement" name="Ebpbatiment Component Gestion d&apos;erreurs devrait gérer les props manquantes gracieusement" time="0.008">
-    </testcase>
-    <testcase classname="Ebpbatiment Component Gestion d&apos;erreurs devrait continuer à fonctionner si une image ne se charge pas" name="Ebpbatiment Component Gestion d&apos;erreurs devrait continuer à fonctionner si une image ne se charge pas" time="0.006">
-    </testcase>
-    <testcase classname="Ebpbatiment Component SEO et métadonnées devrait avoir des titres hiérarchiques appropriés" name="Ebpbatiment Component SEO et métadonnées devrait avoir des titres hiérarchiques appropriés" time="0.029">
-    </testcase>
-    <testcase classname="Ebpbatiment Component SEO et métadonnées devrait contenir du contenu descriptif pour le SEO" name="Ebpbatiment Component SEO et métadonnées devrait contenir du contenu descriptif pour le SEO" time="0.008">
-    </testcase>
-  </testsuite>
-  <testsuite name="Ebpbatiment Component" errors="0" failures="0" skipped="0" timestamp="2025-07-08T06:57:43" time="3.065" tests="4">
-    <testcase classname="Ebpbatiment Component devrait se rendre sans crash" name="Ebpbatiment Component devrait se rendre sans crash" time="0.105">
-    </testcase>
-    <testcase classname="Ebpbatiment Component devrait afficher la description" name="Ebpbatiment Component devrait afficher la description" time="0.016">
-    </testcase>
-    <testcase classname="Ebpbatiment Component devrait afficher au moins une carte de logiciel" name="Ebpbatiment Component devrait afficher au moins une carte de logiciel" time="0.018">
-    </testcase>
-    <testcase classname="Ebpbatiment Component chaque carte de logiciel devrait comporter un lien &apos;Télécharger la fiche&apos;" name="Ebpbatiment Component chaque carte de logiciel devrait comporter un lien &apos;Télécharger la fiche&apos;" time="0.015">
-    </testcase>
-  </testsuite>
-  <testsuite name="Informatique Component" errors="0" failures="0" skipped="0" timestamp="2025-07-08T06:57:43" time="3.445" tests="43">
-    <testcase classname="Informatique Component Rendu de base devrait se rendre sans crash" name="Informatique Component Rendu de base devrait se rendre sans crash" time="0.117">
-    </testcase>
-    <testcase classname="Informatique Component Rendu de base devrait afficher le titre principal" name="Informatique Component Rendu de base devrait afficher le titre principal" time="0.045">
-    </testcase>
-    <testcase classname="Informatique Component Rendu de base devrait afficher la description" name="Informatique Component Rendu de base devrait afficher la description" time="0.062">
-    </testcase>
-    <testcase classname="Informatique Component Rendu de base devrait avoir un badge informatique" name="Informatique Component Rendu de base devrait avoir un badge informatique" time="0.054">
-    </testcase>
-    <testcase classname="Informatique Component Services informatiques devrait afficher les différents services proposés" name="Informatique Component Services informatiques devrait afficher les différents services proposés" time="0.033">
-    </testcase>
-    <testcase classname="Informatique Component Services informatiques devrait avoir des sections clairement définies" name="Informatique Component Services informatiques devrait avoir des sections clairement définies" time="0.037">
-    </testcase>
-    <testcase classname="Informatique Component Services informatiques devrait afficher des cartes de services" name="Informatique Component Services informatiques devrait afficher des cartes de services" time="0.031">
-    </testcase>
-    <testcase classname="Informatique Component Services informatiques devrait afficher les descriptions des services" name="Informatique Component Services informatiques devrait afficher les descriptions des services" time="0.044">
-    </testcase>
-    <testcase classname="Informatique Component Services informatiques devrait afficher les fonctionnalités de chaque service" name="Informatique Component Services informatiques devrait afficher les fonctionnalités de chaque service" time="0.038">
-    </testcase>
-    <testcase classname="Informatique Component Images et médias devrait contenir des images relatives à l&apos;informatique" name="Informatique Component Images et médias devrait contenir des images relatives à l&apos;informatique" time="0.032">
-    </testcase>
-    <testcase classname="Informatique Component Images et médias les images devraient avoir des sources valides" name="Informatique Component Images et médias les images devraient avoir des sources valides" time="0.028">
-    </testcase>
-    <testcase classname="Informatique Component Navigation et liens devrait contenir des liens de contact ou d&apos;action" name="Informatique Component Navigation et liens devrait contenir des liens de contact ou d&apos;action" time="0.017">
-    </testcase>
-    <testcase classname="Informatique Component Navigation et liens les liens externes devraient s&apos;ouvrir dans un nouvel onglet" name="Informatique Component Navigation et liens les liens externes devraient s&apos;ouvrir dans un nouvel onglet" time="0.021">
-    </testcase>
-    <testcase classname="Informatique Component Navigation et liens devrait permettre la navigation au clavier" name="Informatique Component Navigation et liens devrait permettre la navigation au clavier" time="0.023">
-    </testcase>
-    <testcase classname="Informatique Component Accessibilité devrait avoir une hiérarchie de titres appropriée" name="Informatique Component Accessibilité devrait avoir une hiérarchie de titres appropriée" time="0.028">
-    </testcase>
-    <testcase classname="Informatique Component Accessibilité tous les éléments interactifs devraient être accessibles" name="Informatique Component Accessibilité tous les éléments interactifs devraient être accessibles" time="0.022">
-    </testcase>
-    <testcase classname="Informatique Component Accessibilité devrait avoir des contrastes appropriés pour les textes" name="Informatique Component Accessibilité devrait avoir des contrastes appropriés pour les textes" time="0.023">
-    </testcase>
-    <testcase classname="Informatique Component Accessibilité devrait avoir des liens accessibles" name="Informatique Component Accessibilité devrait avoir des liens accessibles" time="0.019">
-    </testcase>
-    <testcase classname="Informatique Component Accessibilité devrait avoir des rôles appropriés" name="Informatique Component Accessibilité devrait avoir des rôles appropriés" time="0.02">
-    </testcase>
-    <testcase classname="Informatique Component Responsive design devrait avoir des classes responsive" name="Informatique Component Responsive design devrait avoir des classes responsive" time="0.017">
-    </testcase>
-    <testcase classname="Informatique Component Responsive design devrait gérer différentes tailles d&apos;écran" name="Informatique Component Responsive design devrait gérer différentes tailles d&apos;écran" time="0.018">
-    </testcase>
-    <testcase classname="Informatique Component Responsive design devrait avoir des grilles responsive" name="Informatique Component Responsive design devrait avoir des grilles responsive" time="0.017">
-    </testcase>
-    <testcase classname="Informatique Component Contenu spécifique devrait mentionner les technologies supportées" name="Informatique Component Contenu spécifique devrait mentionner les technologies supportées" time="0.018">
-    </testcase>
-    <testcase classname="Informatique Component Contenu spécifique devrait afficher les types d&apos;intervention" name="Informatique Component Contenu spécifique devrait afficher les types d&apos;intervention" time="0.034">
-    </testcase>
-    <testcase classname="Informatique Component Contenu spécifique devrait mentionner la zone géographique ou les modalités" name="Informatique Component Contenu spécifique devrait mentionner la zone géographique ou les modalités" time="0.025">
-    </testcase>
-    <testcase classname="Informatique Component Contenu spécifique devrait mentionner les technologies et partenaires" name="Informatique Component Contenu spécifique devrait mentionner les technologies et partenaires" time="0.026">
-    </testcase>
-    <testcase classname="Informatique Component Contenu spécifique devrait avoir des sections distinctes" name="Informatique Component Contenu spécifique devrait avoir des sections distinctes" time="0.026">
-    </testcase>
-    <testcase classname="Informatique Component Performance ne devrait pas avoir de rendu excessif" name="Informatique Component Performance ne devrait pas avoir de rendu excessif" time="0.025">
-    </testcase>
-    <testcase classname="Informatique Component Performance devrait se charger rapidement" name="Informatique Component Performance devrait se charger rapidement" time="0.027">
-    </testcase>
-    <testcase classname="Informatique Component Interactivité devrait gérer les clics sur les éléments interactifs" name="Informatique Component Interactivité devrait gérer les clics sur les éléments interactifs" time="0.018">
-    </testcase>
-    <testcase classname="Informatique Component Interactivité devrait gérer les événements de survol" name="Informatique Component Interactivité devrait gérer les événements de survol" time="0.046">
-    </testcase>
-    <testcase classname="Informatique Component Interactivité devrait avoir des éléments cliquables" name="Informatique Component Interactivité devrait avoir des éléments cliquables" time="0.017">
-    </testcase>
-    <testcase classname="Informatique Component Interactivité devrait permettre la navigation au clavier" name="Informatique Component Interactivité devrait permettre la navigation au clavier" time="0.013">
-    </testcase>
-    <testcase classname="Informatique Component Gestion d&apos;erreurs devrait gérer les erreurs de chargement d&apos;images" name="Informatique Component Gestion d&apos;erreurs devrait gérer les erreurs de chargement d&apos;images" time="0.008">
-    </testcase>
-    <testcase classname="Informatique Component Gestion d&apos;erreurs devrait continuer à fonctionner même avec des props undefined" name="Informatique Component Gestion d&apos;erreurs devrait continuer à fonctionner même avec des props undefined" time="0.008">
-    </testcase>
-    <testcase classname="Informatique Component SEO et métadonnées devrait avoir du contenu textuel pour le SEO" name="Informatique Component SEO et métadonnées devrait avoir du contenu textuel pour le SEO" time="0.014">
-    </testcase>
-    <testcase classname="Informatique Component SEO et métadonnées devrait avoir une structure sémantique appropriée" name="Informatique Component SEO et métadonnées devrait avoir une structure sémantique appropriée" time="0.008">
-    </testcase>
-    <testcase classname="Informatique Component Statistiques devrait afficher les statistiques" name="Informatique Component Statistiques devrait afficher les statistiques" time="0.016">
-    </testcase>
-    <testcase classname="Informatique Component Statistiques devrait afficher les labels des statistiques" name="Informatique Component Statistiques devrait afficher les labels des statistiques" time="0.016">
-    </testcase>
-    <testcase classname="Informatique Component Boutons d&apos;action devrait avoir un bouton de contact" name="Informatique Component Boutons d&apos;action devrait avoir un bouton de contact" time="0.011">
-    </testcase>
-    <testcase classname="Informatique Component Boutons d&apos;action devrait avoir un bouton téléphone" name="Informatique Component Boutons d&apos;action devrait avoir un bouton téléphone" time="0.038">
-    </testcase>
-    <testcase classname="Informatique Component Contenu et structure devrait contenir des icônes SVG" name="Informatique Component Contenu et structure devrait contenir des icônes SVG" time="0.01">
-    </testcase>
-    <testcase classname="Informatique Component Contenu et structure devrait avoir une section d&apos;expertises" name="Informatique Component Contenu et structure devrait avoir une section d&apos;expertises" time="0.008">
+    <testcase classname="NosServices Component Contenu spécifique devrait avoir des badges ou indicateurs visuels" name="NosServices Component Contenu spécifique devrait avoir des badges ou indicateurs visuels" time="0.006">
     </testcase>
   </testsuite>
 </testsuites>
