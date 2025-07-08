@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useState, useEffect } from "react";
+import Image from 'next/image';
 import { ModernSection, ServiceCard } from "@/components/ui";
 import { ModernButton } from "@/components/ui/modernButton";
 import { 
@@ -250,9 +251,11 @@ export default function Informatique() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 items-center">
           {partnersLogos.map((partner, index) => (
             <div key={index} className="flex items-center justify-center p-8 bg-white rounded-xl border border-slate-200 hover:border-slate-300 hover:shadow-xl transition-all duration-300 group min-h-[120px]">
-              <img 
+              <Image 
                 src={partner.logo} 
                 alt={partner.name}
+                width={140}
+                height={64}
                 className="h-16 w-auto max-w-[140px] object-contain transition-all duration-300 group-hover:scale-105 group-hover:brightness-110"
                 style={{
                   minWidth: "100px"

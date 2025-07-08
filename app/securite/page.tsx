@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from 'next/image';
 import { ModernSection, ServiceCard } from "@/components/ui";
 import { ModernButton } from "@/components/ui/modernButton";
 import { 
@@ -339,9 +340,11 @@ export default function Securite() {
         <div className="flex justify-center">
           <div className="grid grid-cols-1 gap-8 max-w-md">
             <div className="flex items-center justify-center p-10 bg-white rounded-xl border border-slate-200 hover:border-slate-300 hover:shadow-xl transition-all duration-300 group min-h-[140px]">
-              <img 
+              <Image 
                 src="/assets/stormshield.webp" 
                 alt="Stormshield"
+                width={180}
+                height={80}
                 className="h-20 w-auto max-w-[180px] object-contain transition-all duration-300 group-hover:scale-105 group-hover:brightness-110"
                 style={{
                   minWidth: "120px"
