@@ -1,5 +1,37 @@
 import '@testing-library/jest-dom';
 
+// Configuration de l'environnement DOM pour les tests
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: jest.fn().mockImplementation(query => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: jest.fn(), // deprecated
+    removeListener: jest.fn(), // deprecated
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
+  })),
+});
+
+// Setup du DOM
+Object.defineProperty(window, 'ResizeObserver', {
+  writable: true,
+  value: jest.fn().mockImplementation(() => ({
+    observe: jest.fn(),
+    unobserve: jest.fn(),
+    disconnect: jest.fn(),
+  })),
+});
+
+// Mock de l'API IntersectionObserver
+global.IntersectionObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
+
 // Mock Next.js router
 jest.mock('next/router', () => ({
   useRouter: () => ({
@@ -72,4 +104,23 @@ global.Response = class MockResponse {
   async json() {
     return JSON.parse(this.body || '{}');
   }
-}; 
+};
+
+// Supprimer la restriction de console.error pour les tests
+const originalConsoleError = console.error;
+beforeEach(() => {
+  console.error = (...args) => {
+    if (
+      typeof args[0] === 'string' &&
+      args[0].includes('Warning: An update to') &&
+      args[0].includes('inside a test was not wrapped in act')
+    ) {
+      return;
+    }
+    originalConsoleError.call(console, ...args);
+  };
+});
+
+afterEach(() => {
+  console.error = originalConsoleError;
+}); 

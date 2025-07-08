@@ -30,8 +30,8 @@ describe("Ebpbatiment Component", () => {
   describe("Rendu de base", () => {
     test("devrait se rendre sans crash", () => {
       render(<Ebpbatiment />);
-      const titleElement = screen.getByText(/EBP Bâtiment/i);
-      expect(titleElement).toBeInTheDocument();
+      const titleElements = screen.getAllByText(/EBP Bâtiment/i);
+      expect(titleElements[0]).toBeInTheDocument();
     });
 
     test("devrait afficher le titre principal", () => {

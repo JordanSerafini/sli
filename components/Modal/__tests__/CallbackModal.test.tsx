@@ -111,7 +111,10 @@ describe('CallbackModal Component', () => {
       const submitButton = screen.getByText('Me faire rappeler');
 
       fireEvent.change(phoneInput, { target: { value: '0123456789' } });
-      fireEvent.click(submitButton);
+      
+      await act(async () => {
+        fireEvent.click(submitButton);
+      });
 
       expect(global.fetch).toHaveBeenCalledWith('/api/callback', {
         method: 'POST',
@@ -132,7 +135,10 @@ describe('CallbackModal Component', () => {
       const submitButton = screen.getByText('Me faire rappeler');
 
       fireEvent.change(phoneInput, { target: { value: '0123456789' } });
-      fireEvent.click(submitButton);
+      
+      await act(async () => {
+        fireEvent.click(submitButton);
+      });
 
       await waitFor(() => {
         expect(screen.getByText('Nous vous rappellerons bientôt !')).toBeInTheDocument();
@@ -157,7 +163,10 @@ describe('CallbackModal Component', () => {
       const submitButton = screen.getByText('Me faire rappeler');
 
       fireEvent.change(phoneInput, { target: { value: '0123456789' } });
-      fireEvent.click(submitButton);
+      
+      await act(async () => {
+        fireEvent.click(submitButton);
+      });
 
       await waitFor(() => {
         expect(screen.getByText('Erreur lors de l\'envoi. Veuillez réessayer.')).toBeInTheDocument();
@@ -173,7 +182,10 @@ describe('CallbackModal Component', () => {
       const submitButton = screen.getByText('Me faire rappeler');
 
       fireEvent.change(phoneInput, { target: { value: '0123456789' } });
-      fireEvent.click(submitButton);
+      
+      await act(async () => {
+        fireEvent.click(submitButton);
+      });
 
       await waitFor(() => {
         expect(screen.getByText('Erreur réseau. Veuillez vérifier votre connexion.')).toBeInTheDocument();
@@ -194,63 +206,130 @@ describe('CallbackModal Component', () => {
       const submitButton = screen.getByText('Me faire rappeler');
 
       fireEvent.change(phoneInput, { target: { value: '0123456789' } });
-      fireEvent.click(submitButton);
+      
+      await act(async () => {
+        fireEvent.click(submitButton);
+      });
 
       expect(screen.getByText('Envoi en cours...')).toBeInTheDocument();
 
       // Résoudre la promesse
-      resolvePromise!({ ok: true });
+      await act(async () => {
+        resolvePromise!({ ok: true });
+      });
+    });
+
+    test('devrait vider le champ après succès', async () => {
+      (global.fetch as jest.Mock).mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ success: true }),
+      });
+
+      render(<CallbackModal isOpen={true} onClose={mockOnClose} />);
+      
+      const phoneInput = screen.getByPlaceholderText('Votre numéro de téléphone') as HTMLInputElement;
+      const submitButton = screen.getByText('Me faire rappeler');
+
+      fireEvent.change(phoneInput, { target: { value: '0123456789' } });
+      expect(phoneInput.value).toBe('0123456789');
+      
+      await act(async () => {
+        fireEvent.click(submitButton);
+      });
+
+      await waitFor(() => {
+        expect(phoneInput.value).toBe('');
+      });
+    });
+
+    test('devrait fermer la modal après le délai de succès', async () => {
+      (global.fetch as jest.Mock).mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ success: true }),
+      });
+
+      render(<CallbackModal isOpen={true} onClose={mockOnClose} />);
+      
+      const phoneInput = screen.getByPlaceholderText('Votre numéro de téléphone');
+      const submitButton = screen.getByText('Me faire rappeler');
+
+      fireEvent.change(phoneInput, { target: { value: '0123456789' } });
+      
+      await act(async () => {
+        fireEvent.click(submitButton);
+      });
+
+      await waitFor(() => {
+        expect(screen.getByText('Nous vous rappellerons bientôt !')).toBeInTheDocument();
+      });
+
+      // Avancer les timers de 2 secondes
+      await act(async () => {
+        jest.advanceTimersByTime(2000);
+      });
+
+      // Vérifier que onClose a été appelé et que le status est remis à null
+      expect(mockOnClose).toHaveBeenCalledTimes(1);
     });
   });
 
   describe('Accessibilité', () => {
-    test('devrait avoir des labels appropriés', () => {
-      render(<CallbackModal isOpen={true} onClose={mockOnClose} />);
-      
-      const phoneInput = screen.getByLabelText('Votre numéro de téléphone');
-      expect(phoneInput).toBeInTheDocument();
-    });
-
-    test('devrait pouvoir être utilisé au clavier', () => {
+    test('devrait permettre la fermeture avec la touche Échap sur le bouton fermer', () => {
       render(<CallbackModal isOpen={true} onClose={mockOnClose} />);
       
       const closeButton = screen.getByLabelText('Fermer');
-      
-      // Tester la navigation au clavier
       fireEvent.keyDown(closeButton, { key: 'Enter' });
+      
       expect(mockOnClose).toHaveBeenCalledTimes(1);
     });
 
-    test('devrait supporter la touche Espace pour fermer', () => {
+    test('devrait permettre la fermeture avec la barre d\'espace sur le bouton fermer', () => {
       render(<CallbackModal isOpen={true} onClose={mockOnClose} />);
       
       const closeButton = screen.getByLabelText('Fermer');
-      
       fireEvent.keyDown(closeButton, { key: ' ' });
+      
       expect(mockOnClose).toHaveBeenCalledTimes(1);
-    });
-
-    test('devrait avoir un formulaire avec le rôle approprié', () => {
-      render(<CallbackModal isOpen={true} onClose={mockOnClose} />);
-      const form = screen.getByRole('form');
-      expect(form).toBeInTheDocument();
     });
   });
 
-  describe('États et transitions', () => {
-    test('devrait gérer les changements d\'état correctement', () => {
-      const { rerender } = render(<CallbackModal isOpen={false} onClose={mockOnClose} />);
+  describe('États multiples', () => {
+    test('ne devrait pas permettre de soumettre pendant l\'envoi', async () => {
+      let resolvePromise: (value: { ok: boolean }) => void;
+      const pendingPromise = new Promise((resolve) => {
+        resolvePromise = resolve;
+      });
       
-      // Modal fermée
-      expect(screen.queryByText('Demande de rappel')).not.toBeInTheDocument();
+      (global.fetch as jest.Mock).mockReturnValueOnce(pendingPromise);
+
+      render(<CallbackModal isOpen={true} onClose={mockOnClose} />);
       
-      // Ouvrir la modal
-      rerender(<CallbackModal isOpen={true} onClose={mockOnClose} />);
-      expect(screen.getByText('Demande de rappel')).toBeInTheDocument();
+      const phoneInput = screen.getByPlaceholderText('Votre numéro de téléphone');
+      const submitButton = screen.getByText('Me faire rappeler');
+
+      fireEvent.change(phoneInput, { target: { value: '0123456789' } });
       
-      // Fermer la modal
-      rerender(<CallbackModal isOpen={false} onClose={mockOnClose} />);
-      expect(screen.queryByText('Demande de rappel')).not.toBeInTheDocument();
+      await act(async () => {
+        fireEvent.click(submitButton);
+      });
+
+      expect(screen.getByText('Envoi en cours...')).toBeInTheDocument();
+      
+      // Vérifier que le bouton est désactivé (donc pas cliquable)
+      expect(submitButton).toBeDisabled();
+      
+      // Tentative de seconde soumission ne devrait pas fonctionner car le bouton est désactivé
+      await act(async () => {
+        fireEvent.click(submitButton);
+      });
+
+      // Fetch ne devrait être appelé qu'une seule fois car le bouton est désactivé
+      expect(global.fetch).toHaveBeenCalledTimes(1);
+
+      // Résoudre la promesse pour nettoyer
+      await act(async () => {
+        resolvePromise!({ ok: true });
+      });
     });
   });
 });

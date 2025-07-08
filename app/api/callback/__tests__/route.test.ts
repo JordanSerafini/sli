@@ -1,12 +1,13 @@
 import { NextRequest } from 'next/server';
 import { POST } from '../route';
 
-// Mock Resend
+// Mock de Resend
+const mockEmailsSend = jest.fn();
 jest.mock('resend', () => {
   return {
     Resend: jest.fn().mockImplementation(() => ({
       emails: {
-        send: jest.fn()
+        send: mockEmailsSend
       }
     }))
   };
@@ -14,20 +15,10 @@ jest.mock('resend', () => {
 
 // Tests pour l'API Callback
 describe('Callback API Route', () => {
-  let mockEmailsSend: jest.Mock;
-  
   beforeEach(() => {
     jest.clearAllMocks();
+    mockEmailsSend.mockClear();
     
-         // Configuration du mock Resend
-     mockEmailsSend = jest.fn();
-     const { Resend } = jest.requireActual('resend');
-     jest.mocked(Resend).mockImplementation(() => ({
-       emails: {
-         send: mockEmailsSend
-       }
-     }));
-
     // Configuration des variables d'environnement
     process.env.RESEND_API_KEY = 'test-api-key';
   });

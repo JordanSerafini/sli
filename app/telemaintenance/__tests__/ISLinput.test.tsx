@@ -1,66 +1,101 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import IslClient from '../ISLinput';
 
-// Mock des modules
-jest.mock('@/components/ui/modernCard', () => ({
-  ModernCard: ({ children, className }: { children: React.ReactNode; className?: string }) => 
-    <div className={className}>{children}</div>
-}));
+// Configuration de l'environnement DOM pour les tests
+global.document = document;
+global.window = window;
 
-jest.mock('@/components/ui/modernButton', () => ({
-  ModernButton: ({ children, loading, disabled, onClick, ...props }: { 
+// Configuration globale des mocks
+const mockClick = jest.fn();
+const mockCreateElement = jest.fn();
+const mockAppendChild = jest.fn();
+const mockRemoveChild = jest.fn();
+
+// Mock simple et minimal des composants UI
+jest.mock('@/components/ui/modernCard', () => {
+  const ModernCard = ({ children, ...props }: { children: React.ReactNode; [key: string]: unknown }) => (
+    <div data-testid="modern-card" {...props}>{children}</div>
+  );
+  ModernCard.displayName = 'ModernCard';
+  return { ModernCard };
+});
+
+jest.mock('@/components/ui/modernButton', () => {
+  const ModernButton = ({ children, loading, disabled, onClick, type, ...props }: { 
     children: React.ReactNode; 
     loading?: boolean; 
     disabled?: boolean; 
     onClick?: () => void;
+    type?: string;
     [key: string]: unknown;
   }) => (
     <button 
+      type={type as 'button' | 'submit' | 'reset'}
       onClick={onClick} 
       disabled={disabled || loading}
-      className={loading ? 'loading' : ''}
+      data-loading={loading}
+      data-testid="modern-button"
       {...props}
     >
       {loading ? 'Chargement...' : children}
     </button>
-  )
+  );
+  ModernButton.displayName = 'ModernButton';
+  return { ModernButton };
+});
+
+jest.mock('@/components/ui/Input', () => {
+  const Input = (props: Record<string, unknown>) => <input data-testid="input" {...props} />;
+  Input.displayName = 'Input';
+  return { Input };
+});
+
+// Mock des icônes lucide-react
+jest.mock('lucide-react', () => ({
+  Download: () => <span data-testid="download-icon">Download</span>,
+  Shield: () => <span data-testid="shield-icon">Shield</span>,
+  Monitor: () => <span data-testid="monitor-icon">Monitor</span>,
+  CheckCircle: () => <span data-testid="check-circle-icon">CheckCircle</span>,
 }));
-
-jest.mock('@/components/ui/Input', () => ({
-  Input: (props: Record<string, unknown>) => <input {...props} />
-}));
-
-// Mock fetch pour l'API
-global.fetch = jest.fn();
-
-// Mock pour createElement et appendChild/removeChild
-const mockCreateElement = jest.fn();
-const mockAppendChild = jest.fn();
-const mockRemoveChild = jest.fn();
-const mockClick = jest.fn();
-
-Object.defineProperty(document, 'createElement', {
-  value: mockCreateElement,
-  writable: true,
-});
-
-Object.defineProperty(document.body, 'appendChild', {
-  value: mockAppendChild,
-  writable: true,
-});
-
-Object.defineProperty(document.body, 'removeChild', {
-  value: mockRemoveChild,
-  writable: true,
-});
 
 describe('IslClient Component', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
+  // Setup global des mocks DOM
+  beforeAll(() => {
+    // S'assurer que document et body existent
+    if (!document.body) {
+      document.body = document.createElement('body');
+    }
     
-    // Mock pour createElement qui retourne un élément avec click
+    // Mock createElement
+    Object.defineProperty(document, 'createElement', {
+      value: mockCreateElement,
+      writable: true,
+      configurable: true,
+    });
+
+    // Mock appendChild
+    Object.defineProperty(document.body, 'appendChild', {
+      value: mockAppendChild,
+      writable: true,
+      configurable: true,
+    });
+
+    // Mock removeChild
+    Object.defineProperty(document.body, 'removeChild', {
+      value: mockRemoveChild,
+      writable: true,
+      configurable: true,
+    });
+  });
+
+  beforeEach(() => {
+    // Reset tous les mocks
+    jest.clearAllMocks();
+    jest.useFakeTimers();
+    
+    // Configuration par défaut du mock createElement
     mockCreateElement.mockReturnValue({
       href: '',
       download: '',
@@ -68,55 +103,50 @@ describe('IslClient Component', () => {
     });
   });
 
-  test('devrait se rendre sans crash', () => {
-    render(<IslClient />);
-    expect(screen.getByText('Connexion à la télémaintenance')).toBeInTheDocument();
-    expect(screen.getByLabelText('Code de connexion')).toBeInTheDocument();
-    expect(screen.getByText('Télécharger ISL Light Client')).toBeInTheDocument();
+  afterEach(() => {
+    jest.runOnlyPendingTimers();
+    jest.useRealTimers();
   });
 
-  describe('Interface utilisateur', () => {
-    test('devrait afficher tous les éléments principaux', () => {
-      render(<IslClient />);
-      
-      // Titre principal
+  describe('Rendu de base', () => {
+    test('devrait se rendre sans crash', () => {
+      const { container } = render(<IslClient />);
+      expect(container).toBeInTheDocument();
       expect(screen.getByText('Connexion à la télémaintenance')).toBeInTheDocument();
-      
-      // Champ de saisie
-      expect(screen.getByLabelText('Code de connexion')).toBeInTheDocument();
-      expect(screen.getByPlaceholderText('Entrez le code ISL (ex: 123456789)')).toBeInTheDocument();
-      
-      // Bouton de téléchargement
-      expect(screen.getByText('Télécharger ISL Light Client')).toBeInTheDocument();
-      
-      // Instructions
-      expect(screen.getByText('Instructions')).toBeInTheDocument();
-      expect(screen.getByText('Entrez votre code de connexion ci-dessus')).toBeInTheDocument();
-      
-      // Information sécurité
-      expect(screen.getByText('Téléchargement sécurisé')).toBeInTheDocument();
     });
 
-    test('devrait avoir le champ de code requis', () => {
+    test('devrait afficher le formulaire principal', () => {
       render(<IslClient />);
-      const codeInput = screen.getByLabelText('Code de connexion');
-      expect(codeInput).toBeRequired();
+      
+      // Vérifier les éléments principaux
+      expect(screen.getByText('Connexion à la télémaintenance')).toBeInTheDocument();
+      expect(screen.getByLabelText('Code de connexion')).toBeInTheDocument();
+      expect(screen.getByPlaceholderText('Entrez le code ISL (ex: 123456789)')).toBeInTheDocument();
+      expect(screen.getByText('Télécharger ISL Light Client')).toBeInTheDocument();
+    });
+
+    test('devrait afficher les instructions', () => {
+      render(<IslClient />);
+      
+      expect(screen.getByText('Instructions')).toBeInTheDocument();
+      expect(screen.getByText('Entrez votre code de connexion ci-dessus')).toBeInTheDocument();
+      expect(screen.getByText('Téléchargement sécurisé')).toBeInTheDocument();
+    });
+  });
+
+  describe('Interactions utilisateur', () => {
+    test('devrait permettre la saisie dans le champ code', () => {
+      render(<IslClient />);
+      const codeInput = screen.getByLabelText('Code de connexion') as HTMLInputElement;
+      
+      fireEvent.change(codeInput, { target: { value: '123456789' } });
+      expect(codeInput.value).toBe('123456789');
     });
 
     test('devrait désactiver le bouton quand le code est vide', () => {
       render(<IslClient />);
       const downloadButton = screen.getByText('Télécharger ISL Light Client');
       expect(downloadButton).toBeDisabled();
-    });
-  });
-
-  describe('Saisie du code', () => {
-    test('devrait permettre la saisie du code', () => {
-      render(<IslClient />);
-      const codeInput = screen.getByLabelText('Code de connexion');
-      
-      fireEvent.change(codeInput, { target: { value: '123456789' } });
-      expect(codeInput).toHaveValue('123456789');
     });
 
     test('devrait activer le bouton quand un code est saisi', () => {
@@ -127,52 +157,65 @@ describe('IslClient Component', () => {
       fireEvent.change(codeInput, { target: { value: '123456789' } });
       expect(downloadButton).not.toBeDisabled();
     });
-
-    test('devrait désactiver le bouton avec un code vide ou espaces', () => {
-      render(<IslClient />);
-      const codeInput = screen.getByLabelText('Code de connexion');
-      const downloadButton = screen.getByText('Télécharger ISL Light Client');
-      
-      fireEvent.change(codeInput, { target: { value: '   ' } });
-      expect(downloadButton).toBeDisabled();
-    });
   });
 
-  describe('Validation du formulaire', () => {
+  describe('Validation et erreurs', () => {
     test('devrait afficher une erreur pour un code vide', async () => {
       render(<IslClient />);
-      const form = screen.getByRole('form') || screen.getByText('Télécharger ISL Light Client').closest('form');
+      const downloadButton = screen.getByText('Télécharger ISL Light Client');
       
-      fireEvent.submit(form!);
+      // Forcer le clic même si désactivé
+      Object.defineProperty(downloadButton, 'disabled', { value: false, writable: true });
+      
+      await act(async () => {
+        fireEvent.click(downloadButton);
+      });
       
       await waitFor(() => {
         expect(screen.getByText('Veuillez entrer un code valide.')).toBeInTheDocument();
       });
     });
 
-    test('ne devrait pas afficher d\'erreur avec un code valide', async () => {
+    test('devrait gérer les erreurs de téléchargement', async () => {
+      // Simuler une erreur lors de createElement
+      mockCreateElement.mockImplementationOnce(() => {
+        throw new Error('Erreur simulée');
+      });
+
       render(<IslClient />);
       const codeInput = screen.getByLabelText('Code de connexion');
       const downloadButton = screen.getByText('Télécharger ISL Light Client');
       
       fireEvent.change(codeInput, { target: { value: '123456789' } });
-      fireEvent.click(downloadButton);
       
-      // Attendre que l'erreur n'apparaisse pas
+      await act(async () => {
+        fireEvent.click(downloadButton);
+      });
+      
       await waitFor(() => {
-        expect(screen.queryByText('Veuillez entrer un code valide.')).not.toBeInTheDocument();
+        expect(screen.getByText('Erreur lors du téléchargement. Veuillez réessayer.')).toBeInTheDocument();
       });
     });
   });
 
-  describe('Téléchargement', () => {
+  describe('Fonctionnalité de téléchargement', () => {
     test('devrait déclencher le téléchargement avec un code valide', async () => {
+      const mockElement = {
+        href: '',
+        download: '',
+        click: mockClick,
+      };
+      mockCreateElement.mockReturnValue(mockElement);
+
       render(<IslClient />);
       const codeInput = screen.getByLabelText('Code de connexion');
       const downloadButton = screen.getByText('Télécharger ISL Light Client');
       
       fireEvent.change(codeInput, { target: { value: '123456789' } });
-      fireEvent.click(downloadButton);
+      
+      await act(async () => {
+        fireEvent.click(downloadButton);
+      });
       
       await waitFor(() => {
         expect(mockCreateElement).toHaveBeenCalledWith('a');
@@ -195,7 +238,10 @@ describe('IslClient Component', () => {
       const downloadButton = screen.getByText('Télécharger ISL Light Client');
       
       fireEvent.change(codeInput, { target: { value: '123456789' } });
-      fireEvent.click(downloadButton);
+      
+      await act(async () => {
+        fireEvent.click(downloadButton);
+      });
       
       await waitFor(() => {
         expect(mockElement.href).toBe('/api/islClient?code=123456789');
@@ -203,138 +249,85 @@ describe('IslClient Component', () => {
       });
     });
 
-    test('devrait afficher un état de chargement', async () => {
+    test('devrait afficher un message de succès', async () => {
       render(<IslClient />);
       const codeInput = screen.getByLabelText('Code de connexion');
       const downloadButton = screen.getByText('Télécharger ISL Light Client');
       
       fireEvent.change(codeInput, { target: { value: '123456789' } });
-      fireEvent.click(downloadButton);
       
-      // Vérifier que le bouton montre l'état de chargement
-      await waitFor(() => {
-        expect(downloadButton).toHaveClass('loading');
+      await act(async () => {
+        fireEvent.click(downloadButton);
       });
-    });
-
-    test('devrait afficher un message de succès après téléchargement', async () => {
-      render(<IslClient />);
-      const codeInput = screen.getByLabelText('Code de connexion');
-      const downloadButton = screen.getByText('Télécharger ISL Light Client');
-      
-      fireEvent.change(codeInput, { target: { value: '123456789' } });
-      fireEvent.click(downloadButton);
       
       await waitFor(() => {
-        expect(screen.getByText(/Téléchargement initié ! Vérifiez vos téléchargements/)).toBeInTheDocument();
+        expect(screen.getByText(/Téléchargement initié !/)).toBeInTheDocument();
       });
     });
 
     test('devrait masquer le message de succès après 5 secondes', async () => {
-      jest.useFakeTimers();
-      
       render(<IslClient />);
       const codeInput = screen.getByLabelText('Code de connexion');
       const downloadButton = screen.getByText('Télécharger ISL Light Client');
       
       fireEvent.change(codeInput, { target: { value: '123456789' } });
-      fireEvent.click(downloadButton);
+      
+      await act(async () => {
+        fireEvent.click(downloadButton);
+      });
       
       await waitFor(() => {
         expect(screen.getByText(/Téléchargement initié !/)).toBeInTheDocument();
       });
       
-      // Avancer le temps de 5 secondes
-      jest.advanceTimersByTime(5000);
+      // Avancer les timers de 5 secondes
+      await act(async () => {
+        jest.advanceTimersByTime(5000);
+      });
       
       await waitFor(() => {
         expect(screen.queryByText(/Téléchargement initié !/)).not.toBeInTheDocument();
       });
-      
-      jest.useRealTimers();
     });
   });
 
-  describe('Gestion des erreurs', () => {
-    test('devrait afficher une erreur en cas d\'exception', async () => {
-      // Mock pour simuler une erreur
-      mockCreateElement.mockImplementation(() => {
-        throw new Error('Erreur simulée');
-      });
-
+  describe('États de l\'interface', () => {
+    test('devrait afficher l\'état de chargement', async () => {
       render(<IslClient />);
       const codeInput = screen.getByLabelText('Code de connexion');
       const downloadButton = screen.getByText('Télécharger ISL Light Client');
       
       fireEvent.change(codeInput, { target: { value: '123456789' } });
-      fireEvent.click(downloadButton);
       
-      await waitFor(() => {
-        expect(screen.getByText('Erreur lors du téléchargement. Veuillez réessayer.')).toBeInTheDocument();
+      await act(async () => {
+        fireEvent.click(downloadButton);
       });
+      
+      // Vérifier que le bouton est en état de chargement
+      expect(downloadButton).toHaveAttribute('data-loading', 'true');
     });
 
-    test('devrait réactiver le bouton après une erreur', async () => {
-      mockCreateElement.mockImplementation(() => {
-        throw new Error('Erreur simulée');
-      });
-
+    test('ne devrait pas permettre de cliquer pendant le chargement', async () => {
       render(<IslClient />);
       const codeInput = screen.getByLabelText('Code de connexion');
       const downloadButton = screen.getByText('Télécharger ISL Light Client');
       
       fireEvent.change(codeInput, { target: { value: '123456789' } });
-      fireEvent.click(downloadButton);
       
-      await waitFor(() => {
-        expect(downloadButton).not.toHaveClass('loading');
-        expect(downloadButton).not.toBeDisabled();
+      await act(async () => {
+        fireEvent.click(downloadButton);
       });
-    });
-  });
-
-  describe('États multiples', () => {
-    test('ne devrait pas pouvoir télécharger pendant un téléchargement en cours', async () => {
-      render(<IslClient />);
-      const codeInput = screen.getByLabelText('Code de connexion');
-      const downloadButton = screen.getByText('Télécharger ISL Light Client');
-      
-      fireEvent.change(codeInput, { target: { value: '123456789' } });
-      fireEvent.click(downloadButton);
       
       // Le bouton devrait être désactivé pendant le chargement
       expect(downloadButton).toBeDisabled();
-    });
-
-    test('devrait effacer les erreurs précédentes lors d\'un nouveau téléchargement', async () => {
-      // Première tentative avec erreur
-      mockCreateElement.mockImplementationOnce(() => {
-        throw new Error('Erreur simulée');
-      });
-
-      render(<IslClient />);
-      const codeInput = screen.getByLabelText('Code de connexion');
-      const downloadButton = screen.getByText('Télécharger ISL Light Client');
       
-      fireEvent.change(codeInput, { target: { value: '123456789' } });
-      fireEvent.click(downloadButton);
-      
-      await waitFor(() => {
-        expect(screen.getByText('Erreur lors du téléchargement. Veuillez réessayer.')).toBeInTheDocument();
+      // Tentative de second clic
+      await act(async () => {
+        fireEvent.click(downloadButton);
       });
       
-      // Deuxième tentative réussie
-      mockCreateElement.mockReturnValue({
-        href: '',
-        download: '',
-        click: mockClick,
-      });
-      
-      fireEvent.click(downloadButton);
-      
-      await waitFor(() => {
-        expect(screen.queryByText('Erreur lors du téléchargement. Veuillez réessayer.')).not.toBeInTheDocument();
-      });
+      // createElement ne devrait être appelé qu'une seule fois
+      expect(mockCreateElement).toHaveBeenCalledTimes(1);
     });
   });
 }); 

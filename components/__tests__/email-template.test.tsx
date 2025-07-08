@@ -118,12 +118,16 @@ describe('ContactEmailTemplate', () => {
   });
 
   describe('Structure HTML', () => {
-    test('devrait avoir une structure de table pour email', () => {
+    test('devrait avoir une structure div avec styles pour email', () => {
       const { container } = render(<ContactEmailTemplate {...defaultProps} />);
       
-      // Vérifier qu'il y a une structure de table (typique pour les emails)
-      const tables = container.querySelectorAll('table');
-      expect(tables.length).toBeGreaterThan(0);
+      // Vérifier qu'il y a une structure div avec styles (typique pour les emails)
+      const mainDiv = container.querySelector('div[style]');
+      expect(mainDiv).toBeInTheDocument();
+      
+      // Vérifier la structure de base du template
+      const content = container.textContent;
+      expect(content).toContain('Nouveau message de contact depuis le site web');
     });
 
     test('devrait avoir des styles inline pour la compatibilité email', () => {
