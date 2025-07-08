@@ -1,5 +1,6 @@
 
 
+import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { ContactEmailTemplate } from '../../../components/email-template';
 import { 
@@ -8,32 +9,6 @@ import {
   sanitizeAndValidateContactData, 
   logSecurityEvent 
 } from '../../../lib/security';
-
-// Configuration CORS pour permettre les appels depuis d'autres domaines
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-  'Access-Control-Max-Age': '86400',
-};
-
-export async function OPTIONS() {
-  return new Response(null, { 
-    status: 200, 
-    headers: corsHeaders 
-  });
-}
-
-// Fonction helper pour ajouter les headers CORS à toutes les réponses
-function createCORSResponse(data: Record<string, unknown>, status: number = 200) {
-  return new Response(JSON.stringify(data), {
-    status,
-    headers: {
-      'Content-Type': 'application/json',
-      ...corsHeaders,
-    },
-  });
-}
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -58,20 +33,20 @@ export async function POST(req: Request) {
       });
 
       if (rateLimitResult.isBlocked) {
-        return createCORSResponse(
+        return NextResponse.json(
           { 
             message: 'Trop de tentatives. Votre IP est temporairement bloquée.',
             resetTime: rateLimitResult.resetTime 
           },
-          429
+          { status: 429 }
         );
       } else {
-        return createCORSResponse(
+        return NextResponse.json(
           { 
             message: `Limite atteinte. Attendez avant de renvoyer un message. (${rateLimitResult.remaining} restantes)`,
             resetTime: rateLimitResult.resetTime 
           },
-          429
+          { status: 429 }
         );
       }
     }
@@ -88,9 +63,9 @@ export async function POST(req: Request) {
         data: { honeypot: body.website, type: 'honeypot_filled' },
       });
 
-      return createCORSResponse(
+      return NextResponse.json(
         { message: 'Erreur de validation du formulaire.' },
-        400
+        { status: 400 }
       );
     }
     
@@ -104,9 +79,9 @@ export async function POST(req: Request) {
         data: { errors: validation.errors, originalData: body },
       });
 
-      return createCORSResponse(
+      return NextResponse.json(
         { message: `Données invalides: ${validation.errors.join(', ')}` },
-        400
+        { status: 400 }
       );
     }
 
@@ -114,9 +89,9 @@ export async function POST(req: Request) {
 
     if (!process.env.RESEND_API_KEY) {
       console.error('Clé API Resend non configurée');
-      return createCORSResponse(
+      return NextResponse.json(
         { message: 'Service de messagerie non configuré. Veuillez contacter l\'administrateur.' },
-        500
+        { status: 500 }
       );
     }
 
@@ -135,25 +110,25 @@ export async function POST(req: Request) {
 
     if (error) {
       console.error('Erreur Resend:', error);
-      return createCORSResponse(
+      return NextResponse.json(
         { message: 'Erreur lors de l\'envoi du message. Veuillez réessayer plus tard.' },
-        500
+        { status: 500 }
       );
     }
 
     console.log('Email envoyé avec succès:', data);
 
-    return createCORSResponse(
+    return NextResponse.json(
       { message: 'Message envoyé avec succès !' },
-      200
+      { status: 200 }
     );
 
   } catch (error) {
     console.error('Erreur lors de l\'envoi de l\'email:', error);
     
-    return createCORSResponse(
+    return NextResponse.json(
       { message: 'Erreur lors de l\'envoi du message. Veuillez réessayer plus tard.' },
-      500
+      { status: 500 }
     );
   }
 } 

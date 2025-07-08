@@ -1,4 +1,4 @@
-
+import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import * as React from 'react';
 import { 
@@ -8,31 +8,8 @@ import {
   logSecurityEvent 
 } from '../../../lib/security';
 
-// Configuration CORS pour permettre les appels depuis d'autres domaines
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-  'Access-Control-Max-Age': '86400',
-};
 
-export async function OPTIONS() {
-  return new Response(null, { 
-    status: 200, 
-    headers: corsHeaders 
-  });
-}
 
-// Fonction helper pour ajouter les headers CORS à toutes les réponses
-function createCORSResponse(data: Record<string, unknown>, status: number = 200) {
-  return new Response(JSON.stringify(data), {
-    status,
-    headers: {
-      'Content-Type': 'application/json',
-      ...corsHeaders,
-    },
-  });
-}
 
 // Configuration Resend
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -97,9 +74,9 @@ export async function POST(req: Request) {
 
   if (!process.env.RESEND_API_KEY) {
     console.error('Clé API Resend non configurée');
-    return createCORSResponse(
+    return NextResponse.json(
       { message: 'Configuration du serveur de messagerie manquante.' },
-      500
+      { status: 500 }
     );
   }
 
@@ -119,12 +96,12 @@ export async function POST(req: Request) {
         data: { remaining: rateLimitResult.remaining, isBlocked: rateLimitResult.isBlocked },
       });
 
-      return createCORSResponse(
+      return NextResponse.json(
         { message: rateLimitResult.isBlocked 
           ? 'Trop de demandes de rappel. Votre IP est temporairement bloquée.' 
           : `Limite atteinte. Attendez avant de demander un nouveau rappel. (${rateLimitResult.remaining} restantes)` 
         },
-        429
+        { status: 429 }
       );
     }
 
@@ -141,9 +118,9 @@ export async function POST(req: Request) {
         data: { honeypot: body.company, type: 'honeypot_filled' },
       });
 
-      return createCORSResponse(
+      return NextResponse.json(
         { message: 'Erreur de validation du formulaire.' },
-        400
+        { status: 400 }
       );
     }
     
@@ -157,9 +134,9 @@ export async function POST(req: Request) {
         data: { error: phoneValidation.error, originalPhone: phone },
       });
 
-      return createCORSResponse(
+      return NextResponse.json(
         { message: phoneValidation.error || 'Numéro de téléphone invalide.' },
-        400
+        { status: 400 }
       );
     }
 
@@ -172,25 +149,25 @@ export async function POST(req: Request) {
 
     if (error) {
       console.error('Erreur Resend:', error);
-      return createCORSResponse(
+      return NextResponse.json(
         { message: 'Erreur lors de l\'envoi de la demande.' },
-        500
+        { status: 500 }
       );
     }
 
     console.log('Email de rappel envoyé avec succès:', data);
 
-    return createCORSResponse(
+    return NextResponse.json(
       { message: 'Demande de rappel envoyée avec succès' },
-      200
+      { status: 200 }
     );
 
   } catch (error) {
     console.error("Erreur lors de l'envoi de l'e-mail de rappel :", error);
     
-    return createCORSResponse(
+    return NextResponse.json(
       { message: 'Erreur lors de l\'envoi de la demande.' },
-      500
+      { status: 500 }
     );
   }
 } 
