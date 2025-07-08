@@ -8,6 +8,7 @@ export default function EBPBatiment() {
       description="Solutions spécialisées pour les professionnels du BTP. Gérez vos devis, chantiers, métrés et facturation avec des outils conçus spécifiquement pour le secteur du bâtiment. De l'artisan à l'entreprise générale, trouvez la solution adaptée à votre activité."
       category="Bâtiment"
       colorScheme="orange"
+      formationLink="/formationBatiment"
       softwares={[
         {
           title: "EBP Gestion Bâtiment",

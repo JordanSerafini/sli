@@ -8,6 +8,7 @@ export default function EBPGestionCo() {
       description="Optimisez votre gestion commerciale avec les solutions EBP dédiées aux ventes, achats, stocks et relation client. Des outils puissants pour développer votre chiffre d'affaires et fidéliser votre clientèle avec une gestion commerciale professionnelle et intuitive."
       category="Gestion Commerciale"
       colorScheme="green"
+      formationLink="/formationCommerciale"
       softwares={[
         {
           title: "EBP Gestion Commerciale ACTIV",
