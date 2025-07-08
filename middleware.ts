@@ -88,8 +88,27 @@ function detectBot(request: NextRequest): boolean {
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   
-  // 🛡️ ÉTAPE 1: Validation de l'origine pour les APIs
-  if (pathname.startsWith('/api/') && !validateOrigin(request)) {
+  // 🛡️ GESTION SPÉCIALE DES REQUÊTES OPTIONS (CORS Preflight)
+  if (request.method === 'OPTIONS' && pathname.startsWith('/api/')) {
+    const origin = request.headers.get('origin');
+    
+    // Autoriser les requêtes OPTIONS depuis les origines autorisées
+    if (origin && ALLOWED_ORIGINS.includes(origin)) {
+      return new NextResponse(null, {
+        status: 200,
+        headers: {
+          'Access-Control-Allow-Origin': origin,
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
+          'Access-Control-Allow-Credentials': 'false',
+          'Access-Control-Max-Age': '86400',
+        },
+      });
+    }
+  }
+  
+  // 🛡️ ÉTAPE 1: Validation de l'origine pour les APIs (sauf OPTIONS)
+  if (pathname.startsWith('/api/') && request.method !== 'OPTIONS' && !validateOrigin(request)) {
     console.warn('[SECURITY] Origine non autorisée:', {
       origin: request.headers.get('origin'),
       referer: request.headers.get('referer'),
@@ -130,6 +149,19 @@ export function middleware(request: NextRequest) {
   
   // 🛡️ ÉTAPE 4: Headers de sécurité additionnels
   const response = NextResponse.next();
+  
+  // 🛡️ CORS: Ajouter les en-têtes CORS pour les APIs
+  if (pathname.startsWith('/api/')) {
+    const origin = request.headers.get('origin');
+    
+    if (origin && ALLOWED_ORIGINS.includes(origin)) {
+      response.headers.set('Access-Control-Allow-Origin', origin);
+      response.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+      response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+      response.headers.set('Access-Control-Allow-Credentials', 'false');
+      response.headers.set('Access-Control-Max-Age', '86400');
+    }
+  }
   
   // Ajouter un token CSRF pour les pages avec formulaires
   if (pathname === '/contact' || pathname.includes('contact')) {
