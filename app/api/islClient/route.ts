@@ -35,7 +35,9 @@ export async function GET(req: Request) {
     console.error("Erreur avec le téléchargement ISL :");
     console.error(error);
     
-    const islJoinUrl = `https://www.islonline.com/fr/fr/join/#${code}`;
-    return NextResponse.redirect(islJoinUrl);
+    return NextResponse.json({ 
+      error: 'Échec du téléchargement. Veuillez réessayer ou nous contacter si le problème persiste.',
+      islJoinUrl: `https://www.islonline.com/fr/fr/join/#${code}`
+    }, { status: 500 });
   }
 } 

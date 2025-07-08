@@ -25,12 +25,29 @@ export default function IslClient() {
     try {
       const downloadUrl = `/api/islClient?code=${code}`;
       
+      // Utiliser fetch pour pouvoir gérer les erreurs
+      const response = await fetch(downloadUrl);
+      
+      if (!response.ok) {
+        // Si la réponse n'est pas ok, c'est probablement une erreur JSON
+        const errorData = await response.json();
+        setError(errorData.error || "Erreur lors du téléchargement. Veuillez réessayer.");
+        return;
+      }
+
+      // Si tout va bien, créer le téléchargement
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      
       const a = document.createElement("a");
-      a.href = downloadUrl;
+      a.href = url;
       a.download = `isl-light-client-${code}.exe`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
+      
+      // Nettoyer l'URL blob
+      window.URL.revokeObjectURL(url);
       
       setError(null);
       setDownloadSuccess(true);
