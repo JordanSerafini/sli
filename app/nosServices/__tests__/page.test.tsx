@@ -146,12 +146,17 @@ describe("NosServices Component", () => {
   describe("Images et médias", () => {
     test("devrait contenir des images pour chaque service", () => {
       render(<NosServices />);
-      const images = document.querySelectorAll('img');
-      expect(images.length).toBeGreaterThan(0);
+      // Cette page utilise des images de fond CSS, pas des éléments img
+      const backgroundImages = document.querySelectorAll('[style*="background-image"]');
+      expect(backgroundImages.length).toBeGreaterThan(0);
       
-      // Vérifier que les images ont des attributs alt
-      images.forEach(img => {
-        expect(img).toHaveAttribute('alt');
+      // Vérifier qu'il y a au moins une image réelle (celle de télémaintenance) via le mock
+      const mockImages = document.querySelectorAll('[data-testid="mock-image"]');
+      expect(mockImages.length).toBeGreaterThan(0);
+      
+      // Vérifier que les images ont des attributs alt via le mock
+      mockImages.forEach(img => {
+        expect(img).toHaveAttribute('data-alt');
       });
     });
 
@@ -164,16 +169,11 @@ describe("NosServices Component", () => {
 
     test("devrait optimiser les images pour les performances", () => {
       render(<NosServices />);
-      const images = document.querySelectorAll('img');
+      // Vérifier les images mockées
+      const mockImages = document.querySelectorAll('[data-testid="mock-image"]');
       
-      // Vérifier si Next.js Image ou des attributs d'optimisation sont utilisés
-      images.forEach(img => {
-        const isOptimized = img.hasAttribute('loading') || 
-                           img.hasAttribute('decoding') || 
-                           img.closest('[data-nextjs-image]');
-        // Au moins quelques images devraient être optimisées
-        expect(images.length === 0 || isOptimized !== undefined).toBe(true);
-      });
+      // Au moins une image devrait être présente (via Next.js Image)
+      expect(mockImages.length).toBeGreaterThan(0);
     });
   });
 
@@ -244,10 +244,10 @@ describe("NosServices Component", () => {
 
     test("devrait avoir des images avec attributs alt", () => {
       render(<NosServices />);
-      const images = document.querySelectorAll('img');
-      images.forEach(img => {
-        expect(img).toHaveAttribute('alt');
-        expect(img.getAttribute('alt')).toBeTruthy();
+      const mockImages = document.querySelectorAll('[data-testid="mock-image"]');
+      mockImages.forEach(img => {
+        expect(img).toHaveAttribute('data-alt');
+        expect(img.getAttribute('data-alt')).toBeTruthy();
       });
     });
   });
@@ -396,7 +396,8 @@ describe("NosServices Component", () => {
 
     test("devrait afficher l'image d'assistance", () => {
       render(<NosServices />);
-      const assistanceImage = screen.getByAltText(/Assistance télémaintenance/);
+      // Utiliser le mock image au lieu de getByAltText
+      const assistanceImage = document.querySelector('[data-alt*="Assistance télémaintenance"]');
       expect(assistanceImage).toBeInTheDocument();
     });
 

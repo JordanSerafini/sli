@@ -66,10 +66,10 @@ function Footer() {
                 <div className="flex items-center space-x-3">
                   <Mail className="w-5 h-5 text-blue-400 flex-shrink-0" />
                   <a 
-                    href="mailto:contact@solution-logique.com"
+                    href="mailto:site@solution-logique.fr"
                     className="text-slate-400 hover:text-white transition-colors"
                   >
-                    contact@solution-logique.com
+                    site@solution-logique.fr
                   </a>
                 </div>
               </div>

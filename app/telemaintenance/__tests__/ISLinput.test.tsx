@@ -43,6 +43,7 @@ jest.mock('lucide-react', () => ({
   Shield: () => <span data-testid="shield-icon">Shield</span>,
   Monitor: () => <span data-testid="monitor-icon">Monitor</span>,
   CheckCircle: () => <span data-testid="check-circle-icon">CheckCircle</span>,
+  ExternalLink: () => <span data-testid="external-link-icon">ExternalLink</span>,
 }));
 
 // Import après les mocks
@@ -106,7 +107,7 @@ describe('IslClient Component', () => {
       expect(screen.getByText('Connexion à la télémaintenance')).toBeInTheDocument();
       expect(screen.getByLabelText('Code de connexion')).toBeInTheDocument();
       expect(screen.getByPlaceholderText('Entrez le code ISL (ex: 123456789)')).toBeInTheDocument();
-      expect(screen.getByText('Télécharger ISL Light Client')).toBeInTheDocument();
+      expect(screen.getByText('Se connecter via ISL Online')).toBeInTheDocument();
     });
 
     test('devrait afficher les instructions', () => {
@@ -115,7 +116,7 @@ describe('IslClient Component', () => {
       
       expect(screen.getByText('Instructions')).toBeInTheDocument();
       expect(screen.getByText('Entrez votre code de connexion ci-dessus')).toBeInTheDocument();
-      expect(screen.getByText('Téléchargement sécurisé')).toBeInTheDocument();
+      expect(screen.getByText('Connexion sécurisée')).toBeInTheDocument();
     });
   });
 
@@ -134,7 +135,7 @@ describe('IslClient Component', () => {
       const result = customRender(<IslClient />);
       cleanup = result.cleanup;
       
-      const downloadButton = screen.getByText('Télécharger ISL Light Client');
+      const downloadButton = screen.getByText('Se connecter via ISL Online');
       expect(downloadButton).toBeDisabled();
     });
 
@@ -143,7 +144,7 @@ describe('IslClient Component', () => {
       cleanup = result.cleanup;
       
       const codeInput = screen.getByLabelText('Code de connexion');
-      const downloadButton = screen.getByText('Télécharger ISL Light Client');
+      const downloadButton = screen.getByText('Se connecter via ISL Online');
       
       fireEvent.change(codeInput, { target: { value: '123456789' } });
       expect(downloadButton).not.toBeDisabled();
@@ -155,7 +156,7 @@ describe('IslClient Component', () => {
       const result = customRender(<IslClient />);
       cleanup = result.cleanup;
       
-      const downloadButton = screen.getByText('Télécharger ISL Light Client');
+      const downloadButton = screen.getByText('Se connecter via ISL Online');
       
       // Simuler un clic sur un bouton désactivé en forçant l'événement submit
       const form = downloadButton.closest('form');
@@ -174,7 +175,7 @@ describe('IslClient Component', () => {
       const result = customRender(<IslClient />);
       cleanup = result.cleanup;
       
-      const downloadButton = screen.getByText('Télécharger ISL Light Client');
+      const downloadButton = screen.getByText('Se connecter via ISL Online');
       expect(downloadButton).toBeInTheDocument();
       expect(downloadButton).toHaveAttribute('type', 'submit');
     });
@@ -184,7 +185,7 @@ describe('IslClient Component', () => {
       cleanup = result.cleanup;
       
       const codeInput = screen.getByLabelText('Code de connexion');
-      const downloadButton = screen.getByText('Télécharger ISL Light Client');
+      const downloadButton = screen.getByText('Se connecter via ISL Online');
       
       // Initialement désactivé
       expect(downloadButton).toBeDisabled();

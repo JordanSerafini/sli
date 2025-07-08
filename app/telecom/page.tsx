@@ -65,9 +65,9 @@ const operatorPartners = [
 
 const statsData = [
   { value: "99.9%", label: "Disponibilité réseau", icon: <Signal /> },
-  { value: "24/7", label: "Support technique", icon: <Headphones /> },
+  { value: "8h30-17h30", label: "Support technique", icon: <Headphones /> },
   { value: "200+", label: "Entreprises connectées", icon: <Users /> },
-  { value: "<2h", label: "Temps d'intervention", icon: <Clock /> }
+  { value: "<4h ", label: "Temps d'intervention (en heures ouvrées)", icon: <Clock /> }
 ];
 
 const telecomSolutions = [
