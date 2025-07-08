@@ -10,6 +10,9 @@ import { Input } from "@/components/ui/Input";
 import { ModernCard } from "@/components/ui/modernCard";
 import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
+import { HoneypotField, useHoneypot } from "@/components/security/HoneypotField";
+import { SimpleCaptcha, useCaptcha } from "@/components/security/SimpleCaptcha";
+import { getApiUrl } from "@/lib/utils";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -20,6 +23,14 @@ export default function Contact() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [showCallbackModal, setShowCallbackModal] = useState(false);
+  
+  // 🛡️ Protection honeypot contre les bots
+  const { honeypotValue, setHoneypotValue, isBot, resetHoneypot } = useHoneypot();
+  
+  // 🛡️ CAPTCHA intelligent (activé après plusieurs tentatives)
+  const [submitAttempts, setSubmitAttempts] = useState(0);
+  const [requireCaptcha, setRequireCaptcha] = useState(false);
+  const { isVerified: captchaVerified, handleVerify: handleCaptchaVerify, resetCaptcha } = useCaptcha(false);
   
   // État pour la modal de statut
   const [statusModal, setStatusModal] = useState({
@@ -60,6 +71,19 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    // 🛡️ VÉRIFICATION HONEYPOT - Bot détecté
+    if (isBot()) {
+      showErrorModal('Erreur de validation. Veuillez réessayer.');
+      resetHoneypot();
+      return;
+    }
+    
+    // 🛡️ VÉRIFICATION CAPTCHA (si requis)
+    if (requireCaptcha && !captchaVerified) {
+      showErrorModal('Veuillez compléter la vérification anti-robot.');
+      return;
+    }
+    
     // Validation côté client
     if (!formData.name || !formData.email || !formData.message) {
       showErrorModal('Veuillez remplir tous les champs obligatoires.');
@@ -69,7 +93,7 @@ export default function Contact() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch(getApiUrl("/api/contact"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -80,10 +104,28 @@ export default function Contact() {
       if (response.ok) {
         showSuccessModal(data.message || "Votre message a été envoyé avec succès ! Nous vous répondrons rapidement.");
         setFormData({ name: "", email: "", message: "", phone: "" });
+        setSubmitAttempts(0);
+        setRequireCaptcha(false);
       } else {
+        const newAttempts = submitAttempts + 1;
+        setSubmitAttempts(newAttempts);
+        
+        // Activer le CAPTCHA après 2 tentatives d'erreur
+        if (newAttempts >= 2) {
+          setRequireCaptcha(true);
+        }
+        
         showErrorModal(data.message || "Une erreur s'est produite. Veuillez réessayer.");
       }
     } catch {
+      const newAttempts = submitAttempts + 1;
+      setSubmitAttempts(newAttempts);
+      
+      // Activer le CAPTCHA après 2 tentatives d'erreur
+      if (newAttempts >= 2) {
+        setRequireCaptcha(true);
+      }
+      
       showErrorModal("Erreur de connexion. Vérifiez votre connexion internet et réessayez.");
     } finally {
       setIsLoading(false);
@@ -183,6 +225,13 @@ export default function Contact() {
               <h2 className="text-2xl font-bold text-foreground">Envoyez-nous un message</h2>
               
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* 🛡️ Champ honeypot invisible pour piéger les bots */}
+                <HoneypotField 
+                  value={honeypotValue} 
+                  onChange={setHoneypotValue} 
+                  fieldName="website"
+                />
+                
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
                     Nom *
@@ -247,8 +296,18 @@ export default function Contact() {
                     required
                     disabled={isLoading}
                     placeholder="Comment pouvons-nous vous aider ?"
-                  ></textarea>
+                  />
                 </div>
+                
+                {/* 🛡️ CAPTCHA intelligent (affiché après plusieurs erreurs) */}
+                {requireCaptcha && (
+                  <SimpleCaptcha
+                    onVerify={handleCaptchaVerify}
+                    onReset={resetCaptcha}
+                    difficulty="easy"
+                    className="mb-4"
+                  />
+                )}
                 
                                  <div>
                    <ModernButton 
