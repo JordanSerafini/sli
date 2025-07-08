@@ -1,4 +1,5 @@
 
+
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { ContactEmailTemplate } from '../../../components/email-template';
@@ -8,17 +9,6 @@ import {
   sanitizeAndValidateContactData, 
   logSecurityEvent 
 } from '../../../lib/security';
-
-// Configuration CORS pour permettre les appels depuis d'autres domaines
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type',
-};
-
-export async function OPTIONS() {
-  return new Response(null, { status: 200, headers: corsHeaders });
-}
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -48,7 +38,7 @@ export async function POST(req: Request) {
             message: 'Trop de tentatives. Votre IP est temporairement bloquée.',
             resetTime: rateLimitResult.resetTime 
           },
-          { status: 429, headers: corsHeaders }
+          { status: 429 }
         );
       } else {
         return NextResponse.json(
@@ -56,7 +46,7 @@ export async function POST(req: Request) {
             message: `Limite atteinte. Attendez avant de renvoyer un message. (${rateLimitResult.remaining} restantes)`,
             resetTime: rateLimitResult.resetTime 
           },
-          { status: 429, headers: corsHeaders }
+          { status: 429 }
         );
       }
     }
@@ -75,7 +65,7 @@ export async function POST(req: Request) {
 
       return NextResponse.json(
         { message: 'Erreur de validation du formulaire.' },
-        { status: 400, headers: corsHeaders }
+        { status: 400 }
       );
     }
     
@@ -91,7 +81,7 @@ export async function POST(req: Request) {
 
       return NextResponse.json(
         { message: `Données invalides: ${validation.errors.join(', ')}` },
-        { status: 400, headers: corsHeaders }
+        { status: 400 }
       );
     }
 
@@ -101,7 +91,7 @@ export async function POST(req: Request) {
       console.error('Clé API Resend non configurée');
       return NextResponse.json(
         { message: 'Service de messagerie non configuré. Veuillez contacter l\'administrateur.' },
-        { status: 500, headers: corsHeaders }
+        { status: 500 }
       );
     }
 
@@ -122,7 +112,7 @@ export async function POST(req: Request) {
       console.error('Erreur Resend:', error);
       return NextResponse.json(
         { message: 'Erreur lors de l\'envoi du message. Veuillez réessayer plus tard.' },
-        { status: 500, headers: corsHeaders }
+        { status: 500 }
       );
     }
 
@@ -130,7 +120,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json(
       { message: 'Message envoyé avec succès !' },
-      { status: 200, headers: corsHeaders }
+      { status: 200 }
     );
 
   } catch (error) {
@@ -138,7 +128,7 @@ export async function POST(req: Request) {
     
     return NextResponse.json(
       { message: 'Erreur lors de l\'envoi du message. Veuillez réessayer plus tard.' },
-      { status: 500, headers: corsHeaders }
+      { status: 500 }
     );
   }
 } 
