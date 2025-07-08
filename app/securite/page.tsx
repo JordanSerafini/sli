@@ -266,7 +266,7 @@ export default function Securite() {
               description={service.description}
               image={service.image}
               features={service.features}
-              variant={index === 1 ? "featured" : "default"}
+              variant={activeService === index ? "featured" : "default"}
               className="cursor-pointer"
               onClick={() => setActiveService(index)}
             />
