@@ -204,7 +204,7 @@ export default function Telecom() {
               description={service.description}
               image={service.image}
               features={service.features}
-              variant={index === 0 ? "featured" : "default"}
+              variant={activeService === index ? "featured" : "default"}
               className="cursor-pointer"
               onClick={() => setActiveService(index)}
             />

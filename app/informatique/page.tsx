@@ -185,7 +185,7 @@ export default function Informatique() {
               description={service.description}
               icon={service.icon}
               features={service.features}
-              variant={index === 1 ? "featured" : "default"}
+              variant={activeService === index ? "featured" : "default"}
               className="cursor-pointer"
               onClick={() => setActiveService(index)}
             />

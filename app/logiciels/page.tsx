@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { ModernSection, ServiceCard, ModernButton } from "@/components/ui";
+import { cn } from "@/lib/utils";
 import { 
   Calculator, 
   TrendingUp, 
@@ -182,7 +183,7 @@ export default function Logiciels() {
 
           <div className="grid lg:grid-cols-3 gap-8 mb-16">
             {logicielsData.map((logiciel) => (
-              <div key={logiciel.id} className="relative">
+              <div key={logiciel.id} className="relative h-full">
                 {logiciel.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
                     <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-1 rounded-full text-sm font-semibold flex items-center">
@@ -192,41 +193,73 @@ export default function Logiciels() {
                   </div>
                 )}
                 
-                <ServiceCard
-                  title={logiciel.title}
-                  description={logiciel.description}
-                  image={logiciel.image}
-                  href={logiciel.href}
-                  features={logiciel.features}
-                  variant={logiciel.popular ? "featured" : "default"}
-                  className="h-full"
-                />
-                
-                <div className="mt-4 p-6 bg-slate-50 rounded-xl">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium w-full">
-                      Version d'essai gratuite
-                    </span>
+                <div className={cn(
+                  "group relative overflow-hidden rounded-2xl bg-white border border-slate-200 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 h-full flex flex-col",
+                  logiciel.popular && "rounded-3xl bg-gradient-to-br from-blue-500/5 to-cyan-500/5 border-2 border-blue-200 shadow-xl hover:border-blue-300"
+                )}>
+                  {/* Image */}
+                  <div className="relative h-48 lg:h-56 overflow-hidden">
+                    <Image
+                      src={logiciel.image}
+                      alt={logiciel.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                   </div>
-                  
-                  <div className="space-y-2">
-                    <ModernButton 
-                      variant="accent" 
-                      className="w-full"
-                      href={logiciel.href}
-                    >
-                      Découvrir
-                      <ArrowRight className="w-4 h-4 ml-2" />
-                    </ModernButton>
-                    
-                    <ModernButton 
-                      variant="outline" 
-                      className="w-full"
-                      href="/contact"
-                    >
-                      <Download className="w-4 h-4 mr-2" />
-                      Télécharger la démo
-                    </ModernButton>
+
+                  {/* Content */}
+                  <div className="p-6 flex-1 flex flex-col">
+                    {/* Header */}
+                    <div className="flex items-start justify-between mb-4">
+                      <h3 className="text-xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors duration-300">
+                        {logiciel.title}
+                      </h3>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-slate-600 leading-relaxed mb-4 flex-1">
+                      {logiciel.description}
+                    </p>
+
+                    {/* Features */}
+                    <ul className="space-y-2 mb-6">
+                      {logiciel.features.slice(0, 5).map((feature, index) => (
+                        <li key={index} className="flex items-center text-sm text-slate-600">
+                          <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mr-3 flex-shrink-0" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* Badge et Boutons */}
+                    <div className="mt-auto">
+                      <div className="mb-4">
+                        <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium block text-center">
+                          Version d'essai gratuite
+                        </span>
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <ModernButton 
+                          variant="accent" 
+                          className="w-full"
+                          href={logiciel.href}
+                        >
+                          Découvrir
+                          <ArrowRight className="w-4 h-4 ml-2" />
+                        </ModernButton>
+                        
+                        <ModernButton 
+                          variant="outline" 
+                          className="w-full"
+                          href="/contact"
+                        >
+                          <Download className="w-4 h-4 mr-2" />
+                          Télécharger la démo
+                        </ModernButton>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
