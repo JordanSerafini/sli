@@ -102,12 +102,24 @@ function detectBot(request: NextRequest): boolean {
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   
+  // 🔍 LOGS DE DEBUG TEMPORAIRES
+  if (pathname.startsWith('/api/')) {
+    console.log('[DEBUG MIDDLEWARE]', {
+      method: request.method,
+      pathname,
+      origin: request.headers.get('origin'),
+      userAgent: request.headers.get('user-agent'),
+      referer: request.headers.get('referer')
+    });
+  }
+  
   // 🛡️ GESTION SPÉCIALE DES REQUÊTES OPTIONS (CORS Preflight)
   if (request.method === 'OPTIONS' && pathname.startsWith('/api/')) {
     const origin = request.headers.get('origin');
     
     // Autoriser les requêtes OPTIONS depuis les origines autorisées
     if (origin && ALLOWED_ORIGINS.includes(origin)) {
+      console.log('[DEBUG] OPTIONS autorisé pour origine:', origin);
       return new NextResponse(null, {
         status: 200,
         headers: {
@@ -118,6 +130,8 @@ export function middleware(request: NextRequest) {
           'Access-Control-Max-Age': '86400',
         },
       });
+    } else {
+      console.log('[DEBUG] OPTIONS refusé pour origine:', origin);
     }
   }
   
