@@ -28,7 +28,7 @@ jest.mock('next/image', () => {
     if (typeof imageProps.priority === 'boolean') {
       delete imageProps.priority;
     }
-    return <img src={src} alt={alt} {...imageProps} />;
+    return <div data-testid="mock-image" data-src={src} data-alt={alt} {...imageProps} />;
   };
   MockImage.displayName = 'MockImage';
   return MockImage;
