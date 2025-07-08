@@ -12,6 +12,7 @@ Le projet est configuré pour l'export statique grâce à :
 - Script `export` dans `package.json`
 - Configuration conditionnelle dans `next.config.ts`
 - Variable d'environnement `NEXT_EXPORT=true`
+- Optimisation des images avec Next.js `<Image />`
 
 ## 📤 Méthode 1 : Déploiement Manuel (FileZilla)
 
@@ -30,12 +31,14 @@ $env:NEXT_EXPORT="true"; npm run build
 NEXT_EXPORT=true npm run build
 ```
 
+**✅ Build réussi :** 25 pages générées sans warning
+
 #### 2. Vérification des fichiers
 Après la construction, vérifiez que le dossier `out/` a été créé avec :
 - `index.html` (page d'accueil)
-- Dossier `_next/` (assets JS/CSS)
-- Dossier `assets/` (images)
-- Autres pages HTML
+- Dossier `_next/` (assets JS/CSS optimisés)
+- Dossier `assets/` (images optimisées)
+- Pages HTML pour tous les services (25 pages au total)
 
 #### 3. Upload via FileZilla
 1. **Sauvegarder l'ancien site** (recommandé)
@@ -49,11 +52,12 @@ Après la construction, vérifiez que le dossier `out/` a été créé avec :
    - Ouvrir le dossier `out/` local
    - Sélectionner **tout le contenu** du dossier `out/` (pas le dossier lui-même)
    - Glisser-déposer vers `/www` sur le serveur
-   - Attendre la fin du transfert
+   - Attendre la fin du transfert (~210kB de JS + assets)
 
 4. **Vérification**
    - S'assurer que `index.html` est à la racine de `/www`
    - Tester le site web
+   - Vérifier que les images s'affichent correctement
 
 ## 🤖 Méthode 2 : Déploiement Automatique (GitHub Actions)
 
@@ -80,6 +84,7 @@ SITE_URL=https://solution-logique.fr
 Le déploiement se déclenche automatiquement :
 - À chaque push sur la branche `master`
 - Le workflow `deploy-ftp.yml` se lance automatiquement
+- Build + Test + Lint + Export + Upload FTP
 
 #### Déploiement manuel
 Vous pouvez aussi déclencher manuellement :
@@ -105,14 +110,22 @@ Le fichier `merge-dev-to-master.yml` permet :
 
 ```
 /www/
-├── index.html              # Page d'accueil
-├── _next/                  # Assets Next.js (CSS, JS)
+├── index.html                    # Page d'accueil
+├── _next/                        # Assets Next.js optimisés
 │   ├── static/
+│   │   ├── chunks/               # JavaScript chunks (210kB)
+│   │   └── css/                  # Styles optimisés
 │   └── ...
-├── assets/                 # Images et médias
-├── contact.html            # Page contact
-├── nosServices.html        # Page services
-└── ...                     # Autres pages
+├── assets/                       # Images optimisées (.webp)
+│   ├── dell.webp
+│   ├── stormshield.webp
+│   ├── infrastructure.webp
+│   └── ...
+├── contact.html                  # Page contact (10.8kB)
+├── informatique.html             # Page informatique (4.17kB)
+├── securite.html                 # Page sécurité (4.48kB)
+├── nosServices.html              # Page services (183B)
+└── [autres-pages].html           # 25 pages au total
 ```
 
 ## ⚠️ Points d'attention
@@ -120,8 +133,9 @@ Le fichier `merge-dev-to-master.yml` permet :
 ### Avant le déploiement
 - [ ] Tester le build en local : `npm run build`
 - [ ] Vérifier que tous les liens internes fonctionnent
-- [ ] S'assurer que les images sont optimisées
+- [ ] S'assurer que les images sont optimisées (Next.js Image)
 - [ ] Valider le contenu avec `npm run lint`
+- [ ] Lancer les tests avec `npm run test`
 
 ### Problèmes courants
 
@@ -130,10 +144,11 @@ Le fichier `merge-dev-to-master.yml` permet :
 # Nettoyer et réinstaller
 rm -rf node_modules .next out
 npm install
-npm run export
+$env:NEXT_EXPORT="true"; npm run build
 ```
 
 #### Images qui ne s'affichent pas
+- ✅ **Résolu** : Utilisation du composant `<Image />` de Next.js
 - Vérifier que `images: { unoptimized: true }` est dans `next.config.ts`
 - S'assurer que les chemins d'images sont relatifs
 
@@ -141,30 +156,55 @@ npm run export
 - Utiliser `trailingSlash: true` dans la config
 - Préférer des liens relatifs aux liens absolus
 
+#### Warnings de linting
+- ✅ **Résolu** : Plus de warnings sur `<img>` vs `<Image />`
+- Tous les composants utilisent maintenant `<Image />` optimisé
+
+## 📊 Performance après optimisation
+
+**Tailles optimisées :**
+- Page d'accueil : 188B + 302kB JS partagé
+- Page contact : 10.8kB 
+- Page informatique : 4.17kB
+- Page sécurité : 4.48kB
+- JavaScript partagé : 210kB total
+- **25 pages** générées automatiquement
+
 ## 🔧 Maintenance
 
 ### Mise à jour du site
 1. Faire les modifications dans le code
 2. Tester en local avec `npm run dev`
-3. Commit et push sur la branche appropriée
-4. Le déploiement se fait automatiquement (si configuré)
+3. Vérifier le build avec `npm run build`
+4. Commit et push sur la branche appropriée
+5. Le déploiement se fait automatiquement (si configuré)
 
 ### Surveillance
 - Vérifier régulièrement que le site fonctionne
 - Surveiller les logs GitHub Actions en cas de problème
 - Garder une sauvegarde des fichiers importants
+- Monitorer les performances et la vitesse de chargement
 
 ## 📞 Aide
 
 En cas de problème :
 1. Vérifier les logs GitHub Actions
-2. Tester le build en local
-3. Comparer avec la version précédente fonctionnelle
+2. Tester le build en local avec la commande exacte
+3. Comparer avec la version précédente fonctionnelle  
 4. Vérifier la configuration FTP sur OVH
+5. S'assurer que les images sont bien dans `/public/assets/`
 
----
+## 🚀 Améliorations récentes
 
-📝 **Notes importantes :**
-- Le workflow GitHub Actions est actuellement en mode test (`dry-run: true`)
-- Modifier `dry-run: false` pour activer le déploiement réel
-- Conserver toujours une sauvegarde avant déploiement 
+### ✅ Optimisations effectuées
+- **Images optimisées** : Remplacement de `<img>` par `<Image />` Next.js
+- **Build sans warnings** : Tous les problèmes de linting résolus
+- **Performance améliorée** : Optimisation automatique des images
+- **Export statique** : Configuration robuste pour OVH
+
+### 📝 **Notes importantes :**
+- ✅ **Build testé et fonctionnel** - 25 pages générées sans erreur
+- ⚠️ Le workflow GitHub Actions est en mode test (`dry-run: true`)
+- 🔧 Modifier `dry-run: false` pour activer le déploiement réel
+- 💾 Conserver toujours une sauvegarde avant déploiement
+- 🖼️ Toutes les images sont maintenant optimisées avec Next.js 
