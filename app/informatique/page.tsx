@@ -78,7 +78,7 @@ const statsData = [
   { value: "30+", label: "Années d'expérience", icon: <Star /> },
   { value: "500+", label: "Entreprises accompagnées", icon: <Users /> },
   { value: "99.9%", label: "Disponibilité garantie", icon: <CheckCircle /> },
-  { value: "24/7", label: "Support technique", icon: <Shield /> }
+  { value: "8h30-17h30", label: "Support technique", icon: <Shield /> }
 ];
 
 const partnersLogos = [
