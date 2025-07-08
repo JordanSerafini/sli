@@ -24,10 +24,21 @@
           "value": "Content-Type, Authorization, X-Requested-With"
         },
         {
+          "key": "Access-Control-Allow-Credentials",
+          "value": "false"
+        },
+        {
           "key": "Access-Control-Max-Age",
           "value": "86400"
         }
       ]
     }
-  ]
+  ],
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "/api/:path*"
+    }
+  ],
+  "regions": ["cdg1"]
 } 
