@@ -17,9 +17,9 @@ export default function RootLayout({
 
   return (
     <html lang="fr">
-      <body className="bg-white">
+      <body className="bg-white overflow-x-hidden">
         <Navbar />
-        <main className="min-h-screen">{children}</main>
+        <main className="min-h-screen overflow-x-hidden">{children}</main>
         {pathname !== "/contact" && <Contact_Btn />}
         <Footer />
       </body>

@@ -347,7 +347,7 @@ export default function Logiciels() {
               </div>
               
               <div className="bg-white/10 backdrop-blur rounded-2xl p-6">
-                <h4 className="text-xl font-semibold mb-4">📞 Contact formation</h4>
+                <h4 className="text-xl font-semibold mb-4 text-white tracking-wide border-b border-white pb-2">📞 Contact formation</h4>
                 <div className="space-y-3 text-slate-300">
                   <p>📧 site@solution-logique.fr</p>
                   <p>📞 04 50 64 02 33</p>
