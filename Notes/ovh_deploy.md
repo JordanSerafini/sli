@@ -1,4 +1,5 @@
 # 🚀 Guide de Déploiement - Site Next.js sur OVH
+$env:NEXT_EXPORT="true"; npm run build
 
 ## 📋 Vue d'ensemble
 

@@ -97,21 +97,21 @@ const formationsData = [
 
 const testimonialsData = [
   {
-    name: "Marie Dubois",
-    company: "Artisan Menuiserie",
-    content: "EBP Bâtiment a révolutionné ma gestion de chantiers. Gain de temps considérable !",
-    rating: 5
-  },
-  {
-    name: "Pierre Martin",
-    company: "Comptable indépendant",
-    content: "Interface intuitive, fonctionnalités complètes. Parfait pour mon cabinet.",
-    rating: 5
-  },
-  {
-    name: "Sophie Laurent",
+    name: "Jean Paul Deaut",
     company: "Commerce de détail",
-    content: "La gestion des stocks en temps réel m'a fait économiser des milliers d'euros.",
+    content: "Des pros aux services des pros.",
+    rating: 4
+  },
+  {
+    name: "Nicola Leone",
+    company: "NC",
+    content: "I recently used the services of a IT company for my business needs. I was extremely satisfied with the quality of their services. The team was knowledgeable and efficient. They delivered the solutions within the agreed timeline and the cost was also reasonable. I would highly recommend them.",
+    rating: 5
+  },
+  {
+    name: "Larry Reese",
+    company: "Entreprise de services",
+    content: "I am very impressed with Solution Logique Informatique. Their website solution-logique.fr is user-friendly and easy to navigate. The services they provide are top-notch, and their team is highly professional. I would highly recommend their services to anyone looking for reliable IT solutions.",
     rating: 5
   }
 ];

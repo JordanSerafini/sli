@@ -210,11 +210,11 @@ export default function Informatique() {
                 {servicesData[activeService].description}
               </p>
 
-              <div className="grid grid-cols-3 gap-4 mb-8">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
                 {servicesData[activeService].benefits.map((benefit, index) => (
-                  <div key={index} className="text-center p-4 bg-blue-50 rounded-xl">
-                    <CheckCircle className="w-6 h-6 text-blue-600 mx-auto mb-2" />
-                    <span className="text-sm font-medium text-slate-700">{benefit}</span>
+                  <div key={index} className="text-center p-3 bg-blue-50 rounded-xl min-h-[80px] flex flex-col items-center justify-center">
+                    <CheckCircle className="w-5 h-5 text-blue-600 mx-auto mb-2 flex-shrink-0" />
+                    <span className="text-xs font-medium text-slate-700 leading-tight">{benefit}</span>
                   </div>
                 ))}
               </div>
